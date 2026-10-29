@@ -1,0 +1,4 @@
+.DS_Store
+.wrangler/
+.env*
+node_modules/

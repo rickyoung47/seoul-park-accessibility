@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f4ee" />
+    <title>서울 공원 접근성 · 베이스맵</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://tile.openstreetmap.org" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="서울 공원 접근성 홈"><span class="brand-mark">S</span><span>SEOUL <b>GREEN ACCESS</b></span></a>
+        <span class="phase"><i></i> BASEMAP / 01</span>
+      </header>
+      <section class="layout">
+        <aside class="panel">
+          <div class="eyebrow">URBAN WALKABILITY · SEOUL</div>
+          <h1>공원까지<br /><em>얼마나</em> 가까울까</h1>
+          <p class="intro">행정동과 도로망을 한 화면에서 살펴보는 공원 접근성 분석의 바탕 지도입니다.</p>
+          <div class="rule"></div>
+          <div class="section-label">지도 레이어 <span>01 / 02</span></div>
+          <label class="layer-row"><input id="roads-toggle" type="checkbox" checked /><span class="swatch roads"></span><span><b>서울 도로 링크</b><small>제공된 도로 링크 데이터</small></span></label>
+          <label class="layer-row"><input id="dong-toggle" type="checkbox" checked /><span class="swatch boundary"></span><span><b>행정동 경계</b><small>서울시 행정동</small></span></label>
+          <div class="rule"></div>
+          <div class="section-label">선택한 행정동</div>
+          <div id="dong-info" class="dong-card"><span class="pin">＋</span><span>지도의 행정동을 선택해 보세요.</span></div>
+          <div class="note"><span class="note-icon">i</span><p>현재 지도는 분석 준비 단계입니다. 도로 링크가 OSMnx 보행 네트워크를 대신하지 않으며, 공원 위치와 접근성 점수는 아직 추가되지 않았습니다.</p></div>
+          <footer><span>SEOUL · SOUTH KOREA</span><span>MAP DATA © OPENSTREETMAP</span></footer>
+        </aside>
+        <section class="map-wrap" aria-label="서울시 행정동과 도로 링크 지도">
+          <div id="map"></div>
+          <div class="map-chip"><span class="live-dot"></span> SEOUL METROPOLITAN AREA <span class="chip-sep">/</span> <b>BASEMAP</b></div>
+          <div id="status" class="map-status">지도 데이터를 불러오는 중…</div>
+          <div class="legend"><span class="legend-line"></span><span>도로 링크</span><span class="legend-border"></span><span>행정동 경계</span></div>
+          <div class="north">N <span>↑</span></div>
+        </section>
+      </section>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/proj4@2.12.1/dist/proj4.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
