@@ -2,6 +2,8 @@ const map = L.map('map', { zoomControl: false, preferCanvas: true, maxBoundsVisc
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 map.createPane('outsideMask');
 map.getPane('outsideMask').style.zIndex = 450;
+map.createPane('dongPane');
+map.getPane('dongPane').style.zIndex = 460;
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
@@ -79,7 +81,10 @@ Promise.all([
 ]).then(async ([dongs, outline, greens, scoreData, networkManifest]) => {
   accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
   dongsLayer = L.geoJSON(dongs, {
-    style: { color: '#70856a', weight: 0.55, fillColor: '#dce5d4', fillOpacity: 0.04 },
+    pane: 'dongPane',
+    interactive: true,
+    bubblingMouseEvents: false,
+    style: { color: '#70856a', weight: 0.55, fillColor: '#dce5d4', fillOpacity: 0.08 },
     onEachFeature(feature, layer) {
       const props = feature.properties || {};
       const name = props.ADM_NM || '이름 정보 없음';
