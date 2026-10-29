@@ -1,61 +1,135 @@
-const map = L.map('map', { zoomControl: false, preferCanvas: true }).setView([37.5665, 126.978], 11);
+const map = L.map('map', { zoomControl: false, preferCanvas: true, maxBoundsViscosity: 1 }).setView([37.5665, 126.978], 11);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
+map.createPane('outsideMask');
+map.getPane('outsideMask').style.zIndex = 350;
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
 }).addTo(map);
 
 const status = document.getElementById('status');
-const dongInfo = document.getElementById('dong-info');
-let walkLayer;
+const formatNumber = (value) => Number(value || 0).toLocaleString('ko-KR', { maximumFractionDigits: 0 });
+let layers = {};
+let selectedLayer = null;
+let accessibility = new Map();
 let dongsLayer;
 
 async function fetchJson(path) {
   const response = await fetch(path);
-  if (!response.ok) throw new Error(`데이터를 불러오지 못했습니다: ${path}`);
+  if (!response.ok) throw new Error(`지도 데이터를 불러오지 못했습니다: ${path}`);
   return response.json();
 }
 
-Promise.all([fetchJson('./assets/dongs.geojson'), fetchJson('./assets/walk-network-manifest.json')])
-  .then(async ([dongs, manifest]) => {
-    dongsLayer = L.geoJSON(dongs, {
-      style: { color: '#668354', weight: 0.85, opacity: 0.8, fillColor: '#a8c28c', fillOpacity: 0.07 },
-      onEachFeature(feature, layer) {
-        const props = feature.properties || {};
-        const name = props.EMD_NM || '이름 정보 없음';
-        layer.bindTooltip(name, { sticky: true, className: 'dong-tooltip' });
-        layer.on('click', () => {
-          dongInfo.innerHTML = `<span class="pin">⌖</span><span><strong>${name}</strong><small>${props.EMD_CD || ''}</small></span>`;
-        });
-      },
-    }).addTo(map);
+function cityMask(outline, bounds) {
+  const world = [
+    [bounds.getSouth() - 0.5, bounds.getWest() - 0.5],
+    [bounds.getSouth() - 0.5, bounds.getEast() + 0.5],
+    [bounds.getNorth() + 0.5, bounds.getEast() + 0.5],
+    [bounds.getNorth() + 0.5, bounds.getWest() - 0.5],
+    [bounds.getSouth() - 0.5, bounds.getWest() - 0.5],
+  ];
+  const geometry = outline.features[0].geometry;
+  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+  const holes = polygons.map((rings) => rings[0].map(([lng, lat]) => [lat, lng]));
+  return L.polygon([world, ...holes], {
+    pane: 'outsideMask', stroke: false, fillColor: '#edf0e9', fillOpacity: 1, interactive: false,
+  }).addTo(map);
+}
 
-    const shards = await Promise.all(manifest.files.map((path) => fetchJson(`./assets/${path}`)));
-    const lines = [];
-    for (const shard of shards) {
-      for (const feature of shard.features) {
-        if (feature.geometry.type === 'LineString') lines.push(feature.geometry.coordinates);
-        if (feature.geometry.type === 'MultiLineString') lines.push(...feature.geometry.coordinates);
-      }
+function updateSelectedDong(properties) {
+  const metrics = accessibility.get(String(properties.ADM_CD));
+  if (!metrics) return;
+  document.getElementById('selection').classList.remove('empty');
+  document.getElementById('dong-name').textContent = properties.ADM_NM || metrics.ADM_NM;
+  document.getElementById('dong-code').textContent = `행정동 코드 ${properties.ADM_CD}`;
+  document.getElementById('avg-min').textContent = metrics.population_weighted_walk_min == null ? '—' : metrics.population_weighted_walk_min.toFixed(1);
+  document.getElementById('within-pct').textContent = metrics.population_within_10min_pct == null ? '—' : metrics.population_within_10min_pct.toFixed(1);
+  document.getElementById('avg-rank').textContent = metrics.rank_walk_min == null ? '순위 없음' : `서울 ${metrics.rank_walk_min}위 / ${accessibility.size}개 동`;
+  document.getElementById('within-rank').textContent = metrics.rank_within_10min == null ? '순위 없음' : `서울 ${metrics.rank_within_10min}위 / ${accessibility.size}개 동`;
+  document.getElementById('population').textContent = `${formatNumber(metrics.total_population)}명`;
+  if (selectedLayer) selectedLayer.setStyle({ color: '#70856a', weight: 0.55, fillColor: '#b5c5ab', fillOpacity: 0.08 });
+  selectedLayer = dongsLayer.getLayers().find((layer) => String(layer.feature?.properties?.ADM_CD) === String(properties.ADM_CD));
+  if (selectedLayer) selectedLayer.setStyle({ color: '#264d36', weight: 2.2, fillColor: '#9fc17f', fillOpacity: 0.3 });
+}
+
+async function loadWalkNetwork(manifest) {
+  if (layers.walk) return layers.walk;
+  status.textContent = '보행 네트워크를 불러오는 중…';
+  const shards = await Promise.all(manifest.files.map((path) => fetchJson(`./assets/${path}`)));
+  const lines = [];
+  for (const shard of shards) {
+    for (const feature of shard.features) {
+      const geometry = feature.geometry;
+      if (geometry.type === 'LineString') lines.push(geometry.coordinates);
+      if (geometry.type === 'MultiLineString') lines.push(...geometry.coordinates);
     }
-    const network = {
-      type: 'FeatureCollection',
-      features: [{ type: 'Feature', properties: {}, geometry: { type: 'MultiLineString', coordinates: lines } }],
-    };
-    walkLayer = L.geoJSON(network, { style: { color: '#68756d', weight: 0.55, opacity: 0.56 } }).addTo(map);
-    map.fitBounds(dongsLayer.getBounds(), { padding: [18, 18] });
-    status.textContent = `${dongs.features.length}개 행정동 · ${manifest.edge_count.toLocaleString('ko-KR')}개 보행 링크`;
-  })
-  .catch((error) => {
-    status.textContent = error.message;
-    status.classList.add('error');
-  });
+  }
+  const network = { type: 'Feature', properties: {}, geometry: { type: 'MultiLineString', coordinates: lines } };
+  layers.walk = L.geoJSON(network, { style: { color: '#6b7770', weight: 0.45, opacity: 0.44 } });
+  if (document.getElementById('walk-toggle').checked) layers.walk.addTo(map);
+  return layers.walk;
+}
 
-document.getElementById('roads-toggle').addEventListener('change', (event) => {
-  if (!walkLayer) return;
-  event.target.checked ? walkLayer.addTo(map) : map.removeLayer(walkLayer);
+Promise.all([
+  fetchJson('./assets/dongs.geojson'),
+  fetchJson('./assets/seoul-outline.geojson'),
+  fetchJson('./assets/green-areas.geojson'),
+  fetchJson('./assets/parks.geojson'),
+  fetchJson('./assets/dong-accessibility.json'),
+  fetchJson('./assets/walk-network-manifest.json'),
+]).then(async ([dongs, outline, greens, parks, scoreData, networkManifest]) => {
+  accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
+  dongsLayer = L.geoJSON(dongs, {
+    style: { color: '#70856a', weight: 0.55, fillColor: '#dce5d4', fillOpacity: 0.04 },
+    onEachFeature(feature, layer) {
+      const props = feature.properties || {};
+      const name = props.ADM_NM || '이름 정보 없음';
+      layer.bindTooltip(name, { sticky: true, className: 'dong-tooltip' });
+      layer.on('click', () => updateSelectedDong(props));
+      layer.on('mouseover', () => { if (layer !== selectedLayer) layer.setStyle({ color: '#46664c', weight: 1.3, fillColor: '#cadbb8', fillOpacity: 0.22 }); });
+      layer.on('mouseout', () => { if (layer !== selectedLayer) dongsLayer.resetStyle(layer); });
+    },
+  }).addTo(map);
+  const bounds = dongsLayer.getBounds();
+  cityMask(outline, bounds);
+  map.fitBounds(bounds, { padding: [10, 10] });
+  const paddedBounds = bounds.pad(0.025);
+  map.setMaxBounds(paddedBounds);
+  map.setMinZoom(Math.max(map.getBoundsZoom(paddedBounds), 10));
+
+  layers.greens = L.geoJSON(greens, { style: { color: '#6a9358', weight: 0.45, fillColor: '#93bd73', fillOpacity: 0.42 } }).addTo(map);
+  layers.parks = L.geoJSON(parks, {
+    style: { color: '#3b7550', weight: 1, fillColor: '#45a365', fillOpacity: 0.62 },
+    pointToLayer: (_, latlng) => L.circleMarker(latlng, { radius: 4, color: '#24613b', weight: 1, fillColor: '#63b579', fillOpacity: 0.9 }),
+    onEachFeature(feature, layer) { if (feature.properties?.name) layer.bindTooltip(feature.properties.name); },
+  }).addTo(map);
+  await loadWalkNetwork(networkManifest);
+  layers.greens.bringToFront();
+  layers.parks.bringToFront();
+  dongsLayer.bringToFront();
+  status.textContent = `${scoreData.metadata.dong_count}개 행정동 · ${scoreData.metadata.parks_used.toLocaleString('ko-KR')}개 공원 · 2024 인구`;
+}).catch((error) => {
+  status.textContent = error.message;
+  status.classList.add('error');
 });
-document.getElementById('dong-toggle').addEventListener('change', (event) => {
+
+document.getElementById('greens-toggle').addEventListener('change', (event) => {
+  if (!layers.greens) return;
+  event.target.checked ? layers.greens.addTo(map) : map.removeLayer(layers.greens);
+});
+document.getElementById('parks-toggle').addEventListener('change', (event) => {
+  if (!layers.parks) return;
+  event.target.checked ? layers.parks.addTo(map) : map.removeLayer(layers.parks);
+});
+document.getElementById('walk-toggle').addEventListener('change', async (event) => {
+  if (!layers.walk) {
+    try { await loadWalkNetwork(await fetchJson('./assets/walk-network-manifest.json')); }
+    catch (error) { status.textContent = error.message; status.classList.add('error'); }
+    return;
+  }
+  event.target.checked ? layers.walk.addTo(map) : map.removeLayer(layers.walk);
+});
+document.getElementById('dongs-toggle').addEventListener('change', (event) => {
   if (!dongsLayer) return;
   event.target.checked ? dongsLayer.addTo(map) : map.removeLayer(dongsLayer);
 });

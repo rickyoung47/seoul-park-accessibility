@@ -1,6 +1,7 @@
 """Build a display-ready OSMnx walk network for the Seoul dong boundary."""
 
 import json
+import math
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -49,6 +50,11 @@ def main():
             value = row.get(key)
             if value is None:
                 continue
+            try:
+                if math.isnan(value):
+                    continue
+            except (TypeError, ValueError):
+                pass
             if hasattr(value, "item"):
                 value = value.item()
             if isinstance(value, (str, int, float, bool)):

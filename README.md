@@ -1,18 +1,41 @@
-# 서울시 공원 접근성 베이스맵
+# 서울시 행정동별 공원 접근성
 
-서울시 행정동 경계와 OSMnx 보행 네트워크를 표시하는 정적 지도입니다. 공원 접근성 지표나 공원 데이터는 아직 포함하지 않았습니다.
+행정동을 지도에서 선택하면 인구가중 평균 보행시간, 10분 이내 도달 인구 비율, 서울시 전체 순위를 보여주는 정적 웹 앱입니다.
 
-## 현재 레이어
+## 지도 레이어와 산출물
 
-- 행정동 경계: `mixed_use/data/dong.geojson` (EPSG:4326, EMD_CD/EMD_NM)
-- 보행 그래프: `network_type="walk"`로 OSMnx에서 생성, EPSG:5179로 투영한 뒤 지도 표시용 EPSG:4326 GeoJSON으로 저장
-- 배경 타일: OpenStreetMap
+- 행정동 경계: 수업 자료 `bnd_dong_seoul.shp`, EPSG:5179, 426개 행정동
+- 녹지지역: `UPIS_C_UQ111.shp`에서 `DGM_NM`에 `녹지`가 포함된 모든 항목을 선택하고 서울 경계로 자른 결과
+- 공원: OpenStreetMap의 `leisure=park` 객체
+- 보행 네트워크: OSMnx `network_type="walk"` 그래프에서 만든 링크 레이어
+- 인구: `2024년_인구_다사_100M.csv`의 `to_in_001` 값을 100m 격자에 결합
+- 행정동 지표: `assets/dong-accessibility.json`
 
-그래프는 OSM 보행 태그를 바탕으로 생성합니다. OSM 데이터의 완전성은 지역과 지도 기여 상황에 따라 다를 수 있습니다. 지도용 간소화는 화면 표시 파일에만 적용되며 거리 분석용 그래프를 대체하지 않습니다.
+## 지표 산정
 
-## 실행
+1. 격자 폴리곤의 중심점을 EPSG:5179에서 계산하고 가장 가까운 보행 네트워크 노드에 연결합니다.
+2. 공원 영역 안의 보행 네트워크 노드를 목적지로 두고, 보행 링크 길이를 비용으로 공원까지의 최단거리를 계산합니다. 공원 안에 네트워크 노드가 없는 경우 가장 가까운 노드와 공원 영역 사이의 직선 연결거리를 더합니다.
+3. 거리를 4km/h(약 66.67m/분)로 나눠 보행시간을 계산합니다.
+4. 격자 인구로 행정동별 가중평균을 구하고, 10분 이내 격자 인구를 행정동 총인구로 나눕니다.
+5. 평균시간은 짧을수록, 10분 도달률은 높을수록 상위 순위입니다. 동점은 같은 순위를 부여합니다.
 
-정적 파일이므로 로컬 웹 서버로 열면 됩니다.
+네트워크 링크는 GeoJSON 크기를 줄이기 위해 각 링크 형상을 미터 단위에서 1.2m 허용오차로 간소화했습니다. 최단거리 역시 이 간소화된 선 형상에서 산출한 근삿값입니다. 실제 보행속도, 경사, 신호 대기, 공원 출입구는 반영하지 않았습니다. 공원 경계 안의 보행망 접점을 출입구 대신 사용하므로 실제 접근성과 다를 수 있습니다.
+
+## 다시 계산하기
+
+재계산 스크립트는 저장소와 같은 상위 폴더에 원본 수업 자료 `lecture05_Urban_Planning_Index`가 있다고 가정합니다. 원본 데이터는 이 저장소에 복사하지 않았습니다.
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 generate_walk_network.py
+python3 compute_accessibility.py
+```
+
+`compute_accessibility.py`는 공원 데이터가 없을 때 OpenStreetMap Overpass API에서 `leisure=park` 객체를 가져옵니다. API 키는 필요하지 않습니다.
+
+## 로컬에서 보기
+
+정적 파일을 웹 서버로 열면 됩니다.
 
 ```bash
 python3 -m http.server 8000
@@ -20,15 +43,10 @@ python3 -m http.server 8000
 
 그다음 `http://localhost:8000`으로 접속하세요.
 
-보행망 GeoJSON을 새로 생성하거나 갱신하려면 Python 환경에 `requirements.txt`를 설치한 다음 아래를 실행하세요. 이 과정은 OSM 공개 데이터를 내려받으며 API 키는 필요하지 않습니다.
+## 데이터 출처와 표시 범위
 
-```bash
-python3 -m pip install -r requirements.txt
-python3 generate_walk_network.py
-```
+- 행정동 및 용도지역 자료: 프로젝트에 제공된 수업 자료. 원본 메타데이터와 이용 조건을 확인하세요.
+- 공원과 보행 네트워크: © OpenStreetMap contributors, ODbL. [저작권 및 이용 안내](https://www.openstreetmap.org/copyright)
+- 바탕 타일: OpenStreetMap contributors. 지도에 표시한 저작자 표시를 유지해야 합니다.
 
-## 출처 및 라이선스
-
-- 행정동 경계 파일은 프로젝트에 제공된 수업 자료에서 추출했습니다. 원본 메타데이터와 이용 조건을 확인한 뒤 재배포하세요.
-- 보행 네트워크는 © OpenStreetMap contributors, ODbL에 따라 제공됩니다. [OpenStreetMap 저작권 안내](https://www.openstreetmap.org/copyright)
-- 배경 타일은 OpenStreetMap contributors 제공 자료이며, 지도에 표시한 저작자 표시를 유지해야 합니다. [OpenStreetMap 저작자 표시](https://www.openstreetmap.org/copyright)
+앱의 지도는 서울시 경계 안만 보이도록 마스크와 이동 범위를 설정했습니다.
