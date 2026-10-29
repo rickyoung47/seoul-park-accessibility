@@ -1,7 +1,7 @@
 const map = L.map('map', { zoomControl: false, preferCanvas: true, maxBoundsViscosity: 1 }).setView([37.5665, 126.978], 11);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 map.createPane('outsideMask');
-map.getPane('outsideMask').style.zIndex = 350;
+map.getPane('outsideMask').style.zIndex = 450;
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
