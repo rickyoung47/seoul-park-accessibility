@@ -23,12 +23,12 @@
           <p class="intro">행정동과 도로망을 한 화면에서 살펴보는 공원 접근성 분석의 바탕 지도입니다.</p>
           <div class="rule"></div>
           <div class="section-label">지도 레이어 <span>01 / 02</span></div>
-          <label class="layer-row"><input id="roads-toggle" type="checkbox" checked /><span class="swatch roads"></span><span><b>서울 도로 링크</b><small>제공된 도로 링크 데이터</small></span></label>
+          <label class="layer-row"><input id="roads-toggle" type="checkbox" checked /><span class="swatch roads"></span><span><b>서울 보행 네트워크</b><small>OSMnx · OpenStreetMap</small></span></label>
           <label class="layer-row"><input id="dong-toggle" type="checkbox" checked /><span class="swatch boundary"></span><span><b>행정동 경계</b><small>서울시 행정동</small></span></label>
           <div class="rule"></div>
           <div class="section-label">선택한 행정동</div>
           <div id="dong-info" class="dong-card"><span class="pin">＋</span><span>지도의 행정동을 선택해 보세요.</span></div>
-          <div class="note"><span class="note-icon">i</span><p>현재 지도는 분석 준비 단계입니다. 도로 링크가 OSMnx 보행 네트워크를 대신하지 않으며, 공원 위치와 접근성 점수는 아직 추가되지 않았습니다.</p></div>
+          <div class="note"><span class="note-icon">i</span><p>공원 위치와 접근성 점수는 아직 추가되지 않았습니다. 표시용 보행망은 보기 편하도록 간소화된 레이어입니다.</p></div>
           <footer><span>SEOUL · SOUTH KOREA</span><span>MAP DATA © OPENSTREETMAP</span></footer>
         </aside>
         <section class="map-wrap" aria-label="서울시 행정동과 도로 링크 지도">
@@ -41,7 +41,6 @@
       </section>
     </main>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/proj4@2.12.1/dist/proj4.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

@@ -1,0 +1,9 @@
+.git/
+.vendor/
+cache/
+.cache-matplotlib/
+generate_walk_network.py
+requirements.txt
+README.md
+.gitignore
+.assetsignore
