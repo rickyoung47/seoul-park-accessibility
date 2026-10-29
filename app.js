@@ -74,10 +74,9 @@ Promise.all([
   fetchJson('./assets/dongs.geojson'),
   fetchJson('./assets/seoul-outline.geojson'),
   fetchJson('./assets/green-areas.geojson'),
-  fetchJson('./assets/parks.geojson'),
   fetchJson('./assets/dong-accessibility.json'),
   fetchJson('./assets/walk-network-manifest.json'),
-]).then(async ([dongs, outline, greens, parks, scoreData, networkManifest]) => {
+]).then(async ([dongs, outline, greens, scoreData, networkManifest]) => {
   accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
   dongsLayer = L.geoJSON(dongs, {
     style: { color: '#70856a', weight: 0.55, fillColor: '#dce5d4', fillOpacity: 0.04 },
@@ -97,17 +96,17 @@ Promise.all([
   map.setMaxBounds(paddedBounds);
   map.setMinZoom(Math.max(map.getBoundsZoom(paddedBounds), 10));
 
-  layers.greens = L.geoJSON(greens, { style: { color: '#6a9358', weight: 0.45, fillColor: '#93bd73', fillOpacity: 0.42 } }).addTo(map);
-  layers.parks = L.geoJSON(parks, {
-    style: { color: '#3b7550', weight: 1, fillColor: '#45a365', fillOpacity: 0.62 },
-    pointToLayer: (_, latlng) => L.circleMarker(latlng, { radius: 4, color: '#24613b', weight: 1, fillColor: '#63b579', fillOpacity: 0.9 }),
-    onEachFeature(feature, layer) { if (feature.properties?.name) layer.bindTooltip(feature.properties.name); },
+  layers.greens = L.geoJSON(greens, {
+    style: { color: '#2f7046', weight: 1, fillColor: '#93bd73', fillOpacity: 0.35 },
+    onEachFeature(feature, layer) {
+      const label = feature.properties?.zone_name;
+      if (label) layer.bindTooltip(`${label} · 접근성 목적지`);
+    },
   }).addTo(map);
   await loadWalkNetwork(networkManifest);
   layers.greens.bringToFront();
-  layers.parks.bringToFront();
   dongsLayer.bringToFront();
-  status.textContent = `${scoreData.metadata.dong_count}개 행정동 · ${scoreData.metadata.parks_used.toLocaleString('ko-KR')}개 공원 · 2024 인구`;
+  status.textContent = `${scoreData.metadata.dong_count}개 행정동 · ${scoreData.metadata.destinations_used.toLocaleString('ko-KR')}개 녹지 목적지 · 2024 인구`;
 }).catch((error) => {
   status.textContent = error.message;
   status.classList.add('error');
@@ -116,10 +115,6 @@ Promise.all([
 document.getElementById('greens-toggle').addEventListener('change', (event) => {
   if (!layers.greens) return;
   event.target.checked ? layers.greens.addTo(map) : map.removeLayer(layers.greens);
-});
-document.getElementById('parks-toggle').addEventListener('change', (event) => {
-  if (!layers.parks) return;
-  event.target.checked ? layers.parks.addTo(map) : map.removeLayer(layers.parks);
 });
 document.getElementById('walk-toggle').addEventListener('change', async (event) => {
   if (!layers.walk) {

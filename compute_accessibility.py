@@ -8,20 +8,16 @@ import csv
 import ast
 import json
 import math
-import ssl
-import urllib.parse
-import urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 import networkx as nx
 import shapefile
-import certifi
 from pyproj import Transformer
 from shapely import make_valid
-from shapely.geometry import LineString, Point, Polygon, shape, mapping
-from shapely.ops import linemerge, polygonize, transform, unary_union
+from shapely.geometry import Point, shape, mapping
+from shapely.ops import transform, unary_union
 from shapely.strtree import STRtree
 
 
@@ -106,120 +102,17 @@ def write_green_areas(city_union):
     return len(features)
 
 
-def overpass_parks(bounds):
-    minx, miny, maxx, maxy = bounds
-    bbox = f"{miny},{minx},{maxy},{maxx}"
-    query = (
-        "[out:json][timeout:240];("
-        f'way["leisure"="park"]({bbox});'
-        f'relation["leisure"="park"]({bbox});'
-        f'node["leisure"="park"]({bbox});'
-        ");out body geom;"
-    )
-    body = urllib.parse.urlencode({"data": query}).encode()
-    errors = []
-    for endpoint in (
-        "https://overpass-api.de/api/interpreter",
-        "https://overpass.kumi.systems/api/interpreter",
-    ):
-        request = urllib.request.Request(
-            endpoint,
-            data=body,
-            headers={"User-Agent": "SeoulParkAccessibility/1.0", "Content-Type": "application/x-www-form-urlencoded"},
-        )
-        try:
-            context = ssl.create_default_context(cafile=certifi.where())
-            with urllib.request.urlopen(request, timeout=300, context=context) as response:
-                return json.loads(response.read())
-        except Exception as error:  # try the next public Overpass endpoint
-            errors.append(f"{endpoint}: {error}")
-    raise RuntimeError("OpenStreetMap park query failed: " + "; ".join(errors))
-
-
-def park_geometry(element):
-    if element["type"] == "node":
-        return Point(element["lon"], element["lat"])
-    if element["type"] == "way":
-        coords = [(point["lon"], point["lat"]) for point in element.get("geometry", [])]
-        if len(coords) >= 4 and coords[0] == coords[-1]:
-            return Polygon(coords)
-        return None
-    outer_lines, inner_lines = [], []
-    for member in element.get("members", []):
-        if member.get("type") != "way":
-            continue
-        coords = [(point["lon"], point["lat"]) for point in member.get("geometry", [])]
-        if len(coords) < 2:
-            continue
-        line = Polygon(coords).boundary if coords[0] == coords[-1] and len(coords) >= 4 else None
-        if line is None:
-            from shapely.geometry import LineString
-            line = LineString(coords)
-        (inner_lines if member.get("role") == "inner" else outer_lines).append(line)
-    if not outer_lines:
-        return None
-    outer_union = unary_union(outer_lines)
-    outer = [Polygon(outer_union.coords)] if outer_union.geom_type == "LineString" and outer_union.is_ring else list(polygonize(linemerge(outer_union)))
-    if not outer:
-        return None
-    result = unary_union(outer)
-    if inner_lines:
-        inner_union = unary_union(inner_lines)
-        holes = [Polygon(inner_union.coords)] if inner_union.geom_type == "LineString" and inner_union.is_ring else list(polygonize(linemerge(inner_union)))
-    else:
-        holes = []
-    if holes:
-        result = result.difference(unary_union(holes))
-    return result
-
-
-def write_parks(city_union):
-    boundary_wgs = transform(TO_WGS84, city_union)
-    existing_path = ASSETS / "parks.geojson"
-    if existing_path.exists():
-        existing = json.loads(existing_path.read_text())
-        features, park_geometries = [], []
-        for feature in existing["features"]:
-            geom = make_valid(shape(feature["geometry"])).intersection(boundary_wgs)
-            if geom.is_empty:
-                continue
-            park_geometries.append(transform(TO_METRIC, geom))
-            feature["geometry"] = mapping(geom)
-            features.append(feature)
-        existing["features"] = features
-        existing_path.write_text(json.dumps(existing, ensure_ascii=False, separators=(",", ":")))
-        return park_geometries, len(features)
-    elements = overpass_parks(boundary_wgs.bounds).get("elements", [])
-    features, park_geometries = [], []
-    seen = set()
-    for element in elements:
-        key = (element.get("type"), element.get("id"))
-        if key in seen:
-            continue
-        seen.add(key)
-        geom = park_geometry(element)
-        if geom is None or geom.is_empty:
-            continue
-        geom = make_valid(geom).intersection(boundary_wgs)
-        polys = polygons_only(geom)
-        if polys:
-            geom = unary_union(polys)
+def read_destination_zones():
+    destination_geometries = []
+    green_areas = json.loads((ASSETS / "green-areas.geojson").read_text())
+    for feature in green_areas["features"]:
+        geom = make_valid(shape(feature["geometry"]))
         if geom.is_empty:
             continue
-        park_geometries.append(transform(TO_METRIC, geom))
-        tags = element.get("tags", {})
-        features.append({
-            "type": "Feature",
-            "id": f"{element['type']}/{element['id']}",
-            "properties": {"name": tags.get("name", "공원"), "source": "OpenStreetMap"},
-            "geometry": mapping(geom),
-        })
-    if not features:
-        raise RuntimeError("OpenStreetMap did not return any park geometries for Seoul.")
-    (ASSETS / "parks.geojson").write_text(json.dumps(
-        {"type": "FeatureCollection", "features": features}, ensure_ascii=False, separators=(",", ":")
-    ))
-    return park_geometries, len(features)
+        destination_geometries.append(transform(TO_METRIC, geom))
+    if not destination_geometries:
+        raise RuntimeError("The land-use shapefile did not contain any green-area polygons.")
+    return destination_geometries, len(destination_geometries)
 
 
 def read_population():
@@ -287,22 +180,21 @@ def main():
     city_union = unary_union([dong["geometry"] for dong in dongs])
     write_seoul_outline(city_union)
     green_count = write_green_areas(city_union)
-    park_geometries, park_count = write_parks(city_union)
+    destination_geometries, destination_count = read_destination_zones()
 
     node_points_by_id = {}
     graph = build_walk_graph(node_points_by_id)
     node_ids = list(node_points_by_id)
     node_points = [node_points_by_id[node] for node in node_ids]
     node_tree = STRtree(node_points)
-    target_offsets = get_park_targets(park_geometries, node_ids, node_points)
-    source = ("__nearest_park_source__",)
+    target_offsets = get_park_targets(destination_geometries, node_ids, node_points)
+    source = ("__nearest_green_destination_source__",)
     graph.add_node(source)
     for node, offset in target_offsets.items():
         graph.add_edge(source, node, length=offset)
     network_distance = nx.single_source_dijkstra_path_length(graph, source, weight="length")
 
     dongs_tree = STRtree([dong["geometry"] for dong in dongs])
-    by_code = {dong["code"]: dong for dong in dongs}
     totals = {dong["code"]: {"total_population": 0.0, "accessible_population": 0.0,
                               "population_x_walk_min": 0.0, "population_within_10min": 0.0}
               for dong in dongs}
@@ -359,10 +251,10 @@ def main():
             "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "population_source": "2024년 인구 다사 100m · to_in_001",
             "walk_network": "OSMnx walk graph · EPSG:5179",
-            "park_source": "OpenStreetMap leisure=park",
+            "destination_source": "UPIS_C_UQ111.shp · DGM_NM에 '녹지' 포함 (공원 접근성 대리 지표)",
             "walk_speed_kmh": 4.0,
             "threshold_min": THRESHOLD_MIN,
-            "parks_used": park_count,
+            "destinations_used": destination_count,
             "green_features": green_count,
             "dong_count": len(rows),
             "grid_count": len(grid["features"]),
@@ -371,7 +263,7 @@ def main():
         "rows": rows,
     }
     (ASSETS / "dong-accessibility.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
-    print(f"Wrote {green_count:,} green-area features and accessibility scores for {len(rows)} dongs; parks={park_count}")
+    print(f"Wrote {green_count:,} green-area destination features and accessibility scores for {len(rows)} dongs")
 
 
 if __name__ == "__main__":

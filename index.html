@@ -22,8 +22,7 @@
           <div class="map-chip"><span class="live-dot"></span> SEOUL METROPOLITAN AREA <span class="chip-sep">/</span> <b>WALK · 4 KM/H</b></div>
           <div id="status" class="map-status">지도 데이터를 불러오는 중…</div>
           <div class="map-legend">
-            <span class="legend-item"><i class="legend-green"></i>녹지지역</span>
-            <span class="legend-item"><i class="legend-park"></i>공원</span>
+            <span class="legend-item"><i class="legend-green"></i>녹지지역 · 접근성 대상</span>
             <span class="legend-item"><i class="legend-boundary"></i>행정동</span>
           </div>
           <div class="north">N <span>↑</span></div>
@@ -31,7 +30,7 @@
         <aside class="panel">
           <div class="eyebrow">SEOUL · WALK TO PARKS</div>
           <h1>공원 접근성</h1>
-          <p class="intro">행정동을 선택하면 인구를 반영한 공원 접근성 점수와 서울 전체 순위를 확인할 수 있습니다.</p>
+          <p class="intro">행정동을 선택하면 인구를 반영한 공원 접근성 점수와 서울 전체 순위를 확인할 수 있습니다. 접근 대상은 용도지역 자료의 녹지지역입니다.</p>
           <div class="rule"></div>
           <section id="selection" class="selection empty" aria-live="polite">
             <div class="selection-kicker">SELECT A DONG</div>
@@ -53,14 +52,13 @@
           </section>
           <div class="rule"></div>
           <div class="section-label">지도 레이어</div>
-          <label class="layer-row"><input id="greens-toggle" type="checkbox" checked /><span class="swatch green"></span><span><b>녹지지역</b><small>용도지역명에 ‘녹지’가 포함된 구역</small></span></label>
-          <label class="layer-row"><input id="parks-toggle" type="checkbox" checked /><span class="swatch park"></span><span><b>공원</b><small>OpenStreetMap leisure=park</small></span></label>
+          <label class="layer-row"><input id="greens-toggle" type="checkbox" checked /><span class="swatch green"></span><span><b>녹지지역 · 접근성 대상</b><small>용도지역명에 ‘녹지’가 포함된 구역</small></span></label>
           <label class="layer-row"><input id="walk-toggle" type="checkbox" checked /><span class="swatch roads"></span><span><b>보행 네트워크</b><small>OSMnx · 지도 표시용 간소화</small></span></label>
           <label class="layer-row"><input id="dongs-toggle" type="checkbox" checked /><span class="swatch boundary"></span><span><b>행정동 경계</b><small>서울시 426개 행정동</small></span></label>
           <div class="method-note">
             <div class="note-title"><span class="note-icon">i</span>지표 산정 방법</div>
-            <p>2024년 100m 격자 인구를 가중치로 사용했습니다. 격자 중심을 보행망에 연결해 가장 가까운 공원까지의 최단거리를 계산하고, 시속 4km로 보행시간을 환산했습니다.</p>
-            <p>실제 보행속도, 경사, 신호 대기, 공원 출입구 위치는 반영하지 않았습니다. 공원 내부의 보행망 접점을 출입구 대신 사용한 근사 분석입니다.</p>
+            <p>2024년 100m 격자 인구를 가중치로 사용했습니다. 격자 중심을 보행망에 연결해 가장 가까운 녹지 용도지역까지의 최단거리를 계산하고, 시속 4km로 보행시간을 환산했습니다.</p>
+            <p>이 SHP에는 별도 공원 분류가 없어 용도지역명에 ‘녹지’가 포함된 모든 구역을 공원 접근성의 대리 지표로 사용했습니다. 실제 공원 경계·출입구, 경사, 신호 대기, 실제 보행속도는 반영하지 않았습니다.</p>
           </div>
           <footer><span>SEOUL · SOUTH KOREA</span><a href="https://www.openstreetmap.org/copyright">© OPENSTREETMAP CONTRIBUTORS</a></footer>
         </aside>
