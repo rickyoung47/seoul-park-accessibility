@@ -63,6 +63,31 @@
           <footer><span>SEOUL · SOUTH KOREA</span><a href="https://www.openstreetmap.org/copyright">© OPENSTREETMAP CONTRIBUTORS</a></footer>
         </aside>
       </section>
+      <section class="rankings" aria-labelledby="rankings-title">
+        <div class="rankings-heading">
+          <div>
+            <div class="eyebrow">SEOUL · TOP 10 DONGS</div>
+            <h2 id="rankings-title">공원 접근성 순위</h2>
+          </div>
+          <p>막대는 각 지표의 상위 10개 동 안에서 상대 크기를 나타냅니다.</p>
+        </div>
+        <div class="ranking-charts">
+          <section class="ranking-card" aria-labelledby="walk-ranking-title">
+            <div class="ranking-card-heading">
+              <h3 id="walk-ranking-title">인구가중 평균 보행시간</h3>
+              <span>짧을수록 상위</span>
+            </div>
+            <div id="walk-ranking" class="ranking-list" aria-live="polite"></div>
+          </section>
+          <section class="ranking-card rate-card" aria-labelledby="rate-ranking-title">
+            <div class="ranking-card-heading">
+              <h3 id="rate-ranking-title">10분 이내 도달 인구 비율</h3>
+              <span>높을수록 상위</span>
+            </div>
+            <div id="rate-ranking" class="ranking-list" aria-live="polite"></div>
+          </section>
+        </div>
+      </section>
     </main>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="app.js"></script>

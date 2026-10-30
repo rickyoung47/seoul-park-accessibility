@@ -54,6 +54,49 @@ function updateSelectedDong(properties) {
   if (selectedLayer) selectedLayer.setStyle({ color: '#264d36', weight: 2.2, fillColor: '#9fc17f', fillOpacity: 0.3 });
 }
 
+function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, unit, decimals) {
+  const container = document.getElementById(containerId);
+  const sorted = rows
+    .filter((row) => row[metricKey] != null && Number.isFinite(Number(row[metricKey])))
+    .sort((a, b) => (ascending ? 1 : -1) * (Number(a[metricKey]) - Number(b[metricKey])) || a.ADM_NM.localeCompare(b.ADM_NM, 'ko'))
+    .slice(0, 10);
+  const values = sorted.map((row) => Number(row[metricKey]));
+  const low = Math.min(...values);
+  const high = Math.max(...values);
+
+  for (const row of sorted) {
+    const value = Number(row[metricKey]);
+    const relative = high === low ? 100 : 28 + 72 * (ascending ? (high - value) / (high - low) : (value - low) / (high - low));
+    const item = document.createElement('div');
+    item.className = 'ranking-row';
+
+    const rank = document.createElement('span');
+    rank.className = 'ranking-number';
+    rank.textContent = `${row[rankKey]}위`;
+
+    const name = document.createElement('span');
+    name.className = 'ranking-name';
+    name.textContent = row.ADM_NM;
+    name.title = row.ADM_NM;
+
+    const track = document.createElement('span');
+    track.className = 'ranking-track';
+    track.setAttribute('aria-hidden', 'true');
+    const bar = document.createElement('span');
+    bar.className = 'ranking-bar';
+    bar.style.width = `${relative}%`;
+    track.append(bar);
+
+    const result = document.createElement('span');
+    result.className = 'ranking-value';
+    result.textContent = `${value.toFixed(decimals)}${unit}`;
+
+    item.setAttribute('aria-label', `${row[rankKey]}위 ${row.ADM_NM}, ${result.textContent}`);
+    item.append(rank, name, track, result);
+    container.append(item);
+  }
+}
+
 async function loadWalkNetwork(manifest) {
   if (layers.walk) return layers.walk;
   status.textContent = '보행 네트워크를 불러오는 중…';
@@ -80,6 +123,8 @@ Promise.all([
   fetchJson('./assets/walk-network-manifest.json'),
 ]).then(async ([dongs, outline, greens, scoreData, networkManifest]) => {
   accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
+  renderRankingChart('walk-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, '분', 1);
+  renderRankingChart('rate-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, '%', 1);
   dongsLayer = L.geoJSON(dongs, {
     pane: 'dongPane',
     interactive: true,
