@@ -16,6 +16,43 @@
         <a class="brand" href="#" aria-label="서울 공원 접근성 홈"><span class="brand-mark">S</span><span>SEOUL <b>GREEN ACCESS</b></span></a>
         <span class="phase"><i></i> PARK ACCESSIBILITY</span>
       </header>
+      <section class="thematic-section" aria-labelledby="thematic-title">
+        <div class="thematic-heading">
+          <div>
+            <div class="eyebrow">SEOUL · DONG LEVEL</div>
+            <h1 id="thematic-title">행정동별 공원 접근성 지도</h1>
+          </div>
+          <p>행정동을 누르면 해당 지도 아래에서 값을 확인할 수 있습니다.</p>
+        </div>
+        <div class="thematic-maps">
+          <article class="thematic-card">
+            <div class="thematic-card-heading">
+              <h2>인구가중 평균 보행시간</h2>
+              <span>짧을수록 접근성이 좋습니다</span>
+            </div>
+            <div id="avg-map" class="thematic-map" role="application" aria-label="행정동별 인구가중 평균 보행시간 지도"></div>
+            <div id="avg-detail" class="thematic-detail empty" aria-live="polite">
+              <span id="avg-detail-name">행정동을 선택하세요</span>
+              <strong id="avg-detail-value">—</strong>
+              <small id="avg-detail-rank">지도에서 동을 누르면 보행시간과 순위를 표시합니다.</small>
+            </div>
+            <div id="avg-legend" class="thematic-legend" aria-label="보행시간 범례"></div>
+          </article>
+          <article class="thematic-card">
+            <div class="thematic-card-heading">
+              <h2>10분 이내 도달 인구 비율</h2>
+              <span>높을수록 접근성이 좋습니다</span>
+            </div>
+            <div id="rate-map" class="thematic-map" role="application" aria-label="행정동별 10분 이내 도달 인구 비율 지도"></div>
+            <div id="rate-detail" class="thematic-detail empty" aria-live="polite">
+              <span id="rate-detail-name">행정동을 선택하세요</span>
+              <strong id="rate-detail-value">—</strong>
+              <small id="rate-detail-rank">지도에서 동을 누르면 도달 비율과 순위를 표시합니다.</small>
+            </div>
+            <div id="rate-legend" class="thematic-legend" aria-label="도달 인구 비율 범례"></div>
+          </article>
+        </div>
+      </section>
       <section class="workspace">
         <section class="map-wrap" aria-label="서울시 공원 접근성 지도">
           <div id="map"></div>

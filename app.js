@@ -1,20 +1,26 @@
-const map = L.map('map', { zoomControl: false, preferCanvas: true, maxBoundsViscosity: 1 }).setView([37.5665, 126.978], 11);
-L.control.zoom({ position: 'bottomright' }).addTo(map);
-map.createPane('outsideMask');
-map.getPane('outsideMask').style.zIndex = 450;
-map.createPane('dongPane');
-map.getPane('dongPane').style.zIndex = 460;
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
-}).addTo(map);
-
+const TILE_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const TILE_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>';
+const mapOptions = { zoomControl: false, preferCanvas: true, maxBoundsViscosity: 1 };
+const map = L.map('map', mapOptions).setView([37.5665, 126.978], 11);
 const status = document.getElementById('status');
 const formatNumber = (value) => Number(value || 0).toLocaleString('ko-KR', { maximumFractionDigits: 0 });
 let layers = {};
+let selectedCode = null;
 let selectedLayer = null;
 let accessibility = new Map();
 let dongsLayer;
+const thematicMaps = [];
+
+function addMapBase(mapInstance) {
+  L.control.zoom({ position: 'bottomright' }).addTo(mapInstance);
+  mapInstance.createPane('outsideMask');
+  mapInstance.getPane('outsideMask').style.zIndex = 450;
+  mapInstance.createPane('dongPane');
+  mapInstance.getPane('dongPane').style.zIndex = 460;
+  L.tileLayer(TILE_URL, { maxZoom: 19, attribution: TILE_ATTRIBUTION }).addTo(mapInstance);
+}
+
+addMapBase(map);
 
 async function fetchJson(path) {
   const response = await fetch(path);
@@ -22,7 +28,7 @@ async function fetchJson(path) {
   return response.json();
 }
 
-function cityMask(outline, bounds) {
+function cityMask(mapInstance, outline, bounds) {
   const world = [
     [bounds.getSouth() - 0.5, bounds.getWest() - 0.5],
     [bounds.getSouth() - 0.5, bounds.getEast() + 0.5],
@@ -35,23 +41,60 @@ function cityMask(outline, bounds) {
   const holes = polygons.map((rings) => rings[0].map(([lng, lat]) => [lat, lng]));
   return L.polygon([world, ...holes], {
     pane: 'outsideMask', stroke: false, fillColor: '#edf0e9', fillOpacity: 1, interactive: false,
-  }).addTo(map);
+  }).addTo(mapInstance);
 }
 
-function updateSelectedDong(properties) {
-  const metrics = accessibility.get(String(properties.ADM_CD));
+function featureLayerByCode(layerGroup, code) {
+  if (!layerGroup) return null;
+  return layerGroup.getLayers().find((layer) => String(layer.feature?.properties?.ADM_CD) === String(code)) || null;
+}
+
+function applyThemeStyles(theme) {
+  if (!theme.layer) return;
+  theme.layer.eachLayer((layer) => {
+    const code = String(layer.feature?.properties?.ADM_CD);
+    const selected = code === String(selectedCode);
+    layer.setStyle({
+      color: selected ? '#1e3327' : '#f5f5ef',
+      weight: selected ? 2.8 : 0.65,
+      fillColor: theme.colorForCode(code),
+      fillOpacity: 0.82,
+    });
+  });
+}
+
+function updateThematicDetails(row) {
+  const average = document.getElementById('avg-detail');
+  const rate = document.getElementById('rate-detail');
+  average.classList.remove('empty');
+  rate.classList.remove('empty');
+  document.getElementById('avg-detail-name').textContent = row.ADM_NM;
+  document.getElementById('avg-detail-value').textContent = row.population_weighted_walk_min == null ? '—' : `${row.population_weighted_walk_min.toFixed(1)}분`;
+  document.getElementById('avg-detail-rank').textContent = row.rank_walk_min == null ? '순위 없음' : `인구가중 평균 보행시간 · 서울 ${row.rank_walk_min}위 / ${accessibility.size}개 동`;
+  document.getElementById('rate-detail-name').textContent = row.ADM_NM;
+  document.getElementById('rate-detail-value').textContent = row.population_within_10min_pct == null ? '—' : `${row.population_within_10min_pct.toFixed(1)}%`;
+  document.getElementById('rate-detail-rank').textContent = row.rank_within_10min == null ? '순위 없음' : `10분 이내 도달 인구 비율 · 서울 ${row.rank_within_10min}위 / ${accessibility.size}개 동`;
+}
+
+function updateSelectedDong(code) {
+  const metrics = accessibility.get(String(code));
   if (!metrics) return;
+  selectedCode = String(code);
+  updateThematicDetails(metrics);
+
   document.getElementById('selection').classList.remove('empty');
-  document.getElementById('dong-name').textContent = properties.ADM_NM || metrics.ADM_NM;
-  document.getElementById('dong-code').textContent = `행정동 코드 ${properties.ADM_CD}`;
+  document.getElementById('dong-name').textContent = metrics.ADM_NM;
+  document.getElementById('dong-code').textContent = `행정동 코드 ${metrics.ADM_CD}`;
   document.getElementById('avg-min').textContent = metrics.population_weighted_walk_min == null ? '—' : metrics.population_weighted_walk_min.toFixed(1);
   document.getElementById('within-pct').textContent = metrics.population_within_10min_pct == null ? '—' : metrics.population_within_10min_pct.toFixed(1);
   document.getElementById('avg-rank').textContent = metrics.rank_walk_min == null ? '순위 없음' : `서울 ${metrics.rank_walk_min}위 / ${accessibility.size}개 동`;
   document.getElementById('within-rank').textContent = metrics.rank_within_10min == null ? '순위 없음' : `서울 ${metrics.rank_within_10min}위 / ${accessibility.size}개 동`;
   document.getElementById('population').textContent = `${formatNumber(metrics.total_population)}명`;
-  if (selectedLayer) selectedLayer.setStyle({ color: '#70856a', weight: 0.55, fillColor: '#b5c5ab', fillOpacity: 0.08 });
-  selectedLayer = dongsLayer.getLayers().find((layer) => String(layer.feature?.properties?.ADM_CD) === String(properties.ADM_CD));
-  if (selectedLayer) selectedLayer.setStyle({ color: '#264d36', weight: 2.2, fillColor: '#9fc17f', fillOpacity: 0.3 });
+
+  if (selectedLayer) selectedLayer.setStyle({ color: '#70856a', weight: 0.55, fillColor: '#dce5d4', fillOpacity: 0.08 });
+  selectedLayer = featureLayerByCode(dongsLayer, code);
+  if (selectedLayer) selectedLayer.setStyle({ color: '#1e3327', weight: 2.8, fillColor: '#9fc17f', fillOpacity: 0.3 });
+  thematicMaps.forEach(applyThemeStyles);
 }
 
 function selectDongFromRanking(code) {
@@ -60,11 +103,14 @@ function selectDongFromRanking(code) {
     dongsLayer.addTo(map);
     document.getElementById('dongs-toggle').checked = true;
   }
-  const target = dongsLayer.getLayers().find((layer) => String(layer.feature?.properties?.ADM_CD) === String(code));
-  if (!target) return;
-  updateSelectedDong(target.feature.properties);
-  map.flyToBounds(target.getBounds(), { padding: [36, 36], maxZoom: 14, duration: 0.7 });
-  document.querySelector('.workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  updateSelectedDong(code);
+  const baseTarget = featureLayerByCode(dongsLayer, code);
+  if (baseTarget) map.flyToBounds(baseTarget.getBounds(), { padding: [36, 36], maxZoom: 14, duration: 0.7 });
+  thematicMaps.forEach((theme) => {
+    const target = featureLayerByCode(theme.layer, code);
+    if (target) theme.map.flyToBounds(target.getBounds(), { padding: [28, 28], maxZoom: 13, duration: 0.7 });
+  });
+  document.querySelector('.thematic-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, unit, decimals) {
@@ -91,7 +137,7 @@ function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, un
     name.type = 'button';
     name.className = 'ranking-name';
     name.textContent = row.ADM_NM;
-    name.title = row.ADM_NM;
+    name.title = `${row.ADM_NM} 지도에서 보기`;
     name.addEventListener('click', () => selectDongFromRanking(row.ADM_CD));
 
     const track = document.createElement('span');
@@ -110,6 +156,64 @@ function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, un
     item.append(rank, name, track, result);
     container.append(item);
   }
+}
+
+function createThematicMap(config, dongs, outline, rows) {
+  const theme = { ...config };
+  const validValues = rows.filter((row) => row[theme.metricKey] != null).map((row) => Number(row[theme.metricKey])).filter(Number.isFinite).sort((a, b) => a - b);
+  theme.thresholds = [0.2, 0.4, 0.6, 0.8].map((q) => validValues[Math.min(validValues.length - 1, Math.floor(q * validValues.length))]);
+  theme.colorForCode = (code) => {
+    const row = accessibility.get(String(code));
+    const value = Number(row?.[theme.metricKey]);
+    if (!Number.isFinite(value)) return '#d7dcd7';
+    const index = theme.thresholds.findIndex((threshold) => value <= threshold);
+    return theme.palette[index < 0 ? theme.palette.length - 1 : index];
+  };
+  const mapInstance = L.map(theme.containerId, mapOptions).setView([37.5665, 126.978], 10);
+  theme.map = mapInstance;
+  addMapBase(mapInstance);
+  theme.layer = L.geoJSON(dongs, {
+    pane: 'dongPane',
+    interactive: true,
+    bubblingMouseEvents: false,
+    style: (feature) => ({ color: '#f5f5ef', weight: 0.65, fillColor: theme.colorForCode(feature.properties.ADM_CD), fillOpacity: 0.82 }),
+    onEachFeature(feature, layer) {
+      const properties = feature.properties || {};
+      layer.bindTooltip(properties.ADM_NM || '', { sticky: true, className: 'dong-tooltip' });
+      layer.on('click', () => updateSelectedDong(properties.ADM_CD));
+      layer.on('mouseover', () => {
+        if (String(properties.ADM_CD) !== String(selectedCode)) layer.setStyle({ color: '#324b39', weight: 1.7 });
+      });
+      layer.on('mouseout', () => applyThemeStyles(theme));
+    },
+  }).addTo(mapInstance);
+  const bounds = theme.layer.getBounds();
+  cityMask(mapInstance, outline, bounds);
+  mapInstance.fitBounds(bounds, { padding: [8, 8] });
+  const paddedBounds = bounds.pad(0.025);
+  mapInstance.setMaxBounds(paddedBounds);
+  mapInstance.setMinZoom(Math.max(mapInstance.getBoundsZoom(paddedBounds), 9));
+  thematicMaps.push(theme);
+  renderThemeLegend(theme);
+}
+
+function renderThemeLegend(theme) {
+  const legend = document.getElementById(theme.legendId);
+  theme.palette.forEach((color, index) => {
+    const segment = document.createElement('div');
+    segment.className = 'legend-segment';
+    const swatch = document.createElement('span');
+    swatch.className = 'legend-swatch';
+    swatch.style.backgroundColor = color;
+    const previous = theme.thresholds[index - 1];
+    const next = theme.thresholds[index];
+    const label = document.createElement('small');
+    if (index === 0) label.textContent = `≤ ${next.toFixed(1)}${theme.unit}`;
+    else if (index === theme.palette.length - 1) label.textContent = `> ${previous.toFixed(1)}${theme.unit}`;
+    else label.textContent = `${previous.toFixed(1)}–${next.toFixed(1)}${theme.unit}`;
+    segment.append(swatch, label);
+    legend.append(segment);
+  });
 }
 
 async function loadWalkNetwork(manifest) {
@@ -138,26 +242,42 @@ Promise.all([
   fetchJson('./assets/walk-network-manifest.json'),
 ]).then(async ([dongs, outline, greens, scoreData, networkManifest]) => {
   accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
+
+  const baseBoundsLayer = L.geoJSON(dongs);
+  const bounds = baseBoundsLayer.getBounds();
   dongsLayer = L.geoJSON(dongs, {
     pane: 'dongPane',
     interactive: true,
     bubblingMouseEvents: false,
     style: { color: '#70856a', weight: 0.55, fillColor: '#dce5d4', fillOpacity: 0.08 },
     onEachFeature(feature, layer) {
-      const props = feature.properties || {};
-      const name = props.ADM_NM || '이름 정보 없음';
-      layer.bindTooltip(name, { sticky: true, className: 'dong-tooltip' });
-      layer.on('click', () => updateSelectedDong(props));
-      layer.on('mouseover', () => { if (layer !== selectedLayer) layer.setStyle({ color: '#46664c', weight: 1.3, fillColor: '#cadbb8', fillOpacity: 0.22 }); });
-      layer.on('mouseout', () => { if (layer !== selectedLayer) dongsLayer.resetStyle(layer); });
+      const properties = feature.properties || {};
+      layer.bindTooltip(properties.ADM_NM || '이름 정보 없음', { sticky: true, className: 'dong-tooltip' });
+      layer.on('click', () => updateSelectedDong(properties.ADM_CD));
+      layer.on('mouseover', () => { if (String(properties.ADM_CD) !== String(selectedCode)) layer.setStyle({ color: '#46664c', weight: 1.3, fillColor: '#cadbb8', fillOpacity: 0.22 }); });
+      layer.on('mouseout', () => {
+        if (String(properties.ADM_CD) === String(selectedCode)) layer.setStyle({ color: '#1e3327', weight: 2.8, fillColor: '#9fc17f', fillOpacity: 0.3 });
+        else dongsLayer.resetStyle(layer);
+      });
     },
   }).addTo(map);
-  const bounds = dongsLayer.getBounds();
-  cityMask(outline, bounds);
+  cityMask(map, outline, bounds);
   map.fitBounds(bounds, { padding: [10, 10] });
   const paddedBounds = bounds.pad(0.025);
   map.setMaxBounds(paddedBounds);
   map.setMinZoom(Math.max(map.getBoundsZoom(paddedBounds), 10));
+
+  createThematicMap({
+    containerId: 'avg-map', metricKey: 'population_weighted_walk_min', ascending: true,
+    palette: ['#2f8057', '#8ab768', '#ddd36b', '#e69d55', '#c95b4b'],
+    legendId: 'avg-legend', unit: '분',
+  }, dongs, outline, scoreData.rows);
+  createThematicMap({
+    containerId: 'rate-map', metricKey: 'population_within_10min_pct', ascending: false,
+    palette: ['#c95b4b', '#e69d55', '#ddd36b', '#8ab768', '#2f8057'],
+    legendId: 'rate-legend', unit: '%',
+  }, dongs, outline, scoreData.rows);
+
   renderRankingChart('walk-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, '분', 1);
   renderRankingChart('rate-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, '%', 1);
 
