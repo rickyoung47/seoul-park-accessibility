@@ -163,7 +163,18 @@ function renderRankingChart(containerId, rows, metricKey, rankKey, ascendingBest
 function createThematicMap(config, dongs, outline, rows) {
   const theme = { ...config };
   const validValues = rows.filter((row) => row[theme.metricKey] != null).map((row) => Number(row[theme.metricKey])).filter(Number.isFinite).sort((a, b) => a - b);
-  theme.thresholds = [0.2, 0.4, 0.6, 0.8].map((q) => validValues[Math.min(validValues.length - 1, Math.floor(q * validValues.length))]);
+  const maxValue = validValues.at(-1);
+  theme.thresholds = [...new Set([0.2, 0.4, 0.6, 0.8]
+    .map((q) => validValues[Math.min(validValues.length - 1, Math.floor(q * validValues.length))])
+    .filter((threshold) => threshold < maxValue))];
+  const classCount = theme.thresholds.length + 1;
+  const sourcePalette = theme.palette;
+  theme.palette = Array.from({ length: classCount }, (_, index) => {
+    const paletteIndex = classCount === 1
+      ? Math.floor((sourcePalette.length - 1) / 2)
+      : Math.round(index * (sourcePalette.length - 1) / (classCount - 1));
+    return sourcePalette[paletteIndex];
+  });
   theme.colorForCode = (code) => {
     const row = accessibility.get(String(code));
     const value = Number(row?.[theme.metricKey]);
@@ -201,6 +212,7 @@ function createThematicMap(config, dongs, outline, rows) {
 
 function renderThemeLegend(theme) {
   const legend = document.getElementById(theme.legendId);
+  legend.style.gridTemplateColumns = `repeat(${theme.palette.length}, minmax(0, 1fr))`;
   theme.palette.forEach((color, index) => {
     const segment = document.createElement('div');
     segment.className = 'legend-segment';
@@ -210,7 +222,8 @@ function renderThemeLegend(theme) {
     const previous = theme.thresholds[index - 1];
     const next = theme.thresholds[index];
     const label = document.createElement('small');
-    if (index === 0) label.textContent = `≤ ${next.toFixed(1)}${theme.unit}`;
+    if (theme.thresholds.length === 0) label.textContent = '단일 구간';
+    else if (index === 0) label.textContent = `≤ ${next.toFixed(1)}${theme.unit}`;
     else if (index === theme.palette.length - 1) label.textContent = `> ${previous.toFixed(1)}${theme.unit}`;
     else label.textContent = `${previous.toFixed(1)}–${next.toFixed(1)}${theme.unit}`;
     segment.append(swatch, label);
