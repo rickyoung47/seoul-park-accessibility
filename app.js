@@ -288,7 +288,7 @@ Promise.all([
   layers.greens = L.geoJSON(greens, {
     style: { color: '#2f7046', weight: 1, fillColor: '#93bd73', fillOpacity: 0.35 },
     onEachFeature(feature, layer) {
-      const label = feature.properties?.zone_name;
+      const label = feature.properties?.name || feature.properties?.green_type || "OSM 녹지 공간";
       if (label) layer.bindTooltip(`${label} · 접근성 목적지`);
     },
   }).addTo(map);

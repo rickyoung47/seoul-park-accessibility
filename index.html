@@ -19,7 +19,7 @@
       <section class="research-summary" aria-labelledby="research-title">
         <div class="eyebrow">RESEARCH OVERVIEW</div>
         <h1 id="research-title">연구 질문 및 대상: 서울시 행정동별 공원 접근도 연구</h1>
-        <p class="research-method"><b>자료 및 전처리</b> 2024년 100m 인구격자, 서울시 행정동 경계, OSMnx 보행 네트워크, UPIS 도시지역 용도지역 SHP를 사용했습니다. 좌표계를 미터 단위로 맞추고 서울 경계에 맞춰 공간자료를 정리한 뒤, SHP에서 용도지역명에 ‘녹지’가 포함된 구역을 접근성 목적지 대리 지표로 설정했습니다. 격자 중심에서 보행망 최단거리를 계산해 시속 4km 기준 보행시간으로 환산하고, 인구가중 평균시간과 10분 이내 도달 인구 비율을 행정동별로 집계했습니다.</p>
+        <p class="research-method"><b>자료 및 전처리</b> 2024년 100m 인구격자, 서울시 행정동 경계, OSMnx 보행 네트워크, OpenStreetMap 녹지 공간 면 데이터를 사용했습니다. 공원·정원·자연보호구역과 숲·초지 등 OSM 녹지 태그가 있는 면을 서울 경계로 자르고, 좌표계를 미터 단위로 맞췄습니다. 격자 중심에서 가장 가까운 녹지 공간까지 보행망 최단거리를 계산해 시속 4km 기준 보행시간으로 환산하고, 인구가중 평균시간과 10분 이내 도달 인구 비율을 행정동별로 집계했습니다.</p>
         <p class="research-result"><b>결과:</b> 서울시내 광역중심지일수록 공원 접근성이 떨어짐. 인구가중 평균 보행시간과 10분이내 공원 도달인구는 비슷한 패턴을 보임</p>
       </section>
       <section class="thematic-section" aria-labelledby="thematic-title">
@@ -65,7 +65,7 @@
           <div class="map-chip"><span class="live-dot"></span> SEOUL METROPOLITAN AREA <span class="chip-sep">/</span> <b>WALK · 4 KM/H</b></div>
           <div id="status" class="map-status">지도 데이터를 불러오는 중…</div>
           <div class="map-legend">
-            <span class="legend-item"><i class="legend-green"></i>녹지지역 · 접근성 대상</span>
+            <span class="legend-item"><i class="legend-green"></i>OSM 녹지공간 · 접근성 대상</span>
             <span class="legend-item"><i class="legend-boundary"></i>행정동</span>
           </div>
           <div class="north">N <span>↑</span></div>
@@ -73,7 +73,7 @@
         <aside class="panel">
           <div class="eyebrow">SEOUL · WALK TO PARKS</div>
           <h1>공원 접근성</h1>
-          <p class="intro">행정동을 선택하면 인구를 반영한 공원 접근성 점수와 서울 전체 순위를 확인할 수 있습니다. 접근 대상은 용도지역 자료의 녹지지역입니다.</p>
+          <p class="intro">행정동을 선택하면 인구를 반영한 공원 접근성 점수와 서울 전체 순위를 확인할 수 있습니다. 접근 대상은 OpenStreetMap의 녹지 공간 면입니다.</p>
           <div class="rule"></div>
           <section id="selection" class="selection empty" aria-live="polite">
             <div class="selection-kicker">SELECT A DONG</div>
@@ -95,13 +95,13 @@
           </section>
           <div class="rule"></div>
           <div class="section-label">지도 레이어</div>
-          <label class="layer-row"><input id="greens-toggle" type="checkbox" checked /><span class="swatch green"></span><span><b>녹지지역 · 접근성 대상</b><small>용도지역명에 ‘녹지’가 포함된 구역</small></span></label>
+          <label class="layer-row"><input id="greens-toggle" type="checkbox" checked /><span class="swatch green"></span><span><b>OSM 녹지공간 · 접근성 대상</b><small>공원·정원·숲·초지 등 OSM 녹지 면</small></span></label>
           <label class="layer-row"><input id="walk-toggle" type="checkbox" checked /><span class="swatch roads"></span><span><b>보행 네트워크</b><small>OSMnx · 지도 표시용 간소화</small></span></label>
           <label class="layer-row"><input id="dongs-toggle" type="checkbox" checked /><span class="swatch boundary"></span><span><b>행정동 경계</b><small>서울시 426개 행정동</small></span></label>
           <div class="method-note">
             <div class="note-title"><span class="note-icon">i</span>지표 산정 방법</div>
-            <p>2024년 100m 격자 인구를 가중치로 사용했습니다. 격자 중심을 보행망에 연결해 가장 가까운 녹지 용도지역까지의 최단거리를 계산하고, 시속 4km로 보행시간을 환산했습니다.</p>
-            <p>이 SHP에는 별도 공원 분류가 없어 용도지역명에 ‘녹지’가 포함된 모든 구역을 공원 접근성의 대리 지표로 사용했습니다. 실제 공원 경계·출입구, 경사, 신호 대기, 실제 보행속도는 반영하지 않았습니다.</p>
+            <p>2024년 100m 격자 인구를 가중치로 사용했습니다. 격자 중심을 보행망에 연결해 가장 가까운 OSM 녹지 공간 면까지의 최단거리를 계산하고, 시속 4km로 보행시간을 환산했습니다.</p>
+            <p>접근성 목적지는 OSM의 공원·정원·자연보호구역, 숲·초지 등 녹지 태그가 있는 면입니다. OSM 태그와 매핑 범위가 실제 녹지 현황을 완전히 포괄하지 않을 수 있으며, 실제 공원 출입구, 경사, 신호 대기, 실제 보행속도는 반영하지 않았습니다.</p>
           </div>
           <footer><span>SEOUL · SOUTH KOREA</span><a href="https://www.openstreetmap.org/copyright">© OPENSTREETMAP CONTRIBUTORS</a></footer>
         </aside>

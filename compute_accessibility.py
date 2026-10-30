@@ -8,16 +8,20 @@ import csv
 import ast
 import json
 import math
+import ssl
+import urllib.parse
+import urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 import networkx as nx
 import shapefile
+import certifi
 from pyproj import Transformer
 from shapely import make_valid
-from shapely.geometry import Point, shape, mapping
-from shapely.ops import transform, unary_union
+from shapely.geometry import LineString, Point, Polygon, shape, mapping
+from shapely.ops import linemerge, polygonize, transform, unary_union
 from shapely.strtree import STRtree
 
 
@@ -29,7 +33,6 @@ SPEED_M_PER_MIN = 4000 / 60
 THRESHOLD_MIN = 10
 
 TO_METRIC = Transformer.from_crs("EPSG:4326", METRIC_CRS, always_xy=True).transform
-GREEN_TO_METRIC = Transformer.from_crs("EPSG:5174", METRIC_CRS, always_xy=True).transform
 TO_WGS84 = Transformer.from_crs(METRIC_CRS, "EPSG:4326", always_xy=True).transform
 
 
@@ -77,42 +80,131 @@ def write_seoul_outline(city_union):
     }, ensure_ascii=False, separators=(",", ":")))
 
 
+def overpass_green_spaces(bounds):
+    cache_path = Path("/private/tmp/seoul-osm-green-elements.json")
+    if cache_path.exists():
+        cached = json.loads(cache_path.read_text())
+        if cached.get("complete"):
+            return cached
+    minx, miny, maxx, maxy = bounds
+    xs = [minx, (minx + maxx) / 2, maxx]
+    ys = [miny, (miny + maxy) / 2, maxy]
+    tag_filters = {
+        "leisure": "park|garden|nature_reserve|recreation_ground|village_green|common",
+        "landuse": "forest|grass|meadow|recreation_ground|village_green|conservation",
+        "natural": "wood|grassland|scrub|heath",
+    }
+    result = {"elements": []}
+    seen = set()
+    context = ssl.create_default_context(cafile=certifi.where())
+    endpoints = (
+        "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+        "https://overpass-api.de/api/interpreter",
+        "https://overpass.kumi.systems/api/interpreter",
+        "https://overpass.private.coffee/api/interpreter",
+    )
+    for iy in range(2):
+        for ix in range(2):
+            bbox = f"{ys[iy]},{xs[ix]},{ys[iy + 1]},{xs[ix + 1]}"
+            clauses = []
+            for key, values in tag_filters.items():
+                for element_type in ("way", "relation"):
+                    clauses.append(f'{element_type}["{key}"~"^({values})$"]({bbox});')
+            query = f"[out:json][timeout:180];({''.join(clauses)});out body geom;"
+            body = urllib.parse.urlencode({"data": query}).encode()
+            errors = []
+            for endpoint in endpoints:
+                request = urllib.request.Request(endpoint, data=body, headers={
+                    "User-Agent": "SeoulParkAccessibility/1.0 (educational project)",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                })
+                try:
+                    with urllib.request.urlopen(request, timeout=190, context=context) as response:
+                        tile = json.loads(response.read())
+                    for element in tile.get("elements", []):
+                        identity = (element.get("type"), element.get("id"))
+                        if identity not in seen:
+                            seen.add(identity)
+                            result["elements"].append(element)
+                    break
+                except Exception as error:
+                    errors.append(f"{endpoint}: {error}")
+            else:
+                raise RuntimeError("OpenStreetMap green-space query failed: " + "; ".join(errors))
+    result["complete"] = True
+    cache_path.write_text(json.dumps(result, separators=(",", ":")))
+    return result
+
+
+def green_geometry(element):
+    if element["type"] == "way":
+        coords = [(point["lon"], point["lat"]) for point in element.get("geometry", [])]
+        if len(coords) < 4 or coords[0] != coords[-1]:
+            return None
+        return make_valid(Polygon(coords))
+
+    outer_lines, inner_lines = [], []
+    for member in element.get("members", []):
+        if member.get("type") != "way":
+            continue
+        coords = [(point["lon"], point["lat"]) for point in member.get("geometry", [])]
+        if len(coords) < 2:
+            continue
+        line = LineString(coords)
+        (inner_lines if member.get("role") == "inner" else outer_lines).append(line)
+    if not outer_lines:
+        return None
+    outer_network = unary_union(outer_lines)
+    if outer_network.geom_type != "LineString":
+        outer_network = linemerge(outer_network)
+    outer = list(polygonize(outer_network))
+    if not outer:
+        return None
+    result = unary_union(outer)
+    if inner_lines:
+        inner_network = unary_union(inner_lines)
+        if inner_network.geom_type != "LineString":
+            inner_network = linemerge(inner_network)
+        inner = list(polygonize(inner_network))
+        if inner:
+            result = result.difference(unary_union(inner))
+    return make_valid(result)
+
+
 def write_green_areas(city_union):
-    path = SOURCE / "shp" / "569_UQ111_용도지역(도시지역)_202609" / "UPIS_C_UQ111.shp"
-    reader = shapefile.Reader(str(path), encoding="cp949")
-    fields = [field[0] for field in reader.fields[1:]]
-    name_index = fields.index("DGM_NM")
+    boundary_wgs84 = transform(TO_WGS84, city_union)
+    elements = overpass_green_spaces(boundary_wgs84.bounds).get("elements", [])
     features = []
-    for record, shp in zip(reader.records(), reader.shapes()):
-        name = str(record[name_index] or "")
-        if "녹지" not in name:
+    destination_geometries = []
+    seen = set()
+    for element in elements:
+        identity = (element.get("type"), element.get("id"))
+        if identity in seen:
             continue
-        geom = transform(GREEN_TO_METRIC, shape(shp.__geo_interface__))
-        if not geom.intersects(city_union):
+        seen.add(identity)
+        geometry = green_geometry(element)
+        if geometry is None or geometry.is_empty:
             continue
-        clipped = geom.intersection(city_union)
+        clipped = transform(TO_METRIC, geometry).intersection(city_union)
+        if clipped.is_empty:
+            continue
+        tags = element.get("tags", {})
+        green_type = next((f"{key}={tags[key]}" for key in ("leisure", "landuse", "natural") if key in tags), "green_space")
+        name = tags.get("name", "")
         for polygon in polygons_only(clipped):
+            destination_geometries.append(polygon)
+            display_polygon = polygon.simplify(1.5, preserve_topology=True)
             features.append({
                 "type": "Feature",
-                "properties": {"zone_name": name},
-                "geometry": mapping(transform(TO_WGS84, polygon)),
+                "id": f"{element['type']}/{element['id']}/{len(features)}",
+                "properties": {"name": name, "green_type": green_type, "source": "OpenStreetMap"},
+                "geometry": mapping(transform(TO_WGS84, display_polygon)),
             })
+    if not features:
+        raise RuntimeError("OpenStreetMap returned no green-space polygons inside Seoul.")
     collection = {"type": "FeatureCollection", "features": features}
     (ASSETS / "green-areas.geojson").write_text(json.dumps(collection, ensure_ascii=False, separators=(",", ":")))
-    return len(features)
-
-
-def read_destination_zones():
-    destination_geometries = []
-    green_areas = json.loads((ASSETS / "green-areas.geojson").read_text())
-    for feature in green_areas["features"]:
-        geom = make_valid(shape(feature["geometry"]))
-        if geom.is_empty:
-            continue
-        destination_geometries.append(transform(TO_METRIC, geom))
-    if not destination_geometries:
-        raise RuntimeError("The land-use shapefile did not contain any green-area polygons.")
-    return destination_geometries, len(destination_geometries)
+    return len(features), destination_geometries
 
 
 def read_population():
@@ -179,8 +271,8 @@ def main():
     dongs = read_city_dongs()
     city_union = unary_union([dong["geometry"] for dong in dongs])
     write_seoul_outline(city_union)
-    green_count = write_green_areas(city_union)
-    destination_geometries, destination_count = read_destination_zones()
+    green_count, destination_geometries = write_green_areas(city_union)
+    destination_count = len(destination_geometries)
 
     node_points_by_id = {}
     graph = build_walk_graph(node_points_by_id)
@@ -251,7 +343,7 @@ def main():
             "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "population_source": "2024년 인구 다사 100m · to_in_001",
             "walk_network": "OSMnx walk graph · EPSG:5179",
-            "destination_source": "UPIS_C_UQ111.shp · DGM_NM에 '녹지' 포함 (공원 접근성 대리 지표)",
+            "destination_source": "OpenStreetMap green-space areas · leisure/landuse/natural polygon tags",
             "walk_speed_kmh": 4.0,
             "threshold_min": THRESHOLD_MIN,
             "destinations_used": destination_count,
