@@ -113,11 +113,11 @@ function selectDongFromRanking(code) {
   document.querySelector('.thematic-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, unit, decimals) {
+function renderRankingChart(containerId, rows, metricKey, rankKey, ascendingBest, top, unit, decimals) {
   const container = document.getElementById(containerId);
   const sorted = rows
     .filter((row) => row[metricKey] != null && Number.isFinite(Number(row[metricKey])))
-    .sort((a, b) => (ascending ? 1 : -1) * (Number(a[metricKey]) - Number(b[metricKey])) || a.ADM_NM.localeCompare(b.ADM_NM, 'ko'))
+    .sort((a, b) => ((top ? ascendingBest : !ascendingBest) ? 1 : -1) * (Number(a[metricKey]) - Number(b[metricKey])) || a.ADM_NM.localeCompare(b.ADM_NM, 'ko'))
     .slice(0, 10);
   const values = sorted.map((row) => Number(row[metricKey]));
   const low = Math.min(...values);
@@ -125,7 +125,9 @@ function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, un
 
   for (const row of sorted) {
     const value = Number(row[metricKey]);
-    const relative = high === low ? 100 : 28 + 72 * (ascending ? (high - value) / (high - low) : (value - low) / (high - low));
+    const relative = high === low ? 100 : 28 + 72 * (top
+      ? (ascendingBest ? (high - value) / (high - low) : (value - low) / (high - low))
+      : (ascendingBest ? (value - low) / (high - low) : (high - value) / (high - low)));
     const item = document.createElement('div');
     item.className = 'ranking-row';
 
@@ -278,8 +280,10 @@ Promise.all([
     legendId: 'rate-legend', unit: '%',
   }, dongs, outline, scoreData.rows);
 
-  renderRankingChart('walk-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, '분', 1);
-  renderRankingChart('rate-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, '%', 1);
+  renderRankingChart('walk-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, true, '분', 1);
+  renderRankingChart('walk-bottom-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, false, '분', 1);
+  renderRankingChart('rate-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, true, '%', 1);
+  renderRankingChart('rate-bottom-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, false, '%', 1);
 
   layers.greens = L.geoJSON(greens, {
     style: { color: '#2f7046', weight: 1, fillColor: '#93bd73', fillOpacity: 0.35 },

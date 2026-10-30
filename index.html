@@ -16,6 +16,12 @@
         <a class="brand" href="#" aria-label="서울 공원 접근성 홈"><span class="brand-mark">S</span><span>SEOUL <b>GREEN ACCESS</b></span></a>
         <span class="phase"><i></i> PARK ACCESSIBILITY</span>
       </header>
+      <section class="research-summary" aria-labelledby="research-title">
+        <div class="eyebrow">RESEARCH OVERVIEW</div>
+        <h1 id="research-title">연구 질문 및 대상: 서울시 행정동별 공원 접근도 연구</h1>
+        <p class="research-method"><b>자료 및 전처리</b> 2024년 100m 인구격자, 서울시 행정동 경계, OSMnx 보행 네트워크, UPIS 도시지역 용도지역 SHP를 사용했습니다. 좌표계를 미터 단위로 맞추고 서울 경계에 맞춰 공간자료를 정리한 뒤, SHP에서 용도지역명에 ‘녹지’가 포함된 구역을 접근성 목적지 대리 지표로 설정했습니다. 격자 중심에서 보행망 최단거리를 계산해 시속 4km 기준 보행시간으로 환산하고, 인구가중 평균시간과 10분 이내 도달 인구 비율을 행정동별로 집계했습니다.</p>
+        <p class="research-result"><b>결과:</b> 서울시내 광역중심지일수록 공원 접근성이 떨어짐. 인구가중 평균 보행시간과 10분이내 공원 도달인구는 비슷한 패턴을 보임</p>
+      </section>
       <section class="thematic-section" aria-labelledby="thematic-title">
         <div class="thematic-heading">
           <div>
@@ -106,7 +112,7 @@
             <div class="eyebrow">SEOUL · TOP 10 DONGS</div>
             <h2 id="rankings-title">공원 접근성 순위</h2>
           </div>
-          <p>막대는 각 지표의 상위 10개 동 안에서 상대 크기를 나타냅니다.</p>
+          <p>막대 길이는 각 10개 행정동 그룹 내에서 상대적인 상·하위 수준을 나타냅니다.</p>
         </div>
         <div class="ranking-charts">
           <section class="ranking-card" aria-labelledby="walk-ranking-title">
@@ -114,14 +120,28 @@
               <h3 id="walk-ranking-title">인구가중 평균 보행시간</h3>
               <span>짧을수록 상위</span>
             </div>
-            <div id="walk-ranking" class="ranking-list" aria-live="polite"></div>
+            <div class="rank-group">
+              <h4>상위 10개 행정동</h4>
+              <div id="walk-ranking" class="ranking-list" aria-live="polite"></div>
+            </div>
+            <div class="rank-group bottom-rank-group">
+              <h4>하위 10개 행정동</h4>
+              <div id="walk-bottom-ranking" class="ranking-list" aria-live="polite"></div>
+            </div>
           </section>
           <section class="ranking-card rate-card" aria-labelledby="rate-ranking-title">
             <div class="ranking-card-heading">
               <h3 id="rate-ranking-title">10분 이내 도달 인구 비율</h3>
               <span>높을수록 상위</span>
             </div>
-            <div id="rate-ranking" class="ranking-list" aria-live="polite"></div>
+            <div class="rank-group">
+              <h4>상위 10개 행정동</h4>
+              <div id="rate-ranking" class="ranking-list" aria-live="polite"></div>
+            </div>
+            <div class="rank-group bottom-rank-group">
+              <h4>하위 10개 행정동</h4>
+              <div id="rate-bottom-ranking" class="ranking-list" aria-live="polite"></div>
+            </div>
           </section>
         </div>
       </section>
