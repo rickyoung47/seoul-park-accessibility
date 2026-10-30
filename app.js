@@ -54,6 +54,19 @@ function updateSelectedDong(properties) {
   if (selectedLayer) selectedLayer.setStyle({ color: '#264d36', weight: 2.2, fillColor: '#9fc17f', fillOpacity: 0.3 });
 }
 
+function selectDongFromRanking(code) {
+  if (!dongsLayer) return;
+  if (!map.hasLayer(dongsLayer)) {
+    dongsLayer.addTo(map);
+    document.getElementById('dongs-toggle').checked = true;
+  }
+  const target = dongsLayer.getLayers().find((layer) => String(layer.feature?.properties?.ADM_CD) === String(code));
+  if (!target) return;
+  updateSelectedDong(target.feature.properties);
+  map.flyToBounds(target.getBounds(), { padding: [36, 36], maxZoom: 14, duration: 0.7 });
+  document.querySelector('.workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, unit, decimals) {
   const container = document.getElementById(containerId);
   const sorted = rows
@@ -74,10 +87,12 @@ function renderRankingChart(containerId, rows, metricKey, rankKey, ascending, un
     rank.className = 'ranking-number';
     rank.textContent = `${row[rankKey]}위`;
 
-    const name = document.createElement('span');
+    const name = document.createElement('button');
+    name.type = 'button';
     name.className = 'ranking-name';
     name.textContent = row.ADM_NM;
     name.title = row.ADM_NM;
+    name.addEventListener('click', () => selectDongFromRanking(row.ADM_CD));
 
     const track = document.createElement('span');
     track.className = 'ranking-track';
@@ -123,8 +138,6 @@ Promise.all([
   fetchJson('./assets/walk-network-manifest.json'),
 ]).then(async ([dongs, outline, greens, scoreData, networkManifest]) => {
   accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
-  renderRankingChart('walk-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, '분', 1);
-  renderRankingChart('rate-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, '%', 1);
   dongsLayer = L.geoJSON(dongs, {
     pane: 'dongPane',
     interactive: true,
@@ -145,6 +158,8 @@ Promise.all([
   const paddedBounds = bounds.pad(0.025);
   map.setMaxBounds(paddedBounds);
   map.setMinZoom(Math.max(map.getBoundsZoom(paddedBounds), 10));
+  renderRankingChart('walk-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, '분', 1);
+  renderRankingChart('rate-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, '%', 1);
 
   layers.greens = L.geoJSON(greens, {
     style: { color: '#2f7046', weight: 1, fillColor: '#93bd73', fillOpacity: 0.35 },
