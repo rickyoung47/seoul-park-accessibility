@@ -1,0 +1,4283 @@
+{
+  "metadata": {
+    "generated_at_utc": "2026-10-30T05:05:00+00:00",
+    "population_source": "2024년 인구 다사 100m · to_in_001",
+    "walk_network": "OSMnx walk graph · EPSG:5179",
+    "destination_source": "OpenStreetMap green-space areas · leisure/landuse/natural polygon tags",
+    "excluded_natural_tags": [
+      "grassland",
+      "heath",
+      "scrub",
+      "wood"
+    ],
+    "walk_speed_kmh": 4.0,
+    "threshold_min": 10,
+    "destinations_used": 5590,
+    "green_features": 5590,
+    "dong_count": 426,
+    "grid_count": 61654,
+    "population_matched_grids": 31340
+  },
+  "rows": [
+    {
+      "ADM_CD": "11010530",
+      "ADM_NM": "사직동",
+      "total_population": 8472.0,
+      "accessible_population": 8472.0,
+      "population_weighted_walk_min": 2.327,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 12,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010540",
+      "ADM_NM": "삼청동",
+      "total_population": 1941.0,
+      "accessible_population": 1941.0,
+      "population_weighted_walk_min": 1.877,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 5,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010550",
+      "ADM_NM": "부암동",
+      "total_population": 9203.0,
+      "accessible_population": 9203.0,
+      "population_weighted_walk_min": 7.345,
+      "population_within_10min_pct": 81.256,
+      "rank_walk_min": 371,
+      "rank_within_10min": 364
+    },
+    {
+      "ADM_CD": "11010560",
+      "ADM_NM": "평창동",
+      "total_population": 16357.0,
+      "accessible_population": 16357.0,
+      "population_weighted_walk_min": 10.974,
+      "population_within_10min_pct": 46.628,
+      "rank_walk_min": 414,
+      "rank_within_10min": 412
+    },
+    {
+      "ADM_CD": "11010570",
+      "ADM_NM": "무악동",
+      "total_population": 7646.0,
+      "accessible_population": 7646.0,
+      "population_weighted_walk_min": 3.018,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 36,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010580",
+      "ADM_NM": "교남동",
+      "total_population": 8826.0,
+      "accessible_population": 8826.0,
+      "population_weighted_walk_min": 3.086,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 40,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010600",
+      "ADM_NM": "가회동",
+      "total_population": 3654.0,
+      "accessible_population": 3654.0,
+      "population_weighted_walk_min": 1.383,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 1,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010610",
+      "ADM_NM": "종로1·2·3·4가동",
+      "total_population": 9106.0,
+      "accessible_population": 9106.0,
+      "population_weighted_walk_min": 2.015,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 7,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010630",
+      "ADM_NM": "종로5·6가동",
+      "total_population": 5556.0,
+      "accessible_population": 5556.0,
+      "population_weighted_walk_min": 2.291,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 10,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010640",
+      "ADM_NM": "이화동",
+      "total_population": 8060.0,
+      "accessible_population": 8060.0,
+      "population_weighted_walk_min": 3.062,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 39,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010670",
+      "ADM_NM": "창신1동",
+      "total_population": 4845.0,
+      "accessible_population": 4845.0,
+      "population_weighted_walk_min": 5.077,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 223,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010680",
+      "ADM_NM": "창신2동",
+      "total_population": 9095.0,
+      "accessible_population": 9095.0,
+      "population_weighted_walk_min": 4.536,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 171,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010690",
+      "ADM_NM": "창신3동",
+      "total_population": 6220.0,
+      "accessible_population": 6220.0,
+      "population_weighted_walk_min": 8.647,
+      "population_within_10min_pct": 67.91,
+      "rank_walk_min": 400,
+      "rank_within_10min": 396
+    },
+    {
+      "ADM_CD": "11010700",
+      "ADM_NM": "숭인1동",
+      "total_population": 5306.0,
+      "accessible_population": 5306.0,
+      "population_weighted_walk_min": 4.704,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 184,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010710",
+      "ADM_NM": "숭인2동",
+      "total_population": 10570.0,
+      "accessible_population": 10570.0,
+      "population_weighted_walk_min": 3.849,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 93,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010720",
+      "ADM_NM": "청운효자동",
+      "total_population": 10709.0,
+      "accessible_population": 10709.0,
+      "population_weighted_walk_min": 2.826,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 25,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11010730",
+      "ADM_NM": "혜화동",
+      "total_population": 20469.0,
+      "accessible_population": 20469.0,
+      "population_weighted_walk_min": 3.595,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 75,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020520",
+      "ADM_NM": "소공동",
+      "total_population": 2566.0,
+      "accessible_population": 2566.0,
+      "population_weighted_walk_min": 1.548,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 3,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020540",
+      "ADM_NM": "회현동",
+      "total_population": 4539.0,
+      "accessible_population": 4539.0,
+      "population_weighted_walk_min": 1.881,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 6,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020550",
+      "ADM_NM": "명동",
+      "total_population": 2536.0,
+      "accessible_population": 2536.0,
+      "population_weighted_walk_min": 1.691,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 4,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020570",
+      "ADM_NM": "필동",
+      "total_population": 6091.0,
+      "accessible_population": 6091.0,
+      "population_weighted_walk_min": 2.643,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 17,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020580",
+      "ADM_NM": "장충동",
+      "total_population": 6635.0,
+      "accessible_population": 6635.0,
+      "population_weighted_walk_min": 3.01,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 35,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020590",
+      "ADM_NM": "광희동",
+      "total_population": 6679.0,
+      "accessible_population": 6679.0,
+      "population_weighted_walk_min": 1.441,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 2,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020600",
+      "ADM_NM": "을지로동",
+      "total_population": 1760.0,
+      "accessible_population": 1760.0,
+      "population_weighted_walk_min": 2.224,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 8,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020650",
+      "ADM_NM": "신당5동",
+      "total_population": 10442.0,
+      "accessible_population": 10442.0,
+      "population_weighted_walk_min": 4.044,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 110,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020670",
+      "ADM_NM": "황학동",
+      "total_population": 13281.0,
+      "accessible_population": 13281.0,
+      "population_weighted_walk_min": 4.308,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 145,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020680",
+      "ADM_NM": "중림동",
+      "total_population": 12038.0,
+      "accessible_population": 12038.0,
+      "population_weighted_walk_min": 3.817,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 87,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020690",
+      "ADM_NM": "신당동",
+      "total_population": 9084.0,
+      "accessible_population": 9084.0,
+      "population_weighted_walk_min": 3.802,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 86,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020700",
+      "ADM_NM": "다산동",
+      "total_population": 12416.0,
+      "accessible_population": 12416.0,
+      "population_weighted_walk_min": 2.534,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 15,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020710",
+      "ADM_NM": "약수동",
+      "total_population": 15517.0,
+      "accessible_population": 15517.0,
+      "population_weighted_walk_min": 4.975,
+      "population_within_10min_pct": 94.696,
+      "rank_walk_min": 212,
+      "rank_within_10min": 267
+    },
+    {
+      "ADM_CD": "11020720",
+      "ADM_NM": "청구동",
+      "total_population": 11830.0,
+      "accessible_population": 11830.0,
+      "population_weighted_walk_min": 3.61,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 77,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11020730",
+      "ADM_NM": "동화동",
+      "total_population": 11466.0,
+      "accessible_population": 11466.0,
+      "population_weighted_walk_min": 3.919,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 99,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11030510",
+      "ADM_NM": "후암동",
+      "total_population": 15493.0,
+      "accessible_population": 15493.0,
+      "population_weighted_walk_min": 4.284,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 140,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11030520",
+      "ADM_NM": "용산2가동",
+      "total_population": 9742.0,
+      "accessible_population": 9742.0,
+      "population_weighted_walk_min": 8.208,
+      "population_within_10min_pct": 79.563,
+      "rank_walk_min": 391,
+      "rank_within_10min": 369
+    },
+    {
+      "ADM_CD": "11030530",
+      "ADM_NM": "남영동",
+      "total_population": 6381.0,
+      "accessible_population": 6381.0,
+      "population_weighted_walk_min": 3.944,
+      "population_within_10min_pct": 98.151,
+      "rank_walk_min": 103,
+      "rank_within_10min": 207
+    },
+    {
+      "ADM_CD": "11030570",
+      "ADM_NM": "원효로2동",
+      "total_population": 12697.0,
+      "accessible_population": 12697.0,
+      "population_weighted_walk_min": 5.779,
+      "population_within_10min_pct": 93.132,
+      "rank_walk_min": 294,
+      "rank_within_10min": 286
+    },
+    {
+      "ADM_CD": "11030580",
+      "ADM_NM": "효창동",
+      "total_population": 10342.0,
+      "accessible_population": 10342.0,
+      "population_weighted_walk_min": 5.358,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 244,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11030590",
+      "ADM_NM": "용문동",
+      "total_population": 10923.0,
+      "accessible_population": 10923.0,
+      "population_weighted_walk_min": 4.814,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 196,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11030630",
+      "ADM_NM": "이촌1동",
+      "total_population": 22089.0,
+      "accessible_population": 22089.0,
+      "population_weighted_walk_min": 7.053,
+      "population_within_10min_pct": 78.614,
+      "rank_walk_min": 364,
+      "rank_within_10min": 372
+    },
+    {
+      "ADM_CD": "11030640",
+      "ADM_NM": "이촌2동",
+      "total_population": 7210.0,
+      "accessible_population": 7210.0,
+      "population_weighted_walk_min": 6.413,
+      "population_within_10min_pct": 93.315,
+      "rank_walk_min": 338,
+      "rank_within_10min": 284
+    },
+    {
+      "ADM_CD": "11030650",
+      "ADM_NM": "이태원1동",
+      "total_population": 6943.0,
+      "accessible_population": 6943.0,
+      "population_weighted_walk_min": 5.713,
+      "population_within_10min_pct": 86.389,
+      "rank_walk_min": 284,
+      "rank_within_10min": 343
+    },
+    {
+      "ADM_CD": "11030660",
+      "ADM_NM": "이태원2동",
+      "total_population": 9036.0,
+      "accessible_population": 9036.0,
+      "population_weighted_walk_min": 3.66,
+      "population_within_10min_pct": 96.979,
+      "rank_walk_min": 79,
+      "rank_within_10min": 230
+    },
+    {
+      "ADM_CD": "11030690",
+      "ADM_NM": "서빙고동",
+      "total_population": 12536.0,
+      "accessible_population": 12536.0,
+      "population_weighted_walk_min": 8.565,
+      "population_within_10min_pct": 70.724,
+      "rank_walk_min": 398,
+      "rank_within_10min": 391
+    },
+    {
+      "ADM_CD": "11030700",
+      "ADM_NM": "보광동",
+      "total_population": 8381.0,
+      "accessible_population": 8381.0,
+      "population_weighted_walk_min": 7.45,
+      "population_within_10min_pct": 78.368,
+      "rank_walk_min": 373,
+      "rank_within_10min": 373
+    },
+    {
+      "ADM_CD": "11030710",
+      "ADM_NM": "청파동",
+      "total_population": 19544.0,
+      "accessible_population": 19544.0,
+      "population_weighted_walk_min": 4.885,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 205,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11030720",
+      "ADM_NM": "원효로1동",
+      "total_population": 16630.0,
+      "accessible_population": 16630.0,
+      "population_weighted_walk_min": 5.272,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 235,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11030730",
+      "ADM_NM": "한강로동",
+      "total_population": 21522.0,
+      "accessible_population": 21522.0,
+      "population_weighted_walk_min": 5.218,
+      "population_within_10min_pct": 96.167,
+      "rank_walk_min": 230,
+      "rank_within_10min": 247
+    },
+    {
+      "ADM_CD": "11030740",
+      "ADM_NM": "한남동",
+      "total_population": 13910.0,
+      "accessible_population": 13910.0,
+      "population_weighted_walk_min": 7.642,
+      "population_within_10min_pct": 76.355,
+      "rank_walk_min": 378,
+      "rank_within_10min": 379
+    },
+    {
+      "ADM_CD": "11040520",
+      "ADM_NM": "왕십리2동",
+      "total_population": 13892.0,
+      "accessible_population": 13892.0,
+      "population_weighted_walk_min": 5.441,
+      "population_within_10min_pct": 93.853,
+      "rank_walk_min": 259,
+      "rank_within_10min": 275
+    },
+    {
+      "ADM_CD": "11040540",
+      "ADM_NM": "마장동",
+      "total_population": 21416.0,
+      "accessible_population": 21416.0,
+      "population_weighted_walk_min": 4.66,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 179,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11040550",
+      "ADM_NM": "사근동",
+      "total_population": 15655.0,
+      "accessible_population": 15655.0,
+      "population_weighted_walk_min": 4.167,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 121,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11040560",
+      "ADM_NM": "행당1동",
+      "total_population": 14264.0,
+      "accessible_population": 14264.0,
+      "population_weighted_walk_min": 2.624,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 16,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11040570",
+      "ADM_NM": "행당2동",
+      "total_population": 22355.0,
+      "accessible_population": 22355.0,
+      "population_weighted_walk_min": 5.308,
+      "population_within_10min_pct": 98.081,
+      "rank_walk_min": 238,
+      "rank_within_10min": 209
+    },
+    {
+      "ADM_CD": "11040580",
+      "ADM_NM": "응봉동",
+      "total_population": 13388.0,
+      "accessible_population": 13388.0,
+      "population_weighted_walk_min": 3.571,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 71,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11040590",
+      "ADM_NM": "금호1가동",
+      "total_population": 14454.0,
+      "accessible_population": 14454.0,
+      "population_weighted_walk_min": 3.957,
+      "population_within_10min_pct": 94.846,
+      "rank_walk_min": 104,
+      "rank_within_10min": 265
+    },
+    {
+      "ADM_CD": "11040620",
+      "ADM_NM": "금호4가동",
+      "total_population": 13399.0,
+      "accessible_population": 13399.0,
+      "population_weighted_walk_min": 5.472,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 261,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11040650",
+      "ADM_NM": "성수1가1동",
+      "total_population": 15226.0,
+      "accessible_population": 15226.0,
+      "population_weighted_walk_min": 6.661,
+      "population_within_10min_pct": 88.552,
+      "rank_walk_min": 350,
+      "rank_within_10min": 335
+    },
+    {
+      "ADM_CD": "11040660",
+      "ADM_NM": "성수1가2동",
+      "total_population": 11129.0,
+      "accessible_population": 11129.0,
+      "population_weighted_walk_min": 4.928,
+      "population_within_10min_pct": 95.489,
+      "rank_walk_min": 208,
+      "rank_within_10min": 259
+    },
+    {
+      "ADM_CD": "11040670",
+      "ADM_NM": "성수2가1동",
+      "total_population": 14616.0,
+      "accessible_population": 14616.0,
+      "population_weighted_walk_min": 9.077,
+      "population_within_10min_pct": 58.682,
+      "rank_walk_min": 405,
+      "rank_within_10min": 405
+    },
+    {
+      "ADM_CD": "11040680",
+      "ADM_NM": "성수2가3동",
+      "total_population": 9823.0,
+      "accessible_population": 9823.0,
+      "population_weighted_walk_min": 4.836,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 198,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11040690",
+      "ADM_NM": "송정동",
+      "total_population": 9866.0,
+      "accessible_population": 9866.0,
+      "population_weighted_walk_min": 7.049,
+      "population_within_10min_pct": 96.067,
+      "rank_walk_min": 363,
+      "rank_within_10min": 249
+    },
+    {
+      "ADM_CD": "11040700",
+      "ADM_NM": "용답동",
+      "total_population": 13755.0,
+      "accessible_population": 13755.0,
+      "population_weighted_walk_min": 9.185,
+      "population_within_10min_pct": 56.641,
+      "rank_walk_min": 406,
+      "rank_within_10min": 407
+    },
+    {
+      "ADM_CD": "11040710",
+      "ADM_NM": "왕십리도선동",
+      "total_population": 26030.0,
+      "accessible_population": 26030.0,
+      "population_weighted_walk_min": 3.292,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 56,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11040720",
+      "ADM_NM": "금호2·3가동",
+      "total_population": 21080.0,
+      "accessible_population": 21080.0,
+      "population_weighted_walk_min": 4.213,
+      "population_within_10min_pct": 89.625,
+      "rank_walk_min": 129,
+      "rank_within_10min": 330
+    },
+    {
+      "ADM_CD": "11040730",
+      "ADM_NM": "옥수동",
+      "total_population": 24059.0,
+      "accessible_population": 24059.0,
+      "population_weighted_walk_min": 7.111,
+      "population_within_10min_pct": 82.954,
+      "rank_walk_min": 366,
+      "rank_within_10min": 355
+    },
+    {
+      "ADM_CD": "11050530",
+      "ADM_NM": "화양동",
+      "total_population": 32271.0,
+      "accessible_population": 32271.0,
+      "population_weighted_walk_min": 3.155,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 47,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11050540",
+      "ADM_NM": "군자동",
+      "total_population": 22275.0,
+      "accessible_population": 22275.0,
+      "population_weighted_walk_min": 5.02,
+      "population_within_10min_pct": 99.443,
+      "rank_walk_min": 216,
+      "rank_within_10min": 180
+    },
+    {
+      "ADM_CD": "11050550",
+      "ADM_NM": "중곡1동",
+      "total_population": 15066.0,
+      "accessible_population": 15066.0,
+      "population_weighted_walk_min": 7.32,
+      "population_within_10min_pct": 71.127,
+      "rank_walk_min": 369,
+      "rank_within_10min": 390
+    },
+    {
+      "ADM_CD": "11050560",
+      "ADM_NM": "중곡2동",
+      "total_population": 19766.0,
+      "accessible_population": 19766.0,
+      "population_weighted_walk_min": 5.475,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 263,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11050570",
+      "ADM_NM": "중곡3동",
+      "total_population": 15620.0,
+      "accessible_population": 15620.0,
+      "population_weighted_walk_min": 5.613,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 275,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11050580",
+      "ADM_NM": "중곡4동",
+      "total_population": 26081.0,
+      "accessible_population": 26081.0,
+      "population_weighted_walk_min": 9.847,
+      "population_within_10min_pct": 45.175,
+      "rank_walk_min": 409,
+      "rank_within_10min": 414
+    },
+    {
+      "ADM_CD": "11050590",
+      "ADM_NM": "능동",
+      "total_population": 11534.0,
+      "accessible_population": 11534.0,
+      "population_weighted_walk_min": 6.609,
+      "population_within_10min_pct": 76.92,
+      "rank_walk_min": 348,
+      "rank_within_10min": 376
+    },
+    {
+      "ADM_CD": "11050600",
+      "ADM_NM": "구의1동",
+      "total_population": 22752.0,
+      "accessible_population": 22752.0,
+      "population_weighted_walk_min": 12.626,
+      "population_within_10min_pct": 21.29,
+      "rank_walk_min": 420,
+      "rank_within_10min": 420
+    },
+    {
+      "ADM_CD": "11050610",
+      "ADM_NM": "구의2동",
+      "total_population": 25690.0,
+      "accessible_population": 25690.0,
+      "population_weighted_walk_min": 7.701,
+      "population_within_10min_pct": 76.956,
+      "rank_walk_min": 380,
+      "rank_within_10min": 375
+    },
+    {
+      "ADM_CD": "11050620",
+      "ADM_NM": "구의3동",
+      "total_population": 26567.0,
+      "accessible_population": 26567.0,
+      "population_weighted_walk_min": 7.9,
+      "population_within_10min_pct": 58.482,
+      "rank_walk_min": 385,
+      "rank_within_10min": 406
+    },
+    {
+      "ADM_CD": "11050630",
+      "ADM_NM": "광장동",
+      "total_population": 32982.0,
+      "accessible_population": 32982.0,
+      "population_weighted_walk_min": 12.916,
+      "population_within_10min_pct": 16.697,
+      "rank_walk_min": 421,
+      "rank_within_10min": 422
+    },
+    {
+      "ADM_CD": "11050640",
+      "ADM_NM": "자양1동",
+      "total_population": 21339.0,
+      "accessible_population": 21339.0,
+      "population_weighted_walk_min": 4.31,
+      "population_within_10min_pct": 92.764,
+      "rank_walk_min": 146,
+      "rank_within_10min": 291
+    },
+    {
+      "ADM_CD": "11050650",
+      "ADM_NM": "자양2동",
+      "total_population": 23495.0,
+      "accessible_population": 23495.0,
+      "population_weighted_walk_min": 5.08,
+      "population_within_10min_pct": 92.279,
+      "rank_walk_min": 224,
+      "rank_within_10min": 297
+    },
+    {
+      "ADM_CD": "11050660",
+      "ADM_NM": "자양3동",
+      "total_population": 25317.0,
+      "accessible_population": 25317.0,
+      "population_weighted_walk_min": 6.196,
+      "population_within_10min_pct": 83.592,
+      "rank_walk_min": 325,
+      "rank_within_10min": 352
+    },
+    {
+      "ADM_CD": "11050670",
+      "ADM_NM": "자양4동",
+      "total_population": 24706.0,
+      "accessible_population": 24706.0,
+      "population_weighted_walk_min": 4.359,
+      "population_within_10min_pct": 99.98,
+      "rank_walk_min": 152,
+      "rank_within_10min": 160
+    },
+    {
+      "ADM_CD": "11060710",
+      "ADM_NM": "회기동",
+      "total_population": 14747.0,
+      "accessible_population": 14747.0,
+      "population_weighted_walk_min": 4.549,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 173,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11060720",
+      "ADM_NM": "휘경1동",
+      "total_population": 16453.0,
+      "accessible_population": 16453.0,
+      "population_weighted_walk_min": 5.446,
+      "population_within_10min_pct": 96.207,
+      "rank_walk_min": 260,
+      "rank_within_10min": 245
+    },
+    {
+      "ADM_CD": "11060730",
+      "ADM_NM": "휘경2동",
+      "total_population": 24911.0,
+      "accessible_population": 24911.0,
+      "population_weighted_walk_min": 4.324,
+      "population_within_10min_pct": 98.824,
+      "rank_walk_min": 148,
+      "rank_within_10min": 189
+    },
+    {
+      "ADM_CD": "11060800",
+      "ADM_NM": "청량리동",
+      "total_population": 19760.0,
+      "accessible_population": 19760.0,
+      "population_weighted_walk_min": 6.305,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 331,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11060810",
+      "ADM_NM": "용신동",
+      "total_population": 39409.0,
+      "accessible_population": 39409.0,
+      "population_weighted_walk_min": 4.372,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 154,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11060820",
+      "ADM_NM": "제기동",
+      "total_population": 24720.0,
+      "accessible_population": 24720.0,
+      "population_weighted_walk_min": 5.226,
+      "population_within_10min_pct": 93.968,
+      "rank_walk_min": 232,
+      "rank_within_10min": 273
+    },
+    {
+      "ADM_CD": "11060830",
+      "ADM_NM": "전농1동",
+      "total_population": 32901.0,
+      "accessible_population": 32901.0,
+      "population_weighted_walk_min": 3.821,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 88,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11060840",
+      "ADM_NM": "전농2동",
+      "total_population": 18753.0,
+      "accessible_population": 18753.0,
+      "population_weighted_walk_min": 5.111,
+      "population_within_10min_pct": 92.609,
+      "rank_walk_min": 226,
+      "rank_within_10min": 293
+    },
+    {
+      "ADM_CD": "11060860",
+      "ADM_NM": "답십리2동",
+      "total_population": 26754.0,
+      "accessible_population": 26754.0,
+      "population_weighted_walk_min": 7.878,
+      "population_within_10min_pct": 63.953,
+      "rank_walk_min": 383,
+      "rank_within_10min": 401
+    },
+    {
+      "ADM_CD": "11060870",
+      "ADM_NM": "장안1동",
+      "total_population": 35755.0,
+      "accessible_population": 35755.0,
+      "population_weighted_walk_min": 5.82,
+      "population_within_10min_pct": 96.001,
+      "rank_walk_min": 296,
+      "rank_within_10min": 250
+    },
+    {
+      "ADM_CD": "11060880",
+      "ADM_NM": "장안2동",
+      "total_population": 32922.0,
+      "accessible_population": 32922.0,
+      "population_weighted_walk_min": 3.307,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 58,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11060890",
+      "ADM_NM": "이문1동",
+      "total_population": 22813.0,
+      "accessible_population": 22813.0,
+      "population_weighted_walk_min": 5.611,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 274,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11060900",
+      "ADM_NM": "이문2동",
+      "total_population": 18700.0,
+      "accessible_population": 18700.0,
+      "population_weighted_walk_min": 5.387,
+      "population_within_10min_pct": 97.075,
+      "rank_walk_min": 248,
+      "rank_within_10min": 226
+    },
+    {
+      "ADM_CD": "11060910",
+      "ADM_NM": "답십리1동",
+      "total_population": 26158.0,
+      "accessible_population": 26158.0,
+      "population_weighted_walk_min": 5.431,
+      "population_within_10min_pct": 89.43,
+      "rank_walk_min": 258,
+      "rank_within_10min": 331
+    },
+    {
+      "ADM_CD": "11070520",
+      "ADM_NM": "면목2동",
+      "total_population": 22148.0,
+      "accessible_population": 22148.0,
+      "population_weighted_walk_min": 3.8,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 85,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070540",
+      "ADM_NM": "면목4동",
+      "total_population": 17705.0,
+      "accessible_population": 17705.0,
+      "population_weighted_walk_min": 3.877,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 96,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070550",
+      "ADM_NM": "면목5동",
+      "total_population": 14584.0,
+      "accessible_population": 14584.0,
+      "population_weighted_walk_min": 2.295,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 11,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070570",
+      "ADM_NM": "면목7동",
+      "total_population": 20821.0,
+      "accessible_population": 20821.0,
+      "population_weighted_walk_min": 5.617,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 277,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070590",
+      "ADM_NM": "상봉1동",
+      "total_population": 22006.0,
+      "accessible_population": 22006.0,
+      "population_weighted_walk_min": 6.106,
+      "population_within_10min_pct": 91.102,
+      "rank_walk_min": 322,
+      "rank_within_10min": 313
+    },
+    {
+      "ADM_CD": "11070600",
+      "ADM_NM": "상봉2동",
+      "total_population": 22727.0,
+      "accessible_population": 22727.0,
+      "population_weighted_walk_min": 5.269,
+      "population_within_10min_pct": 97.039,
+      "rank_walk_min": 234,
+      "rank_within_10min": 227
+    },
+    {
+      "ADM_CD": "11070610",
+      "ADM_NM": "중화1동",
+      "total_population": 17435.0,
+      "accessible_population": 17435.0,
+      "population_weighted_walk_min": 5.56,
+      "population_within_10min_pct": 93.502,
+      "rank_walk_min": 271,
+      "rank_within_10min": 280
+    },
+    {
+      "ADM_CD": "11070620",
+      "ADM_NM": "중화2동",
+      "total_population": 23841.0,
+      "accessible_population": 23841.0,
+      "population_weighted_walk_min": 6.835,
+      "population_within_10min_pct": 89.942,
+      "rank_walk_min": 356,
+      "rank_within_10min": 327
+    },
+    {
+      "ADM_CD": "11070640",
+      "ADM_NM": "묵1동",
+      "total_population": 32276.0,
+      "accessible_population": 32276.0,
+      "population_weighted_walk_min": 7.27,
+      "population_within_10min_pct": 86.897,
+      "rank_walk_min": 368,
+      "rank_within_10min": 340
+    },
+    {
+      "ADM_CD": "11070650",
+      "ADM_NM": "묵2동",
+      "total_population": 17668.0,
+      "accessible_population": 17668.0,
+      "population_weighted_walk_min": 4.283,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 139,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070680",
+      "ADM_NM": "망우3동",
+      "total_population": 15444.0,
+      "accessible_population": 15444.0,
+      "population_weighted_walk_min": 2.77,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 22,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070690",
+      "ADM_NM": "신내1동",
+      "total_population": 35915.0,
+      "accessible_population": 35915.0,
+      "population_weighted_walk_min": 5.48,
+      "population_within_10min_pct": 92.51,
+      "rank_walk_min": 264,
+      "rank_within_10min": 296
+    },
+    {
+      "ADM_CD": "11070700",
+      "ADM_NM": "신내2동",
+      "total_population": 18138.0,
+      "accessible_population": 18138.0,
+      "population_weighted_walk_min": 6.846,
+      "population_within_10min_pct": 75.063,
+      "rank_walk_min": 358,
+      "rank_within_10min": 381
+    },
+    {
+      "ADM_CD": "11070710",
+      "ADM_NM": "면목본동",
+      "total_population": 32611.0,
+      "accessible_population": 32611.0,
+      "population_weighted_walk_min": 3.318,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 59,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070720",
+      "ADM_NM": "면목3·8동",
+      "total_population": 23571.0,
+      "accessible_population": 23571.0,
+      "population_weighted_walk_min": 4.374,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 156,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11070730",
+      "ADM_NM": "망우본동",
+      "total_population": 37951.0,
+      "accessible_population": 37951.0,
+      "population_weighted_walk_min": 4.373,
+      "population_within_10min_pct": 96.179,
+      "rank_walk_min": 155,
+      "rank_within_10min": 246
+    },
+    {
+      "ADM_CD": "11080580",
+      "ADM_NM": "돈암1동",
+      "total_population": 14207.0,
+      "accessible_population": 14207.0,
+      "population_weighted_walk_min": 5.673,
+      "population_within_10min_pct": 95.706,
+      "rank_walk_min": 282,
+      "rank_within_10min": 256
+    },
+    {
+      "ADM_CD": "11080590",
+      "ADM_NM": "돈암2동",
+      "total_population": 22141.0,
+      "accessible_population": 22141.0,
+      "population_weighted_walk_min": 5.422,
+      "population_within_10min_pct": 93.212,
+      "rank_walk_min": 257,
+      "rank_within_10min": 285
+    },
+    {
+      "ADM_CD": "11080600",
+      "ADM_NM": "안암동",
+      "total_population": 20059.0,
+      "accessible_population": 20059.0,
+      "population_weighted_walk_min": 4.197,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 128,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11080610",
+      "ADM_NM": "보문동",
+      "total_population": 17181.0,
+      "accessible_population": 17181.0,
+      "population_weighted_walk_min": 5.401,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 254,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11080620",
+      "ADM_NM": "정릉1동",
+      "total_population": 17072.0,
+      "accessible_population": 17072.0,
+      "population_weighted_walk_min": 6.621,
+      "population_within_10min_pct": 97.657,
+      "rank_walk_min": 349,
+      "rank_within_10min": 216
+    },
+    {
+      "ADM_CD": "11080630",
+      "ADM_NM": "정릉2동",
+      "total_population": 22279.0,
+      "accessible_population": 22279.0,
+      "population_weighted_walk_min": 6.973,
+      "population_within_10min_pct": 82.652,
+      "rank_walk_min": 362,
+      "rank_within_10min": 357
+    },
+    {
+      "ADM_CD": "11080640",
+      "ADM_NM": "정릉3동",
+      "total_population": 17996.0,
+      "accessible_population": 17996.0,
+      "population_weighted_walk_min": 15.981,
+      "population_within_10min_pct": 9.424,
+      "rank_walk_min": 425,
+      "rank_within_10min": 424
+    },
+    {
+      "ADM_CD": "11080650",
+      "ADM_NM": "정릉4동",
+      "total_population": 23048.0,
+      "accessible_population": 23048.0,
+      "population_weighted_walk_min": 15.98,
+      "population_within_10min_pct": 3.579,
+      "rank_walk_min": 424,
+      "rank_within_10min": 426
+    },
+    {
+      "ADM_CD": "11080660",
+      "ADM_NM": "길음1동",
+      "total_population": 34037.0,
+      "accessible_population": 34037.0,
+      "population_weighted_walk_min": 3.257,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 52,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11080680",
+      "ADM_NM": "길음2동",
+      "total_population": 21503.0,
+      "accessible_population": 21503.0,
+      "population_weighted_walk_min": 6.842,
+      "population_within_10min_pct": 87.955,
+      "rank_walk_min": 357,
+      "rank_within_10min": 337
+    },
+    {
+      "ADM_CD": "11080710",
+      "ADM_NM": "월곡1동",
+      "total_population": 24443.0,
+      "accessible_population": 24443.0,
+      "population_weighted_walk_min": 3.481,
+      "population_within_10min_pct": 99.947,
+      "rank_walk_min": 66,
+      "rank_within_10min": 166
+    },
+    {
+      "ADM_CD": "11080720",
+      "ADM_NM": "월곡2동",
+      "total_population": 18915.0,
+      "accessible_population": 18915.0,
+      "population_weighted_walk_min": 2.882,
+      "population_within_10min_pct": 99.149,
+      "rank_walk_min": 27,
+      "rank_within_10min": 184
+    },
+    {
+      "ADM_CD": "11080760",
+      "ADM_NM": "장위1동",
+      "total_population": 21990.0,
+      "accessible_population": 21990.0,
+      "population_weighted_walk_min": 6.4,
+      "population_within_10min_pct": 84.657,
+      "rank_walk_min": 336,
+      "rank_within_10min": 348
+    },
+    {
+      "ADM_CD": "11080770",
+      "ADM_NM": "장위2동",
+      "total_population": 12977.0,
+      "accessible_population": 12977.0,
+      "population_weighted_walk_min": 8.276,
+      "population_within_10min_pct": 72.544,
+      "rank_walk_min": 394,
+      "rank_within_10min": 387
+    },
+    {
+      "ADM_CD": "11080780",
+      "ADM_NM": "장위3동",
+      "total_population": 15500.0,
+      "accessible_population": 15500.0,
+      "population_weighted_walk_min": 10.509,
+      "population_within_10min_pct": 46.0,
+      "rank_walk_min": 412,
+      "rank_within_10min": 413
+    },
+    {
+      "ADM_CD": "11080810",
+      "ADM_NM": "성북동",
+      "total_population": 14753.0,
+      "accessible_population": 14753.0,
+      "population_weighted_walk_min": 7.886,
+      "population_within_10min_pct": 73.07,
+      "rank_walk_min": 384,
+      "rank_within_10min": 386
+    },
+    {
+      "ADM_CD": "11080820",
+      "ADM_NM": "삼선동",
+      "total_population": 21484.0,
+      "accessible_population": 21484.0,
+      "population_weighted_walk_min": 5.952,
+      "population_within_10min_pct": 91.235,
+      "rank_walk_min": 310,
+      "rank_within_10min": 310
+    },
+    {
+      "ADM_CD": "11080830",
+      "ADM_NM": "동선동",
+      "total_population": 17551.0,
+      "accessible_population": 17551.0,
+      "population_weighted_walk_min": 5.93,
+      "population_within_10min_pct": 97.037,
+      "rank_walk_min": 307,
+      "rank_within_10min": 228
+    },
+    {
+      "ADM_CD": "11080840",
+      "ADM_NM": "종암동",
+      "total_population": 38868.0,
+      "accessible_population": 38868.0,
+      "population_weighted_walk_min": 5.844,
+      "population_within_10min_pct": 91.834,
+      "rank_walk_min": 300,
+      "rank_within_10min": 299
+    },
+    {
+      "ADM_CD": "11080850",
+      "ADM_NM": "석관동",
+      "total_population": 33549.0,
+      "accessible_population": 33549.0,
+      "population_weighted_walk_min": 4.223,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 131,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11090600",
+      "ADM_NM": "번1동",
+      "total_population": 16853.0,
+      "accessible_population": 16853.0,
+      "population_weighted_walk_min": 6.715,
+      "population_within_10min_pct": 98.701,
+      "rank_walk_min": 352,
+      "rank_within_10min": 194
+    },
+    {
+      "ADM_CD": "11090610",
+      "ADM_NM": "번2동",
+      "total_population": 13858.0,
+      "accessible_population": 13858.0,
+      "population_weighted_walk_min": 6.083,
+      "population_within_10min_pct": 89.991,
+      "rank_walk_min": 321,
+      "rank_within_10min": 326
+    },
+    {
+      "ADM_CD": "11090620",
+      "ADM_NM": "번3동",
+      "total_population": 15620.0,
+      "accessible_population": 15620.0,
+      "population_weighted_walk_min": 9.029,
+      "population_within_10min_pct": 53.182,
+      "rank_walk_min": 404,
+      "rank_within_10min": 409
+    },
+    {
+      "ADM_CD": "11090630",
+      "ADM_NM": "수유1동",
+      "total_population": 19370.0,
+      "accessible_population": 19370.0,
+      "population_weighted_walk_min": 4.695,
+      "population_within_10min_pct": 95.844,
+      "rank_walk_min": 182,
+      "rank_within_10min": 253
+    },
+    {
+      "ADM_CD": "11090640",
+      "ADM_NM": "수유2동",
+      "total_population": 19850.0,
+      "accessible_population": 19850.0,
+      "population_weighted_walk_min": 13.707,
+      "population_within_10min_pct": 13.35,
+      "rank_walk_min": 422,
+      "rank_within_10min": 423
+    },
+    {
+      "ADM_CD": "11090650",
+      "ADM_NM": "수유3동",
+      "total_population": 23153.0,
+      "accessible_population": 23153.0,
+      "population_weighted_walk_min": 9.709,
+      "population_within_10min_pct": 59.288,
+      "rank_walk_min": 408,
+      "rank_within_10min": 404
+    },
+    {
+      "ADM_CD": "11090690",
+      "ADM_NM": "삼양동",
+      "total_population": 22172.0,
+      "accessible_population": 22172.0,
+      "population_weighted_walk_min": 7.915,
+      "population_within_10min_pct": 82.054,
+      "rank_walk_min": 386,
+      "rank_within_10min": 359
+    },
+    {
+      "ADM_CD": "11090700",
+      "ADM_NM": "미아동",
+      "total_population": 21694.0,
+      "accessible_population": 21694.0,
+      "population_weighted_walk_min": 6.68,
+      "population_within_10min_pct": 90.61,
+      "rank_walk_min": 351,
+      "rank_within_10min": 317
+    },
+    {
+      "ADM_CD": "11090710",
+      "ADM_NM": "송중동",
+      "total_population": 27602.0,
+      "accessible_population": 27602.0,
+      "population_weighted_walk_min": 8.267,
+      "population_within_10min_pct": 66.651,
+      "rank_walk_min": 392,
+      "rank_within_10min": 397
+    },
+    {
+      "ADM_CD": "11090720",
+      "ADM_NM": "송천동",
+      "total_population": 23942.0,
+      "accessible_population": 23942.0,
+      "population_weighted_walk_min": 8.939,
+      "population_within_10min_pct": 64.974,
+      "rank_walk_min": 403,
+      "rank_within_10min": 399
+    },
+    {
+      "ADM_CD": "11090730",
+      "ADM_NM": "삼각산동",
+      "total_population": 29068.0,
+      "accessible_population": 29068.0,
+      "population_weighted_walk_min": 5.318,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 239,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11090740",
+      "ADM_NM": "우이동",
+      "total_population": 19591.0,
+      "accessible_population": 19591.0,
+      "population_weighted_walk_min": 16.183,
+      "population_within_10min_pct": 7.626,
+      "rank_walk_min": 426,
+      "rank_within_10min": 425
+    },
+    {
+      "ADM_CD": "11090750",
+      "ADM_NM": "인수동",
+      "total_population": 27977.0,
+      "accessible_population": 27977.0,
+      "population_weighted_walk_min": 14.483,
+      "population_within_10min_pct": 24.123,
+      "rank_walk_min": 423,
+      "rank_within_10min": 419
+    },
+    {
+      "ADM_CD": "11100510",
+      "ADM_NM": "쌍문1동",
+      "total_population": 20550.0,
+      "accessible_population": 20550.0,
+      "population_weighted_walk_min": 7.996,
+      "population_within_10min_pct": 73.956,
+      "rank_walk_min": 388,
+      "rank_within_10min": 384
+    },
+    {
+      "ADM_CD": "11100520",
+      "ADM_NM": "쌍문2동",
+      "total_population": 18593.0,
+      "accessible_population": 18593.0,
+      "population_weighted_walk_min": 4.878,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 203,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11100530",
+      "ADM_NM": "쌍문3동",
+      "total_population": 16541.0,
+      "accessible_population": 16541.0,
+      "population_weighted_walk_min": 4.862,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 202,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11100540",
+      "ADM_NM": "쌍문4동",
+      "total_population": 15965.0,
+      "accessible_population": 15965.0,
+      "population_weighted_walk_min": 5.659,
+      "population_within_10min_pct": 97.726,
+      "rank_walk_min": 279,
+      "rank_within_10min": 213
+    },
+    {
+      "ADM_CD": "11100550",
+      "ADM_NM": "방학1동",
+      "total_population": 25969.0,
+      "accessible_population": 25969.0,
+      "population_weighted_walk_min": 3.937,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 102,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11100560",
+      "ADM_NM": "방학2동",
+      "total_population": 17716.0,
+      "accessible_population": 17716.0,
+      "population_weighted_walk_min": 6.082,
+      "population_within_10min_pct": 80.436,
+      "rank_walk_min": 320,
+      "rank_within_10min": 367
+    },
+    {
+      "ADM_CD": "11100570",
+      "ADM_NM": "방학3동",
+      "total_population": 25472.0,
+      "accessible_population": 25472.0,
+      "population_weighted_walk_min": 5.401,
+      "population_within_10min_pct": 99.081,
+      "rank_walk_min": 254,
+      "rank_within_10min": 185
+    },
+    {
+      "ADM_CD": "11100590",
+      "ADM_NM": "창1동",
+      "total_population": 22911.0,
+      "accessible_population": 22911.0,
+      "population_weighted_walk_min": 4.432,
+      "population_within_10min_pct": 97.023,
+      "rank_walk_min": 164,
+      "rank_within_10min": 229
+    },
+    {
+      "ADM_CD": "11100600",
+      "ADM_NM": "창2동",
+      "total_population": 27403.0,
+      "accessible_population": 27403.0,
+      "population_weighted_walk_min": 3.677,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 80,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11100610",
+      "ADM_NM": "창3동",
+      "total_population": 12763.0,
+      "accessible_population": 12763.0,
+      "population_weighted_walk_min": 4.142,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 119,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11100620",
+      "ADM_NM": "창4동",
+      "total_population": 26375.0,
+      "accessible_population": 26375.0,
+      "population_weighted_walk_min": 5.964,
+      "population_within_10min_pct": 87.973,
+      "rank_walk_min": 312,
+      "rank_within_10min": 336
+    },
+    {
+      "ADM_CD": "11100630",
+      "ADM_NM": "창5동",
+      "total_population": 22186.0,
+      "accessible_population": 22186.0,
+      "population_weighted_walk_min": 4.416,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 162,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11100640",
+      "ADM_NM": "도봉1동",
+      "total_population": 19214.0,
+      "accessible_population": 19214.0,
+      "population_weighted_walk_min": 8.384,
+      "population_within_10min_pct": 65.473,
+      "rank_walk_min": 395,
+      "rank_within_10min": 398
+    },
+    {
+      "ADM_CD": "11100650",
+      "ADM_NM": "도봉2동",
+      "total_population": 24814.0,
+      "accessible_population": 24814.0,
+      "population_weighted_walk_min": 5.773,
+      "population_within_10min_pct": 97.207,
+      "rank_walk_min": 292,
+      "rank_within_10min": 221
+    },
+    {
+      "ADM_CD": "11110510",
+      "ADM_NM": "월계1동",
+      "total_population": 22435.0,
+      "accessible_population": 22435.0,
+      "population_weighted_walk_min": 6.592,
+      "population_within_10min_pct": 86.258,
+      "rank_walk_min": 347,
+      "rank_within_10min": 344
+    },
+    {
+      "ADM_CD": "11110520",
+      "ADM_NM": "월계2동",
+      "total_population": 24243.0,
+      "accessible_population": 24243.0,
+      "population_weighted_walk_min": 5.474,
+      "population_within_10min_pct": 91.639,
+      "rank_walk_min": 262,
+      "rank_within_10min": 305
+    },
+    {
+      "ADM_CD": "11110530",
+      "ADM_NM": "월계3동",
+      "total_population": 27402.0,
+      "accessible_population": 27402.0,
+      "population_weighted_walk_min": 6.521,
+      "population_within_10min_pct": 75.892,
+      "rank_walk_min": 346,
+      "rank_within_10min": 380
+    },
+    {
+      "ADM_CD": "11110560",
+      "ADM_NM": "공릉2동",
+      "total_population": 44301.0,
+      "accessible_population": 44301.0,
+      "population_weighted_walk_min": 6.735,
+      "population_within_10min_pct": 79.463,
+      "rank_walk_min": 353,
+      "rank_within_10min": 371
+    },
+    {
+      "ADM_CD": "11110580",
+      "ADM_NM": "하계1동",
+      "total_population": 26030.0,
+      "accessible_population": 26030.0,
+      "population_weighted_walk_min": 3.629,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 78,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11110590",
+      "ADM_NM": "하계2동",
+      "total_population": 20191.0,
+      "accessible_population": 20191.0,
+      "population_weighted_walk_min": 5.325,
+      "population_within_10min_pct": 92.903,
+      "rank_walk_min": 240,
+      "rank_within_10min": 288
+    },
+    {
+      "ADM_CD": "11110600",
+      "ADM_NM": "중계본동",
+      "total_population": 22110.0,
+      "accessible_population": 22110.0,
+      "population_weighted_walk_min": 12.54,
+      "population_within_10min_pct": 24.984,
+      "rank_walk_min": 419,
+      "rank_within_10min": 418
+    },
+    {
+      "ADM_CD": "11110610",
+      "ADM_NM": "중계1동",
+      "total_population": 25355.0,
+      "accessible_population": 25355.0,
+      "population_weighted_walk_min": 6.409,
+      "population_within_10min_pct": 79.681,
+      "rank_walk_min": 337,
+      "rank_within_10min": 368
+    },
+    {
+      "ADM_CD": "11110640",
+      "ADM_NM": "중계4동",
+      "total_population": 18801.0,
+      "accessible_population": 18801.0,
+      "population_weighted_walk_min": 9.96,
+      "population_within_10min_pct": 63.433,
+      "rank_walk_min": 410,
+      "rank_within_10min": 402
+    },
+    {
+      "ADM_CD": "11110650",
+      "ADM_NM": "상계1동",
+      "total_population": 36142.0,
+      "accessible_population": 36142.0,
+      "population_weighted_walk_min": 6.472,
+      "population_within_10min_pct": 82.926,
+      "rank_walk_min": 344,
+      "rank_within_10min": 356
+    },
+    {
+      "ADM_CD": "11110660",
+      "ADM_NM": "상계2동",
+      "total_population": 18329.0,
+      "accessible_population": 18329.0,
+      "population_weighted_walk_min": 6.328,
+      "population_within_10min_pct": 87.719,
+      "rank_walk_min": 332,
+      "rank_within_10min": 338
+    },
+    {
+      "ADM_CD": "11110690",
+      "ADM_NM": "상계5동",
+      "total_population": 21309.0,
+      "accessible_population": 21309.0,
+      "population_weighted_walk_min": 4.112,
+      "population_within_10min_pct": 99.962,
+      "rank_walk_min": 115,
+      "rank_within_10min": 165
+    },
+    {
+      "ADM_CD": "11110720",
+      "ADM_NM": "상계8동",
+      "total_population": 20504.0,
+      "accessible_population": 20504.0,
+      "population_weighted_walk_min": 4.195,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 127,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11110730",
+      "ADM_NM": "상계9동",
+      "total_population": 19533.0,
+      "accessible_population": 19533.0,
+      "population_weighted_walk_min": 4.696,
+      "population_within_10min_pct": 91.701,
+      "rank_walk_min": 183,
+      "rank_within_10min": 303
+    },
+    {
+      "ADM_CD": "11110740",
+      "ADM_NM": "상계10동",
+      "total_population": 17832.0,
+      "accessible_population": 17832.0,
+      "population_weighted_walk_min": 3.478,
+      "population_within_10min_pct": 97.331,
+      "rank_walk_min": 65,
+      "rank_within_10min": 220
+    },
+    {
+      "ADM_CD": "11110760",
+      "ADM_NM": "상계3·4동",
+      "total_population": 26129.0,
+      "accessible_population": 26129.0,
+      "population_weighted_walk_min": 5.298,
+      "population_within_10min_pct": 93.368,
+      "rank_walk_min": 237,
+      "rank_within_10min": 283
+    },
+    {
+      "ADM_CD": "11110770",
+      "ADM_NM": "상계6·7동",
+      "total_population": 29901.0,
+      "accessible_population": 29901.0,
+      "population_weighted_walk_min": 4.226,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 132,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11110780",
+      "ADM_NM": "중계2·3동",
+      "total_population": 31491.0,
+      "accessible_population": 31491.0,
+      "population_weighted_walk_min": 5.391,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 249,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11110790",
+      "ADM_NM": "공릉1동",
+      "total_population": 35637.0,
+      "accessible_population": 35637.0,
+      "population_weighted_walk_min": 4.289,
+      "population_within_10min_pct": 97.177,
+      "rank_walk_min": 142,
+      "rank_within_10min": 224
+    },
+    {
+      "ADM_CD": "11120510",
+      "ADM_NM": "녹번동",
+      "total_population": 35011.0,
+      "accessible_population": 35011.0,
+      "population_weighted_walk_min": 6.167,
+      "population_within_10min_pct": 81.711,
+      "rank_walk_min": 324,
+      "rank_within_10min": 361
+    },
+    {
+      "ADM_CD": "11120520",
+      "ADM_NM": "불광1동",
+      "total_population": 35890.0,
+      "accessible_population": 35890.0,
+      "population_weighted_walk_min": 11.941,
+      "population_within_10min_pct": 31.173,
+      "rank_walk_min": 416,
+      "rank_within_10min": 416
+    },
+    {
+      "ADM_CD": "11120550",
+      "ADM_NM": "갈현1동",
+      "total_population": 13465.0,
+      "accessible_population": 13465.0,
+      "population_weighted_walk_min": 4.512,
+      "population_within_10min_pct": 99.257,
+      "rank_walk_min": 168,
+      "rank_within_10min": 181
+    },
+    {
+      "ADM_CD": "11120560",
+      "ADM_NM": "갈현2동",
+      "total_population": 26686.0,
+      "accessible_population": 26686.0,
+      "population_weighted_walk_min": 4.522,
+      "population_within_10min_pct": 98.22,
+      "rank_walk_min": 170,
+      "rank_within_10min": 202
+    },
+    {
+      "ADM_CD": "11120570",
+      "ADM_NM": "구산동",
+      "total_population": 30795.0,
+      "accessible_population": 30795.0,
+      "population_weighted_walk_min": 5.06,
+      "population_within_10min_pct": 99.877,
+      "rank_walk_min": 220,
+      "rank_within_10min": 167
+    },
+    {
+      "ADM_CD": "11120580",
+      "ADM_NM": "대조동",
+      "total_population": 26742.0,
+      "accessible_population": 26742.0,
+      "population_weighted_walk_min": 7.761,
+      "population_within_10min_pct": 69.426,
+      "rank_walk_min": 381,
+      "rank_within_10min": 393
+    },
+    {
+      "ADM_CD": "11120590",
+      "ADM_NM": "응암1동",
+      "total_population": 31353.0,
+      "accessible_population": 31353.0,
+      "population_weighted_walk_min": 5.393,
+      "population_within_10min_pct": 92.53,
+      "rank_walk_min": 250,
+      "rank_within_10min": 295
+    },
+    {
+      "ADM_CD": "11120600",
+      "ADM_NM": "응암2동",
+      "total_population": 26375.0,
+      "accessible_population": 26375.0,
+      "population_weighted_walk_min": 6.282,
+      "population_within_10min_pct": 73.809,
+      "rank_walk_min": 330,
+      "rank_within_10min": 385
+    },
+    {
+      "ADM_CD": "11120650",
+      "ADM_NM": "신사1동",
+      "total_population": 25475.0,
+      "accessible_population": 25475.0,
+      "population_weighted_walk_min": 3.214,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 49,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11120660",
+      "ADM_NM": "신사2동",
+      "total_population": 18072.0,
+      "accessible_population": 18072.0,
+      "population_weighted_walk_min": 3.901,
+      "population_within_10min_pct": 96.907,
+      "rank_walk_min": 98,
+      "rank_within_10min": 232
+    },
+    {
+      "ADM_CD": "11120670",
+      "ADM_NM": "증산동",
+      "total_population": 16273.0,
+      "accessible_population": 16273.0,
+      "population_weighted_walk_min": 5.613,
+      "population_within_10min_pct": 95.115,
+      "rank_walk_min": 275,
+      "rank_within_10min": 261
+    },
+    {
+      "ADM_CD": "11120680",
+      "ADM_NM": "수색동",
+      "total_population": 20397.0,
+      "accessible_population": 20397.0,
+      "population_weighted_walk_min": 10.222,
+      "population_within_10min_pct": 44.154,
+      "rank_walk_min": 411,
+      "rank_within_10min": 415
+    },
+    {
+      "ADM_CD": "11120710",
+      "ADM_NM": "진관동",
+      "total_population": 51998.0,
+      "accessible_population": 51998.0,
+      "population_weighted_walk_min": 5.629,
+      "population_within_10min_pct": 91.836,
+      "rank_walk_min": 278,
+      "rank_within_10min": 298
+    },
+    {
+      "ADM_CD": "11120720",
+      "ADM_NM": "불광2동",
+      "total_population": 25744.0,
+      "accessible_population": 25744.0,
+      "population_weighted_walk_min": 6.775,
+      "population_within_10min_pct": 89.998,
+      "rank_walk_min": 355,
+      "rank_within_10min": 325
+    },
+    {
+      "ADM_CD": "11120730",
+      "ADM_NM": "응암3동",
+      "total_population": 23134.0,
+      "accessible_population": 23134.0,
+      "population_weighted_walk_min": 3.583,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 73,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11120740",
+      "ADM_NM": "역촌동",
+      "total_population": 41326.0,
+      "accessible_population": 41326.0,
+      "population_weighted_walk_min": 5.265,
+      "population_within_10min_pct": 98.456,
+      "rank_walk_min": 233,
+      "rank_within_10min": 198
+    },
+    {
+      "ADM_CD": "11130520",
+      "ADM_NM": "천연동",
+      "total_population": 16690.0,
+      "accessible_population": 16690.0,
+      "population_weighted_walk_min": 5.349,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 243,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11130620",
+      "ADM_NM": "홍제1동",
+      "total_population": 23748.0,
+      "accessible_population": 23748.0,
+      "population_weighted_walk_min": 9.372,
+      "population_within_10min_pct": 55.276,
+      "rank_walk_min": 407,
+      "rank_within_10min": 408
+    },
+    {
+      "ADM_CD": "11130640",
+      "ADM_NM": "홍제3동",
+      "total_population": 17634.0,
+      "accessible_population": 17634.0,
+      "population_weighted_walk_min": 4.962,
+      "population_within_10min_pct": 97.465,
+      "rank_walk_min": 210,
+      "rank_within_10min": 218
+    },
+    {
+      "ADM_CD": "11130650",
+      "ADM_NM": "홍제2동",
+      "total_population": 12133.0,
+      "accessible_population": 12133.0,
+      "population_weighted_walk_min": 8.018,
+      "population_within_10min_pct": 68.326,
+      "rank_walk_min": 389,
+      "rank_within_10min": 395
+    },
+    {
+      "ADM_CD": "11130660",
+      "ADM_NM": "홍은1동",
+      "total_population": 20390.0,
+      "accessible_population": 20390.0,
+      "population_weighted_walk_min": 6.881,
+      "population_within_10min_pct": 89.823,
+      "rank_walk_min": 359,
+      "rank_within_10min": 329
+    },
+    {
+      "ADM_CD": "11130680",
+      "ADM_NM": "홍은2동",
+      "total_population": 28660.0,
+      "accessible_population": 28660.0,
+      "population_weighted_walk_min": 10.726,
+      "population_within_10min_pct": 51.239,
+      "rank_walk_min": 413,
+      "rank_within_10min": 410
+    },
+    {
+      "ADM_CD": "11130690",
+      "ADM_NM": "남가좌1동",
+      "total_population": 16587.0,
+      "accessible_population": 16587.0,
+      "population_weighted_walk_min": 3.22,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 50,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11130700",
+      "ADM_NM": "남가좌2동",
+      "total_population": 30416.0,
+      "accessible_population": 30416.0,
+      "population_weighted_walk_min": 3.581,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 72,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11130710",
+      "ADM_NM": "북가좌1동",
+      "total_population": 16830.0,
+      "accessible_population": 16830.0,
+      "population_weighted_walk_min": 5.395,
+      "population_within_10min_pct": 96.245,
+      "rank_walk_min": 252,
+      "rank_within_10min": 244
+    },
+    {
+      "ADM_CD": "11130720",
+      "ADM_NM": "북가좌2동",
+      "total_population": 29494.0,
+      "accessible_population": 29494.0,
+      "population_weighted_walk_min": 2.961,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 32,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11130730",
+      "ADM_NM": "충현동",
+      "total_population": 19392.0,
+      "accessible_population": 19392.0,
+      "population_weighted_walk_min": 5.074,
+      "population_within_10min_pct": 97.643,
+      "rank_walk_min": 222,
+      "rank_within_10min": 217
+    },
+    {
+      "ADM_CD": "11130740",
+      "ADM_NM": "북아현동",
+      "total_population": 14759.0,
+      "accessible_population": 14759.0,
+      "population_weighted_walk_min": 2.843,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 26,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11130750",
+      "ADM_NM": "신촌동",
+      "total_population": 32662.0,
+      "accessible_population": 32662.0,
+      "population_weighted_walk_min": 3.398,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 63,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11130760",
+      "ADM_NM": "연희동",
+      "total_population": 35605.0,
+      "accessible_population": 35605.0,
+      "population_weighted_walk_min": 4.276,
+      "population_within_10min_pct": 99.986,
+      "rank_walk_min": 137,
+      "rank_within_10min": 159
+    },
+    {
+      "ADM_CD": "11140590",
+      "ADM_NM": "용강동",
+      "total_population": 20895.0,
+      "accessible_population": 20895.0,
+      "population_weighted_walk_min": 6.013,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 315,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140600",
+      "ADM_NM": "대흥동",
+      "total_population": 17140.0,
+      "accessible_population": 17140.0,
+      "population_weighted_walk_min": 4.281,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 138,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140610",
+      "ADM_NM": "염리동",
+      "total_population": 17123.0,
+      "accessible_population": 17123.0,
+      "population_weighted_walk_min": 5.858,
+      "population_within_10min_pct": 97.886,
+      "rank_walk_min": 301,
+      "rank_within_10min": 211
+    },
+    {
+      "ADM_CD": "11140630",
+      "ADM_NM": "신수동",
+      "total_population": 22129.0,
+      "accessible_population": 22129.0,
+      "population_weighted_walk_min": 3.032,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 37,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140660",
+      "ADM_NM": "서교동",
+      "total_population": 25734.0,
+      "accessible_population": 25734.0,
+      "population_weighted_walk_min": 4.938,
+      "population_within_10min_pct": 94.917,
+      "rank_walk_min": 209,
+      "rank_within_10min": 264
+    },
+    {
+      "ADM_CD": "11140680",
+      "ADM_NM": "합정동",
+      "total_population": 15538.0,
+      "accessible_population": 15538.0,
+      "population_weighted_walk_min": 4.349,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 150,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140690",
+      "ADM_NM": "망원1동",
+      "total_population": 18915.0,
+      "accessible_population": 18915.0,
+      "population_weighted_walk_min": 4.66,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 179,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140700",
+      "ADM_NM": "망원2동",
+      "total_population": 16884.0,
+      "accessible_population": 16884.0,
+      "population_weighted_walk_min": 6.759,
+      "population_within_10min_pct": 95.516,
+      "rank_walk_min": 354,
+      "rank_within_10min": 257
+    },
+    {
+      "ADM_CD": "11140710",
+      "ADM_NM": "연남동",
+      "total_population": 14859.0,
+      "accessible_population": 14859.0,
+      "population_weighted_walk_min": 4.17,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 122,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140720",
+      "ADM_NM": "성산1동",
+      "total_population": 18053.0,
+      "accessible_population": 18053.0,
+      "population_weighted_walk_min": 4.005,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 107,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140730",
+      "ADM_NM": "성산2동",
+      "total_population": 37457.0,
+      "accessible_population": 37457.0,
+      "population_weighted_walk_min": 5.506,
+      "population_within_10min_pct": 90.918,
+      "rank_walk_min": 266,
+      "rank_within_10min": 315
+    },
+    {
+      "ADM_CD": "11140740",
+      "ADM_NM": "상암동",
+      "total_population": 28981.0,
+      "accessible_population": 28981.0,
+      "population_weighted_walk_min": 3.305,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 57,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140750",
+      "ADM_NM": "도화동",
+      "total_population": 20120.0,
+      "accessible_population": 20120.0,
+      "population_weighted_walk_min": 7.172,
+      "population_within_10min_pct": 76.635,
+      "rank_walk_min": 367,
+      "rank_within_10min": 378
+    },
+    {
+      "ADM_CD": "11140760",
+      "ADM_NM": "서강동",
+      "total_population": 25159.0,
+      "accessible_population": 25159.0,
+      "population_weighted_walk_min": 3.867,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 95,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140770",
+      "ADM_NM": "공덕동",
+      "total_population": 33476.0,
+      "accessible_population": 33476.0,
+      "population_weighted_walk_min": 5.015,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 215,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11140780",
+      "ADM_NM": "아현동",
+      "total_population": 27120.0,
+      "accessible_population": 27120.0,
+      "population_weighted_walk_min": 3.52,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 68,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150510",
+      "ADM_NM": "목1동",
+      "total_population": 28617.0,
+      "accessible_population": 28617.0,
+      "population_weighted_walk_min": 5.678,
+      "population_within_10min_pct": 95.345,
+      "rank_walk_min": 283,
+      "rank_within_10min": 260
+    },
+    {
+      "ADM_CD": "11150520",
+      "ADM_NM": "목2동",
+      "total_population": 28056.0,
+      "accessible_population": 28056.0,
+      "population_weighted_walk_min": 2.716,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 20,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150530",
+      "ADM_NM": "목3동",
+      "total_population": 18930.0,
+      "accessible_population": 18930.0,
+      "population_weighted_walk_min": 2.241,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 9,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150540",
+      "ADM_NM": "목4동",
+      "total_population": 23367.0,
+      "accessible_population": 23367.0,
+      "population_weighted_walk_min": 4.05,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 112,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150570",
+      "ADM_NM": "신월1동",
+      "total_population": 19024.0,
+      "accessible_population": 19024.0,
+      "population_weighted_walk_min": 5.047,
+      "population_within_10min_pct": 98.171,
+      "rank_walk_min": 218,
+      "rank_within_10min": 204
+    },
+    {
+      "ADM_CD": "11150580",
+      "ADM_NM": "신월2동",
+      "total_population": 20324.0,
+      "accessible_population": 20324.0,
+      "population_weighted_walk_min": 6.241,
+      "population_within_10min_pct": 82.11,
+      "rank_walk_min": 327,
+      "rank_within_10min": 358
+    },
+    {
+      "ADM_CD": "11150590",
+      "ADM_NM": "신월3동",
+      "total_population": 13849.0,
+      "accessible_population": 13849.0,
+      "population_weighted_walk_min": 6.221,
+      "population_within_10min_pct": 92.895,
+      "rank_walk_min": 326,
+      "rank_within_10min": 289
+    },
+    {
+      "ADM_CD": "11150600",
+      "ADM_NM": "신월4동",
+      "total_population": 16429.0,
+      "accessible_population": 16429.0,
+      "population_weighted_walk_min": 2.802,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 23,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150610",
+      "ADM_NM": "신월5동",
+      "total_population": 13462.0,
+      "accessible_population": 13462.0,
+      "population_weighted_walk_min": 3.123,
+      "population_within_10min_pct": 99.859,
+      "rank_walk_min": 42,
+      "rank_within_10min": 168
+    },
+    {
+      "ADM_CD": "11150620",
+      "ADM_NM": "신월6동",
+      "total_population": 13144.0,
+      "accessible_population": 13144.0,
+      "population_weighted_walk_min": 5.903,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 305,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150630",
+      "ADM_NM": "신월7동",
+      "total_population": 17849.0,
+      "accessible_population": 17849.0,
+      "population_weighted_walk_min": 4.354,
+      "population_within_10min_pct": 93.68,
+      "rank_walk_min": 151,
+      "rank_within_10min": 277
+    },
+    {
+      "ADM_CD": "11150640",
+      "ADM_NM": "신정1동",
+      "total_population": 19160.0,
+      "accessible_population": 19160.0,
+      "population_weighted_walk_min": 4.797,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 195,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150650",
+      "ADM_NM": "신정2동",
+      "total_population": 17937.0,
+      "accessible_population": 17937.0,
+      "population_weighted_walk_min": 4.306,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 144,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11150660",
+      "ADM_NM": "신정3동",
+      "total_population": 47861.0,
+      "accessible_population": 47861.0,
+      "population_weighted_walk_min": 4.573,
+      "population_within_10min_pct": 95.754,
+      "rank_walk_min": 175,
+      "rank_within_10min": 255
+    },
+    {
+      "ADM_CD": "11150690",
+      "ADM_NM": "신정6동",
+      "total_population": 22497.0,
+      "accessible_population": 22497.0,
+      "population_weighted_walk_min": 4.331,
+      "population_within_10min_pct": 97.924,
+      "rank_walk_min": 149,
+      "rank_within_10min": 210
+    },
+    {
+      "ADM_CD": "11150700",
+      "ADM_NM": "신정7동",
+      "total_population": 27057.0,
+      "accessible_population": 27057.0,
+      "population_weighted_walk_min": 5.763,
+      "population_within_10min_pct": 93.488,
+      "rank_walk_min": 290,
+      "rank_within_10min": 281
+    },
+    {
+      "ADM_CD": "11150710",
+      "ADM_NM": "목5동",
+      "total_population": 38559.0,
+      "accessible_population": 38559.0,
+      "population_weighted_walk_min": 5.347,
+      "population_within_10min_pct": 90.371,
+      "rank_walk_min": 242,
+      "rank_within_10min": 321
+    },
+    {
+      "ADM_CD": "11150720",
+      "ADM_NM": "신정4동",
+      "total_population": 30823.0,
+      "accessible_population": 30823.0,
+      "population_weighted_walk_min": 3.984,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 105,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160510",
+      "ADM_NM": "염창동",
+      "total_population": 39596.0,
+      "accessible_population": 39596.0,
+      "population_weighted_walk_min": 4.192,
+      "population_within_10min_pct": 99.51,
+      "rank_walk_min": 126,
+      "rank_within_10min": 179
+    },
+    {
+      "ADM_CD": "11160520",
+      "ADM_NM": "등촌1동",
+      "total_population": 24582.0,
+      "accessible_population": 24582.0,
+      "population_weighted_walk_min": 4.008,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 108,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160530",
+      "ADM_NM": "등촌2동",
+      "total_population": 19600.0,
+      "accessible_population": 19600.0,
+      "population_weighted_walk_min": 5.007,
+      "population_within_10min_pct": 93.878,
+      "rank_walk_min": 214,
+      "rank_within_10min": 274
+    },
+    {
+      "ADM_CD": "11160540",
+      "ADM_NM": "등촌3동",
+      "total_population": 29286.0,
+      "accessible_population": 29286.0,
+      "population_weighted_walk_min": 3.794,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 84,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160550",
+      "ADM_NM": "화곡본동",
+      "total_population": 31392.0,
+      "accessible_population": 31392.0,
+      "population_weighted_walk_min": 3.131,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 43,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160570",
+      "ADM_NM": "화곡2동",
+      "total_population": 16124.0,
+      "accessible_population": 16124.0,
+      "population_weighted_walk_min": 3.829,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 90,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160580",
+      "ADM_NM": "화곡3동",
+      "total_population": 20334.0,
+      "accessible_population": 20334.0,
+      "population_weighted_walk_min": 3.889,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 97,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160590",
+      "ADM_NM": "화곡4동",
+      "total_population": 19111.0,
+      "accessible_population": 19111.0,
+      "population_weighted_walk_min": 4.125,
+      "population_within_10min_pct": 98.802,
+      "rank_walk_min": 118,
+      "rank_within_10min": 190
+    },
+    {
+      "ADM_CD": "11160610",
+      "ADM_NM": "화곡6동",
+      "total_population": 24927.0,
+      "accessible_population": 24927.0,
+      "population_weighted_walk_min": 4.247,
+      "population_within_10min_pct": 98.415,
+      "rank_walk_min": 134,
+      "rank_within_10min": 199
+    },
+    {
+      "ADM_CD": "11160630",
+      "ADM_NM": "화곡8동",
+      "total_population": 23848.0,
+      "accessible_population": 23848.0,
+      "population_weighted_walk_min": 2.994,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 33,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160650",
+      "ADM_NM": "가양2동",
+      "total_population": 13451.0,
+      "accessible_population": 13451.0,
+      "population_weighted_walk_min": 3.003,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 34,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160660",
+      "ADM_NM": "가양3동",
+      "total_population": 12875.0,
+      "accessible_population": 12875.0,
+      "population_weighted_walk_min": 2.903,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 29,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160670",
+      "ADM_NM": "발산1동",
+      "total_population": 34100.0,
+      "accessible_population": 34100.0,
+      "population_weighted_walk_min": 2.901,
+      "population_within_10min_pct": 99.639,
+      "rank_walk_min": 28,
+      "rank_within_10min": 174
+    },
+    {
+      "ADM_CD": "11160690",
+      "ADM_NM": "공항동",
+      "total_population": 29536.0,
+      "accessible_population": 29536.0,
+      "population_weighted_walk_min": 4.907,
+      "population_within_10min_pct": 89.237,
+      "rank_walk_min": 207,
+      "rank_within_10min": 333
+    },
+    {
+      "ADM_CD": "11160700",
+      "ADM_NM": "방화1동",
+      "total_population": 40559.0,
+      "accessible_population": 40559.0,
+      "population_weighted_walk_min": 4.861,
+      "population_within_10min_pct": 92.949,
+      "rank_walk_min": 201,
+      "rank_within_10min": 287
+    },
+    {
+      "ADM_CD": "11160710",
+      "ADM_NM": "방화2동",
+      "total_population": 22049.0,
+      "accessible_population": 22049.0,
+      "population_weighted_walk_min": 4.173,
+      "population_within_10min_pct": 96.92,
+      "rank_walk_min": 124,
+      "rank_within_10min": 231
+    },
+    {
+      "ADM_CD": "11160730",
+      "ADM_NM": "화곡1동",
+      "total_population": 49016.0,
+      "accessible_population": 49016.0,
+      "population_weighted_walk_min": 3.833,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 91,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160740",
+      "ADM_NM": "우장산동",
+      "total_population": 42345.0,
+      "accessible_population": 42345.0,
+      "population_weighted_walk_min": 4.416,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 162,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11160751",
+      "ADM_NM": "가양1동",
+      "total_population": 31474.0,
+      "accessible_population": 31474.0,
+      "population_weighted_walk_min": 5.36,
+      "population_within_10min_pct": 96.451,
+      "rank_walk_min": 245,
+      "rank_within_10min": 240
+    },
+    {
+      "ADM_CD": "11160761",
+      "ADM_NM": "방화3동",
+      "total_population": 20624.0,
+      "accessible_population": 20624.0,
+      "population_weighted_walk_min": 7.075,
+      "population_within_10min_pct": 80.978,
+      "rank_walk_min": 365,
+      "rank_within_10min": 365
+    },
+    {
+      "ADM_CD": "11170510",
+      "ADM_NM": "신도림동",
+      "total_population": 34886.0,
+      "accessible_population": 34886.0,
+      "population_weighted_walk_min": 6.914,
+      "population_within_10min_pct": 79.482,
+      "rank_walk_min": 361,
+      "rank_within_10min": 370
+    },
+    {
+      "ADM_CD": "11170520",
+      "ADM_NM": "구로1동",
+      "total_population": 19718.0,
+      "accessible_population": 19718.0,
+      "population_weighted_walk_min": 8.572,
+      "population_within_10min_pct": 64.413,
+      "rank_walk_min": 399,
+      "rank_within_10min": 400
+    },
+    {
+      "ADM_CD": "11170540",
+      "ADM_NM": "구로3동",
+      "total_population": 25726.0,
+      "accessible_population": 25726.0,
+      "population_weighted_walk_min": 6.241,
+      "population_within_10min_pct": 94.383,
+      "rank_walk_min": 327,
+      "rank_within_10min": 271
+    },
+    {
+      "ADM_CD": "11170550",
+      "ADM_NM": "구로4동",
+      "total_population": 24777.0,
+      "accessible_population": 24777.0,
+      "population_weighted_walk_min": 5.362,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 246,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11170560",
+      "ADM_NM": "구로5동",
+      "total_population": 32474.0,
+      "accessible_population": 32474.0,
+      "population_weighted_walk_min": 6.256,
+      "population_within_10min_pct": 85.709,
+      "rank_walk_min": 329,
+      "rank_within_10min": 346
+    },
+    {
+      "ADM_CD": "11170610",
+      "ADM_NM": "고척1동",
+      "total_population": 26834.0,
+      "accessible_population": 26834.0,
+      "population_weighted_walk_min": 8.526,
+      "population_within_10min_pct": 60.561,
+      "rank_walk_min": 397,
+      "rank_within_10min": 403
+    },
+    {
+      "ADM_CD": "11170620",
+      "ADM_NM": "고척2동",
+      "total_population": 24952.0,
+      "accessible_population": 24952.0,
+      "population_weighted_walk_min": 4.762,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 188,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11170640",
+      "ADM_NM": "개봉2동",
+      "total_population": 28733.0,
+      "accessible_population": 28733.0,
+      "population_weighted_walk_min": 5.764,
+      "population_within_10min_pct": 93.37,
+      "rank_walk_min": 291,
+      "rank_within_10min": 282
+    },
+    {
+      "ADM_CD": "11170650",
+      "ADM_NM": "개봉3동",
+      "total_population": 19441.0,
+      "accessible_population": 19441.0,
+      "population_weighted_walk_min": 5.368,
+      "population_within_10min_pct": 98.174,
+      "rank_walk_min": 247,
+      "rank_within_10min": 203
+    },
+    {
+      "ADM_CD": "11170670",
+      "ADM_NM": "오류1동",
+      "total_population": 23070.0,
+      "accessible_population": 23070.0,
+      "population_weighted_walk_min": 5.969,
+      "population_within_10min_pct": 80.655,
+      "rank_walk_min": 313,
+      "rank_within_10min": 366
+    },
+    {
+      "ADM_CD": "11170690",
+      "ADM_NM": "수궁동",
+      "total_population": 22154.0,
+      "accessible_population": 22154.0,
+      "population_weighted_walk_min": 6.03,
+      "population_within_10min_pct": 84.617,
+      "rank_walk_min": 316,
+      "rank_within_10min": 351
+    },
+    {
+      "ADM_CD": "11170700",
+      "ADM_NM": "가리봉동",
+      "total_population": 14694.0,
+      "accessible_population": 14694.0,
+      "population_weighted_walk_min": 7.331,
+      "population_within_10min_pct": 85.736,
+      "rank_walk_min": 370,
+      "rank_within_10min": 345
+    },
+    {
+      "ADM_CD": "11170710",
+      "ADM_NM": "구로2동",
+      "total_population": 34803.0,
+      "accessible_population": 34803.0,
+      "population_weighted_walk_min": 6.364,
+      "population_within_10min_pct": 78.085,
+      "rank_walk_min": 333,
+      "rank_within_10min": 374
+    },
+    {
+      "ADM_CD": "11170720",
+      "ADM_NM": "개봉1동",
+      "total_population": 34498.0,
+      "accessible_population": 34498.0,
+      "population_weighted_walk_min": 8.271,
+      "population_within_10min_pct": 71.219,
+      "rank_walk_min": 393,
+      "rank_within_10min": 389
+    },
+    {
+      "ADM_CD": "11170730",
+      "ADM_NM": "오류2동",
+      "total_population": 35824.0,
+      "accessible_population": 35824.0,
+      "population_weighted_walk_min": 7.542,
+      "population_within_10min_pct": 74.059,
+      "rank_walk_min": 375,
+      "rank_within_10min": 383
+    },
+    {
+      "ADM_CD": "11170740",
+      "ADM_NM": "항동",
+      "total_population": 16284.0,
+      "accessible_population": 16284.0,
+      "population_weighted_walk_min": 4.599,
+      "population_within_10min_pct": 97.187,
+      "rank_walk_min": 176,
+      "rank_within_10min": 223
+    },
+    {
+      "ADM_CD": "11180510",
+      "ADM_NM": "가산동",
+      "total_population": 28716.0,
+      "accessible_population": 28716.0,
+      "population_weighted_walk_min": 5.151,
+      "population_within_10min_pct": 90.103,
+      "rank_walk_min": 227,
+      "rank_within_10min": 323
+    },
+    {
+      "ADM_CD": "11180520",
+      "ADM_NM": "독산1동",
+      "total_population": 49468.0,
+      "accessible_population": 49468.0,
+      "population_weighted_walk_min": 5.607,
+      "population_within_10min_pct": 93.608,
+      "rank_walk_min": 273,
+      "rank_within_10min": 278
+    },
+    {
+      "ADM_CD": "11180530",
+      "ADM_NM": "독산2동",
+      "total_population": 19092.0,
+      "accessible_population": 19092.0,
+      "population_weighted_walk_min": 3.054,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 38,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11180540",
+      "ADM_NM": "독산3동",
+      "total_population": 28661.0,
+      "accessible_population": 28661.0,
+      "population_weighted_walk_min": 4.724,
+      "population_within_10min_pct": 98.085,
+      "rank_walk_min": 187,
+      "rank_within_10min": 208
+    },
+    {
+      "ADM_CD": "11180550",
+      "ADM_NM": "독산4동",
+      "total_population": 17033.0,
+      "accessible_population": 17033.0,
+      "population_weighted_walk_min": 4.403,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 160,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11180570",
+      "ADM_NM": "시흥1동",
+      "total_population": 34171.0,
+      "accessible_population": 34171.0,
+      "population_weighted_walk_min": 4.104,
+      "population_within_10min_pct": 98.999,
+      "rank_walk_min": 114,
+      "rank_within_10min": 186
+    },
+    {
+      "ADM_CD": "11180580",
+      "ADM_NM": "시흥2동",
+      "total_population": 20197.0,
+      "accessible_population": 20197.0,
+      "population_weighted_walk_min": 5.224,
+      "population_within_10min_pct": 98.158,
+      "rank_walk_min": 231,
+      "rank_within_10min": 205
+    },
+    {
+      "ADM_CD": "11180590",
+      "ADM_NM": "시흥3동",
+      "total_population": 9804.0,
+      "accessible_population": 9804.0,
+      "population_weighted_walk_min": 3.138,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 46,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11180600",
+      "ADM_NM": "시흥4동",
+      "total_population": 19403.0,
+      "accessible_population": 19403.0,
+      "population_weighted_walk_min": 5.742,
+      "population_within_10min_pct": 96.763,
+      "rank_walk_min": 286,
+      "rank_within_10min": 236
+    },
+    {
+      "ADM_CD": "11180610",
+      "ADM_NM": "시흥5동",
+      "total_population": 17779.0,
+      "accessible_population": 17779.0,
+      "population_weighted_walk_min": 3.993,
+      "population_within_10min_pct": 99.972,
+      "rank_walk_min": 106,
+      "rank_within_10min": 162
+    },
+    {
+      "ADM_CD": "11190540",
+      "ADM_NM": "여의동",
+      "total_population": 31364.0,
+      "accessible_population": 31364.0,
+      "population_weighted_walk_min": 5.799,
+      "population_within_10min_pct": 98.24,
+      "rank_walk_min": 295,
+      "rank_within_10min": 201
+    },
+    {
+      "ADM_CD": "11190550",
+      "ADM_NM": "당산1동",
+      "total_population": 21035.0,
+      "accessible_population": 21035.0,
+      "population_weighted_walk_min": 6.893,
+      "population_within_10min_pct": 91.776,
+      "rank_walk_min": 360,
+      "rank_within_10min": 302
+    },
+    {
+      "ADM_CD": "11190560",
+      "ADM_NM": "당산2동",
+      "total_population": 34888.0,
+      "accessible_population": 34888.0,
+      "population_weighted_walk_min": 5.67,
+      "population_within_10min_pct": 93.516,
+      "rank_walk_min": 281,
+      "rank_within_10min": 279
+    },
+    {
+      "ADM_CD": "11190610",
+      "ADM_NM": "양평1동",
+      "total_population": 17466.0,
+      "accessible_population": 17466.0,
+      "population_weighted_walk_min": 4.821,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 197,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11190620",
+      "ADM_NM": "양평2동",
+      "total_population": 22452.0,
+      "accessible_population": 22452.0,
+      "population_weighted_walk_min": 4.374,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 156,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11190630",
+      "ADM_NM": "신길1동",
+      "total_population": 21161.0,
+      "accessible_population": 21161.0,
+      "population_weighted_walk_min": 5.529,
+      "population_within_10min_pct": 90.364,
+      "rank_walk_min": 270,
+      "rank_within_10min": 322
+    },
+    {
+      "ADM_CD": "11190650",
+      "ADM_NM": "신길3동",
+      "total_population": 16736.0,
+      "accessible_population": 16736.0,
+      "population_weighted_walk_min": 4.054,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 113,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11190660",
+      "ADM_NM": "신길4동",
+      "total_population": 12670.0,
+      "accessible_population": 12670.0,
+      "population_weighted_walk_min": 3.59,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 74,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11190670",
+      "ADM_NM": "신길5동",
+      "total_population": 11705.0,
+      "accessible_population": 11705.0,
+      "population_weighted_walk_min": 3.237,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 51,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11190680",
+      "ADM_NM": "신길6동",
+      "total_population": 18592.0,
+      "accessible_population": 18592.0,
+      "population_weighted_walk_min": 7.963,
+      "population_within_10min_pct": 69.32,
+      "rank_walk_min": 387,
+      "rank_within_10min": 394
+    },
+    {
+      "ADM_CD": "11190690",
+      "ADM_NM": "신길7동",
+      "total_population": 19025.0,
+      "accessible_population": 19025.0,
+      "population_weighted_walk_min": 6.04,
+      "population_within_10min_pct": 89.34,
+      "rank_walk_min": 318,
+      "rank_within_10min": 332
+    },
+    {
+      "ADM_CD": "11190700",
+      "ADM_NM": "대림1동",
+      "total_population": 17761.0,
+      "accessible_population": 17761.0,
+      "population_weighted_walk_min": 6.485,
+      "population_within_10min_pct": 89.837,
+      "rank_walk_min": 345,
+      "rank_within_10min": 328
+    },
+    {
+      "ADM_CD": "11190710",
+      "ADM_NM": "대림2동",
+      "total_population": 22316.0,
+      "accessible_population": 22316.0,
+      "population_weighted_walk_min": 8.434,
+      "population_within_10min_pct": 81.305,
+      "rank_walk_min": 396,
+      "rank_within_10min": 363
+    },
+    {
+      "ADM_CD": "11190720",
+      "ADM_NM": "대림3동",
+      "total_population": 25893.0,
+      "accessible_population": 25893.0,
+      "population_weighted_walk_min": 3.499,
+      "population_within_10min_pct": 96.845,
+      "rank_walk_min": 67,
+      "rank_within_10min": 235
+    },
+    {
+      "ADM_CD": "11190730",
+      "ADM_NM": "영등포본동",
+      "total_population": 22623.0,
+      "accessible_population": 22623.0,
+      "population_weighted_walk_min": 5.287,
+      "population_within_10min_pct": 94.607,
+      "rank_walk_min": 236,
+      "rank_within_10min": 269
+    },
+    {
+      "ADM_CD": "11190740",
+      "ADM_NM": "영등포동",
+      "total_population": 30510.0,
+      "accessible_population": 30510.0,
+      "population_weighted_walk_min": 5.345,
+      "population_within_10min_pct": 95.949,
+      "rank_walk_min": 241,
+      "rank_within_10min": 252
+    },
+    {
+      "ADM_CD": "11190750",
+      "ADM_NM": "도림동",
+      "total_population": 22475.0,
+      "accessible_population": 22475.0,
+      "population_weighted_walk_min": 4.377,
+      "population_within_10min_pct": 99.551,
+      "rank_walk_min": 158,
+      "rank_within_10min": 177
+    },
+    {
+      "ADM_CD": "11190760",
+      "ADM_NM": "문래동",
+      "total_population": 31771.0,
+      "accessible_population": 31771.0,
+      "population_weighted_walk_min": 4.789,
+      "population_within_10min_pct": 98.615,
+      "rank_walk_min": 192,
+      "rank_within_10min": 196
+    },
+    {
+      "ADM_CD": "11200520",
+      "ADM_NM": "노량진2동",
+      "total_population": 9161.0,
+      "accessible_population": 9161.0,
+      "population_weighted_walk_min": 8.171,
+      "population_within_10min_pct": 84.794,
+      "rank_walk_min": 390,
+      "rank_within_10min": 347
+    },
+    {
+      "ADM_CD": "11200530",
+      "ADM_NM": "상도1동",
+      "total_population": 45600.0,
+      "accessible_population": 45600.0,
+      "population_weighted_walk_min": 4.765,
+      "population_within_10min_pct": 90.502,
+      "rank_walk_min": 189,
+      "rank_within_10min": 319
+    },
+    {
+      "ADM_CD": "11200540",
+      "ADM_NM": "상도2동",
+      "total_population": 25646.0,
+      "accessible_population": 25646.0,
+      "population_weighted_walk_min": 4.187,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 125,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11200550",
+      "ADM_NM": "상도3동",
+      "total_population": 22757.0,
+      "accessible_population": 22757.0,
+      "population_weighted_walk_min": 4.12,
+      "population_within_10min_pct": 90.522,
+      "rank_walk_min": 117,
+      "rank_within_10min": 318
+    },
+    {
+      "ADM_CD": "11200560",
+      "ADM_NM": "상도4동",
+      "total_population": 28412.0,
+      "accessible_population": 28412.0,
+      "population_weighted_walk_min": 3.397,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 62,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11200630",
+      "ADM_NM": "사당1동",
+      "total_population": 22532.0,
+      "accessible_population": 22532.0,
+      "population_weighted_walk_min": 5.92,
+      "population_within_10min_pct": 95.961,
+      "rank_walk_min": 306,
+      "rank_within_10min": 251
+    },
+    {
+      "ADM_CD": "11200650",
+      "ADM_NM": "사당3동",
+      "total_population": 22834.0,
+      "accessible_population": 22834.0,
+      "population_weighted_walk_min": 4.265,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 136,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11200660",
+      "ADM_NM": "사당4동",
+      "total_population": 13163.0,
+      "accessible_population": 13163.0,
+      "population_weighted_walk_min": 4.396,
+      "population_within_10min_pct": 97.713,
+      "rank_walk_min": 159,
+      "rank_within_10min": 214
+    },
+    {
+      "ADM_CD": "11200670",
+      "ADM_NM": "사당5동",
+      "total_population": 14744.0,
+      "accessible_population": 14744.0,
+      "population_weighted_walk_min": 8.872,
+      "population_within_10min_pct": 71.921,
+      "rank_walk_min": 401,
+      "rank_within_10min": 388
+    },
+    {
+      "ADM_CD": "11200680",
+      "ADM_NM": "대방동",
+      "total_population": 36154.0,
+      "accessible_population": 36154.0,
+      "population_weighted_walk_min": 5.741,
+      "population_within_10min_pct": 91.816,
+      "rank_walk_min": 285,
+      "rank_within_10min": 300
+    },
+    {
+      "ADM_CD": "11200690",
+      "ADM_NM": "신대방1동",
+      "total_population": 25943.0,
+      "accessible_population": 25943.0,
+      "population_weighted_walk_min": 12.038,
+      "population_within_10min_pct": 18.587,
+      "rank_walk_min": 418,
+      "rank_within_10min": 421
+    },
+    {
+      "ADM_CD": "11200700",
+      "ADM_NM": "신대방2동",
+      "total_population": 22064.0,
+      "accessible_population": 22064.0,
+      "population_weighted_walk_min": 5.052,
+      "population_within_10min_pct": 94.647,
+      "rank_walk_min": 219,
+      "rank_within_10min": 268
+    },
+    {
+      "ADM_CD": "11200710",
+      "ADM_NM": "흑석동",
+      "total_population": 34019.0,
+      "accessible_population": 34019.0,
+      "population_weighted_walk_min": 3.421,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 64,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11200720",
+      "ADM_NM": "노량진1동",
+      "total_population": 32580.0,
+      "accessible_population": 32580.0,
+      "population_weighted_walk_min": 4.793,
+      "population_within_10min_pct": 99.751,
+      "rank_walk_min": 194,
+      "rank_within_10min": 171
+    },
+    {
+      "ADM_CD": "11200730",
+      "ADM_NM": "사당2동",
+      "total_population": 26762.0,
+      "accessible_population": 26762.0,
+      "population_weighted_walk_min": 7.691,
+      "population_within_10min_pct": 76.672,
+      "rank_walk_min": 379,
+      "rank_within_10min": 377
+    },
+    {
+      "ADM_CD": "11210520",
+      "ADM_NM": "보라매동",
+      "total_population": 22835.0,
+      "accessible_population": 22835.0,
+      "population_weighted_walk_min": 5.396,
+      "population_within_10min_pct": 97.666,
+      "rank_walk_min": 253,
+      "rank_within_10min": 215
+    },
+    {
+      "ADM_CD": "11210540",
+      "ADM_NM": "청림동",
+      "total_population": 13418.0,
+      "accessible_population": 13418.0,
+      "population_weighted_walk_min": 7.618,
+      "population_within_10min_pct": 96.594,
+      "rank_walk_min": 377,
+      "rank_within_10min": 239
+    },
+    {
+      "ADM_CD": "11210570",
+      "ADM_NM": "행운동",
+      "total_population": 28389.0,
+      "accessible_population": 28389.0,
+      "population_weighted_walk_min": 5.662,
+      "population_within_10min_pct": 98.954,
+      "rank_walk_min": 280,
+      "rank_within_10min": 187
+    },
+    {
+      "ADM_CD": "11210580",
+      "ADM_NM": "낙성대동",
+      "total_population": 22829.0,
+      "accessible_population": 22829.0,
+      "population_weighted_walk_min": 4.78,
+      "population_within_10min_pct": 96.855,
+      "rank_walk_min": 190,
+      "rank_within_10min": 234
+    },
+    {
+      "ADM_CD": "11210610",
+      "ADM_NM": "중앙동",
+      "total_population": 15692.0,
+      "accessible_population": 15692.0,
+      "population_weighted_walk_min": 6.456,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 342,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11210620",
+      "ADM_NM": "인헌동",
+      "total_population": 24478.0,
+      "accessible_population": 24478.0,
+      "population_weighted_walk_min": 5.101,
+      "population_within_10min_pct": 92.834,
+      "rank_walk_min": 225,
+      "rank_within_10min": 290
+    },
+    {
+      "ADM_CD": "11210630",
+      "ADM_NM": "남현동",
+      "total_population": 17185.0,
+      "accessible_population": 17185.0,
+      "population_weighted_walk_min": 6.119,
+      "population_within_10min_pct": 94.984,
+      "rank_walk_min": 323,
+      "rank_within_10min": 263
+    },
+    {
+      "ADM_CD": "11210640",
+      "ADM_NM": "서원동",
+      "total_population": 23296.0,
+      "accessible_population": 23296.0,
+      "population_weighted_walk_min": 6.426,
+      "population_within_10min_pct": 88.569,
+      "rank_walk_min": 341,
+      "rank_within_10min": 334
+    },
+    {
+      "ADM_CD": "11210650",
+      "ADM_NM": "신원동",
+      "total_population": 17754.0,
+      "accessible_population": 17754.0,
+      "population_weighted_walk_min": 7.598,
+      "population_within_10min_pct": 91.286,
+      "rank_walk_min": 376,
+      "rank_within_10min": 309
+    },
+    {
+      "ADM_CD": "11210660",
+      "ADM_NM": "서림동",
+      "total_population": 23742.0,
+      "accessible_population": 23742.0,
+      "population_weighted_walk_min": 3.919,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 99,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11210680",
+      "ADM_NM": "신사동",
+      "total_population": 25466.0,
+      "accessible_population": 25466.0,
+      "population_weighted_walk_min": 4.284,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 140,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11210690",
+      "ADM_NM": "신림동",
+      "total_population": 23757.0,
+      "accessible_population": 23757.0,
+      "population_weighted_walk_min": 3.115,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 41,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11210710",
+      "ADM_NM": "난향동",
+      "total_population": 14158.0,
+      "accessible_population": 14158.0,
+      "population_weighted_walk_min": 3.687,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 81,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11210720",
+      "ADM_NM": "조원동",
+      "total_population": 21419.0,
+      "accessible_population": 21419.0,
+      "population_weighted_walk_min": 5.947,
+      "population_within_10min_pct": 99.963,
+      "rank_walk_min": 308,
+      "rank_within_10min": 164
+    },
+    {
+      "ADM_CD": "11210730",
+      "ADM_NM": "대학동",
+      "total_population": 26711.0,
+      "accessible_population": 26711.0,
+      "population_weighted_walk_min": 4.709,
+      "population_within_10min_pct": 98.678,
+      "rank_walk_min": 185,
+      "rank_within_10min": 195
+    },
+    {
+      "ADM_CD": "11210780",
+      "ADM_NM": "은천동",
+      "total_population": 31494.0,
+      "accessible_population": 31494.0,
+      "population_weighted_walk_min": 3.826,
+      "population_within_10min_pct": 96.263,
+      "rank_walk_min": 89,
+      "rank_within_10min": 243
+    },
+    {
+      "ADM_CD": "11210790",
+      "ADM_NM": "성현동",
+      "total_population": 27307.0,
+      "accessible_population": 27307.0,
+      "population_weighted_walk_min": 4.684,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 181,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11210800",
+      "ADM_NM": "청룡동",
+      "total_population": 36885.0,
+      "accessible_population": 36885.0,
+      "population_weighted_walk_min": 3.363,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 61,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11210810",
+      "ADM_NM": "난곡동",
+      "total_population": 25244.0,
+      "accessible_population": 25244.0,
+      "population_weighted_walk_min": 4.78,
+      "population_within_10min_pct": 98.158,
+      "rank_walk_min": 190,
+      "rank_within_10min": 205
+    },
+    {
+      "ADM_CD": "11210820",
+      "ADM_NM": "삼성동",
+      "total_population": 18905.0,
+      "accessible_population": 18905.0,
+      "population_weighted_walk_min": 5.75,
+      "population_within_10min_pct": 86.839,
+      "rank_walk_min": 288,
+      "rank_within_10min": 341
+    },
+    {
+      "ADM_CD": "11210830",
+      "ADM_NM": "미성동",
+      "total_population": 28379.0,
+      "accessible_population": 28379.0,
+      "population_weighted_walk_min": 6.423,
+      "population_within_10min_pct": 87.181,
+      "rank_walk_min": 340,
+      "rank_within_10min": 339
+    },
+    {
+      "ADM_CD": "11220510",
+      "ADM_NM": "서초1동",
+      "total_population": 19984.0,
+      "accessible_population": 19984.0,
+      "population_weighted_walk_min": 7.531,
+      "population_within_10min_pct": 81.465,
+      "rank_walk_min": 374,
+      "rank_within_10min": 362
+    },
+    {
+      "ADM_CD": "11220520",
+      "ADM_NM": "서초2동",
+      "total_population": 23781.0,
+      "accessible_population": 23781.0,
+      "population_weighted_walk_min": 4.366,
+      "population_within_10min_pct": 99.966,
+      "rank_walk_min": 153,
+      "rank_within_10min": 163
+    },
+    {
+      "ADM_CD": "11220530",
+      "ADM_NM": "서초3동",
+      "total_population": 30083.0,
+      "accessible_population": 30083.0,
+      "population_weighted_walk_min": 6.417,
+      "population_within_10min_pct": 74.391,
+      "rank_walk_min": 339,
+      "rank_within_10min": 382
+    },
+    {
+      "ADM_CD": "11220540",
+      "ADM_NM": "서초4동",
+      "total_population": 28285.0,
+      "accessible_population": 28285.0,
+      "population_weighted_walk_min": 4.641,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 178,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11220550",
+      "ADM_NM": "잠원동",
+      "total_population": 25306.0,
+      "accessible_population": 25306.0,
+      "population_weighted_walk_min": 3.542,
+      "population_within_10min_pct": 97.139,
+      "rank_walk_min": 69,
+      "rank_within_10min": 225
+    },
+    {
+      "ADM_CD": "11220560",
+      "ADM_NM": "반포본동",
+      "total_population": 635.0,
+      "accessible_population": 635.0,
+      "population_weighted_walk_min": 7.86,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 382,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11220570",
+      "ADM_NM": "반포1동",
+      "total_population": 31961.0,
+      "accessible_population": 31961.0,
+      "population_weighted_walk_min": 4.151,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 120,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11220580",
+      "ADM_NM": "반포2동",
+      "total_population": 24226.0,
+      "accessible_population": 24226.0,
+      "population_weighted_walk_min": 3.858,
+      "population_within_10min_pct": 99.562,
+      "rank_walk_min": 94,
+      "rank_within_10min": 176
+    },
+    {
+      "ADM_CD": "11220590",
+      "ADM_NM": "반포3동",
+      "total_population": 21967.0,
+      "accessible_population": 21967.0,
+      "population_weighted_walk_min": 4.542,
+      "population_within_10min_pct": 91.169,
+      "rank_walk_min": 172,
+      "rank_within_10min": 312
+    },
+    {
+      "ADM_CD": "11220600",
+      "ADM_NM": "반포4동",
+      "total_population": 17463.0,
+      "accessible_population": 17463.0,
+      "population_weighted_walk_min": 4.026,
+      "population_within_10min_pct": 99.611,
+      "rank_walk_min": 109,
+      "rank_within_10min": 175
+    },
+    {
+      "ADM_CD": "11220610",
+      "ADM_NM": "방배본동",
+      "total_population": 18587.0,
+      "accessible_population": 18587.0,
+      "population_weighted_walk_min": 5.831,
+      "population_within_10min_pct": 98.564,
+      "rank_walk_min": 298,
+      "rank_within_10min": 197
+    },
+    {
+      "ADM_CD": "11220620",
+      "ADM_NM": "방배1동",
+      "total_population": 15202.0,
+      "accessible_population": 15202.0,
+      "population_weighted_walk_min": 4.488,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 165,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11220630",
+      "ADM_NM": "방배2동",
+      "total_population": 17863.0,
+      "accessible_population": 17863.0,
+      "population_weighted_walk_min": 5.842,
+      "population_within_10min_pct": 91.2,
+      "rank_walk_min": 299,
+      "rank_within_10min": 311
+    },
+    {
+      "ADM_CD": "11220640",
+      "ADM_NM": "방배3동",
+      "total_population": 14719.0,
+      "accessible_population": 14719.0,
+      "population_weighted_walk_min": 8.928,
+      "population_within_10min_pct": 69.685,
+      "rank_walk_min": 402,
+      "rank_within_10min": 392
+    },
+    {
+      "ADM_CD": "11220650",
+      "ADM_NM": "방배4동",
+      "total_population": 20653.0,
+      "accessible_population": 20653.0,
+      "population_weighted_walk_min": 5.896,
+      "population_within_10min_pct": 91.531,
+      "rank_walk_min": 304,
+      "rank_within_10min": 306
+    },
+    {
+      "ADM_CD": "11220660",
+      "ADM_NM": "양재1동",
+      "total_population": 39300.0,
+      "accessible_population": 39300.0,
+      "population_weighted_walk_min": 4.52,
+      "population_within_10min_pct": 92.59,
+      "rank_walk_min": 169,
+      "rank_within_10min": 294
+    },
+    {
+      "ADM_CD": "11220670",
+      "ADM_NM": "양재2동",
+      "total_population": 20231.0,
+      "accessible_population": 20231.0,
+      "population_weighted_walk_min": 2.738,
+      "population_within_10min_pct": 99.763,
+      "rank_walk_min": 21,
+      "rank_within_10min": 170
+    },
+    {
+      "ADM_CD": "11220680",
+      "ADM_NM": "내곡동",
+      "total_population": 15967.0,
+      "accessible_population": 15967.0,
+      "population_weighted_walk_min": 11.948,
+      "population_within_10min_pct": 48.882,
+      "rank_walk_min": 417,
+      "rank_within_10min": 411
+    },
+    {
+      "ADM_CD": "11230510",
+      "ADM_NM": "신사동",
+      "total_population": 14043.0,
+      "accessible_population": 14043.0,
+      "population_weighted_walk_min": 5.2,
+      "population_within_10min_pct": 98.789,
+      "rank_walk_min": 229,
+      "rank_within_10min": 192
+    },
+    {
+      "ADM_CD": "11230511",
+      "ADM_NM": "개포3동",
+      "total_population": 16656.0,
+      "accessible_population": 16656.0,
+      "population_weighted_walk_min": 5.03,
+      "population_within_10min_pct": 94.699,
+      "rank_walk_min": 217,
+      "rank_within_10min": 266
+    },
+    {
+      "ADM_CD": "11230520",
+      "ADM_NM": "논현1동",
+      "total_population": 20286.0,
+      "accessible_population": 20286.0,
+      "population_weighted_walk_min": 4.172,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 123,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11230530",
+      "ADM_NM": "논현2동",
+      "total_population": 19008.0,
+      "accessible_population": 19008.0,
+      "population_weighted_walk_min": 5.867,
+      "population_within_10min_pct": 95.034,
+      "rank_walk_min": 302,
+      "rank_within_10min": 262
+    },
+    {
+      "ADM_CD": "11230580",
+      "ADM_NM": "삼성1동",
+      "total_population": 11518.0,
+      "accessible_population": 11518.0,
+      "population_weighted_walk_min": 5.067,
+      "population_within_10min_pct": 99.236,
+      "rank_walk_min": 221,
+      "rank_within_10min": 182
+    },
+    {
+      "ADM_CD": "11230590",
+      "ADM_NM": "삼성2동",
+      "total_population": 28552.0,
+      "accessible_population": 28552.0,
+      "population_weighted_walk_min": 4.498,
+      "population_within_10min_pct": 98.802,
+      "rank_walk_min": 166,
+      "rank_within_10min": 190
+    },
+    {
+      "ADM_CD": "11230600",
+      "ADM_NM": "대치1동",
+      "total_population": 22540.0,
+      "accessible_population": 22540.0,
+      "population_weighted_walk_min": 5.744,
+      "population_within_10min_pct": 97.4,
+      "rank_walk_min": 287,
+      "rank_within_10min": 219
+    },
+    {
+      "ADM_CD": "11230630",
+      "ADM_NM": "대치4동",
+      "total_population": 18143.0,
+      "accessible_population": 18143.0,
+      "population_weighted_walk_min": 4.565,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 174,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11230640",
+      "ADM_NM": "역삼1동",
+      "total_population": 34220.0,
+      "accessible_population": 34220.0,
+      "population_weighted_walk_min": 4.975,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 212,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11230650",
+      "ADM_NM": "역삼2동",
+      "total_population": 34300.0,
+      "accessible_population": 34300.0,
+      "population_weighted_walk_min": 3.6,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 76,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11230660",
+      "ADM_NM": "도곡1동",
+      "total_population": 19959.0,
+      "accessible_population": 19959.0,
+      "population_weighted_walk_min": 4.289,
+      "population_within_10min_pct": 96.748,
+      "rank_walk_min": 142,
+      "rank_within_10min": 237
+    },
+    {
+      "ADM_CD": "11230670",
+      "ADM_NM": "도곡2동",
+      "total_population": 29177.0,
+      "accessible_population": 29177.0,
+      "population_weighted_walk_min": 4.216,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 130,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11230680",
+      "ADM_NM": "개포1동",
+      "total_population": 24037.0,
+      "accessible_population": 24037.0,
+      "population_weighted_walk_min": 11.288,
+      "population_within_10min_pct": 26.384,
+      "rank_walk_min": 415,
+      "rank_within_10min": 417
+    },
+    {
+      "ADM_CD": "11230710",
+      "ADM_NM": "개포4동",
+      "total_population": 22311.0,
+      "accessible_population": 22311.0,
+      "population_weighted_walk_min": 4.599,
+      "population_within_10min_pct": 91.672,
+      "rank_walk_min": 176,
+      "rank_within_10min": 304
+    },
+    {
+      "ADM_CD": "11230720",
+      "ADM_NM": "일원본동",
+      "total_population": 21367.0,
+      "accessible_population": 21367.0,
+      "population_weighted_walk_min": 6.389,
+      "population_within_10min_pct": 81.883,
+      "rank_walk_min": 335,
+      "rank_within_10min": 360
+    },
+    {
+      "ADM_CD": "11230730",
+      "ADM_NM": "일원1동",
+      "total_population": 13755.0,
+      "accessible_population": 13755.0,
+      "population_weighted_walk_min": 4.51,
+      "population_within_10min_pct": 99.535,
+      "rank_walk_min": 167,
+      "rank_within_10min": 178
+    },
+    {
+      "ADM_CD": "11230750",
+      "ADM_NM": "수서동",
+      "total_population": 13072.0,
+      "accessible_population": 13072.0,
+      "population_weighted_walk_min": 4.315,
+      "population_within_10min_pct": 97.812,
+      "rank_walk_min": 147,
+      "rank_within_10min": 212
+    },
+    {
+      "ADM_CD": "11230760",
+      "ADM_NM": "세곡동",
+      "total_population": 44817.0,
+      "accessible_population": 44817.0,
+      "population_weighted_walk_min": 5.514,
+      "population_within_10min_pct": 86.512,
+      "rank_walk_min": 268,
+      "rank_within_10min": 342
+    },
+    {
+      "ADM_CD": "11230770",
+      "ADM_NM": "압구정동",
+      "total_population": 23196.0,
+      "accessible_population": 23196.0,
+      "population_weighted_walk_min": 5.492,
+      "population_within_10min_pct": 92.71,
+      "rank_walk_min": 265,
+      "rank_within_10min": 292
+    },
+    {
+      "ADM_CD": "11230780",
+      "ADM_NM": "청담동",
+      "total_population": 22111.0,
+      "accessible_population": 22111.0,
+      "population_weighted_walk_min": 4.259,
+      "population_within_10min_pct": 96.744,
+      "rank_walk_min": 135,
+      "rank_within_10min": 238
+    },
+    {
+      "ADM_CD": "11230790",
+      "ADM_NM": "대치2동",
+      "total_population": 36061.0,
+      "accessible_population": 36061.0,
+      "population_weighted_walk_min": 5.393,
+      "population_within_10min_pct": 90.982,
+      "rank_walk_min": 250,
+      "rank_within_10min": 314
+    },
+    {
+      "ADM_CD": "11230800",
+      "ADM_NM": "개포2동",
+      "total_population": 39584.0,
+      "accessible_population": 39584.0,
+      "population_weighted_walk_min": 5.887,
+      "population_within_10min_pct": 83.213,
+      "rank_walk_min": 303,
+      "rank_within_10min": 353
+    },
+    {
+      "ADM_CD": "11240510",
+      "ADM_NM": "풍납1동",
+      "total_population": 12120.0,
+      "accessible_population": 12120.0,
+      "population_weighted_walk_min": 2.814,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 24,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240520",
+      "ADM_NM": "풍납2동",
+      "total_population": 22338.0,
+      "accessible_population": 22338.0,
+      "population_weighted_walk_min": 3.738,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 82,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240530",
+      "ADM_NM": "거여1동",
+      "total_population": 12154.0,
+      "accessible_population": 12154.0,
+      "population_weighted_walk_min": 2.937,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 30,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240540",
+      "ADM_NM": "거여2동",
+      "total_population": 22525.0,
+      "accessible_population": 22525.0,
+      "population_weighted_walk_min": 2.434,
+      "population_within_10min_pct": 98.349,
+      "rank_walk_min": 14,
+      "rank_within_10min": 200
+    },
+    {
+      "ADM_CD": "11240550",
+      "ADM_NM": "마천1동",
+      "total_population": 15460.0,
+      "accessible_population": 15460.0,
+      "population_weighted_walk_min": 5.83,
+      "population_within_10min_pct": 94.56,
+      "rank_walk_min": 297,
+      "rank_within_10min": 270
+    },
+    {
+      "ADM_CD": "11240560",
+      "ADM_NM": "마천2동",
+      "total_population": 17375.0,
+      "accessible_population": 17375.0,
+      "population_weighted_walk_min": 3.839,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 92,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240570",
+      "ADM_NM": "방이1동",
+      "total_population": 14512.0,
+      "accessible_population": 14512.0,
+      "population_weighted_walk_min": 4.047,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 111,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240580",
+      "ADM_NM": "방이2동",
+      "total_population": 26107.0,
+      "accessible_population": 26107.0,
+      "population_weighted_walk_min": 3.179,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 48,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240590",
+      "ADM_NM": "오륜동",
+      "total_population": 17447.0,
+      "accessible_population": 17447.0,
+      "population_weighted_walk_min": 4.71,
+      "population_within_10min_pct": 91.448,
+      "rank_walk_min": 186,
+      "rank_within_10min": 308
+    },
+    {
+      "ADM_CD": "11240600",
+      "ADM_NM": "오금동",
+      "total_population": 35014.0,
+      "accessible_population": 35014.0,
+      "population_weighted_walk_min": 3.271,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 53,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240610",
+      "ADM_NM": "송파1동",
+      "total_population": 22263.0,
+      "accessible_population": 22263.0,
+      "population_weighted_walk_min": 3.136,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 45,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240620",
+      "ADM_NM": "송파2동",
+      "total_population": 17770.0,
+      "accessible_population": 17770.0,
+      "population_weighted_walk_min": 5.567,
+      "population_within_10min_pct": 90.051,
+      "rank_walk_min": 272,
+      "rank_within_10min": 324
+    },
+    {
+      "ADM_CD": "11240630",
+      "ADM_NM": "석촌동",
+      "total_population": 29434.0,
+      "accessible_population": 29434.0,
+      "population_weighted_walk_min": 3.782,
+      "population_within_10min_pct": 98.743,
+      "rank_walk_min": 83,
+      "rank_within_10min": 193
+    },
+    {
+      "ADM_CD": "11240640",
+      "ADM_NM": "삼전동",
+      "total_population": 28266.0,
+      "accessible_population": 28266.0,
+      "population_weighted_walk_min": 3.547,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 70,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240650",
+      "ADM_NM": "가락본동",
+      "total_population": 24284.0,
+      "accessible_population": 24284.0,
+      "population_weighted_walk_min": 3.135,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 44,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240660",
+      "ADM_NM": "가락1동",
+      "total_population": 26270.0,
+      "accessible_population": 26270.0,
+      "population_weighted_walk_min": 2.96,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 31,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240670",
+      "ADM_NM": "가락2동",
+      "total_population": 29543.0,
+      "accessible_population": 29543.0,
+      "population_weighted_walk_min": 5.959,
+      "population_within_10min_pct": 97.204,
+      "rank_walk_min": 311,
+      "rank_within_10min": 222
+    },
+    {
+      "ADM_CD": "11240680",
+      "ADM_NM": "문정1동",
+      "total_population": 19305.0,
+      "accessible_population": 19305.0,
+      "population_weighted_walk_min": 3.284,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 54,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240690",
+      "ADM_NM": "문정2동",
+      "total_population": 27248.0,
+      "accessible_population": 27248.0,
+      "population_weighted_walk_min": 4.789,
+      "population_within_10min_pct": 95.497,
+      "rank_walk_min": 192,
+      "rank_within_10min": 258
+    },
+    {
+      "ADM_CD": "11240710",
+      "ADM_NM": "잠실본동",
+      "total_population": 27281.0,
+      "accessible_population": 27281.0,
+      "population_weighted_walk_min": 3.287,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 55,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240750",
+      "ADM_NM": "잠실4동",
+      "total_population": 19836.0,
+      "accessible_population": 19836.0,
+      "population_weighted_walk_min": 4.408,
+      "population_within_10min_pct": 95.765,
+      "rank_walk_min": 161,
+      "rank_within_10min": 254
+    },
+    {
+      "ADM_CD": "11240770",
+      "ADM_NM": "잠실6동",
+      "total_population": 15537.0,
+      "accessible_population": 15537.0,
+      "population_weighted_walk_min": 3.351,
+      "population_within_10min_pct": 94.207,
+      "rank_walk_min": 60,
+      "rank_within_10min": 272
+    },
+    {
+      "ADM_CD": "11240780",
+      "ADM_NM": "잠실7동",
+      "total_population": 8541.0,
+      "accessible_population": 8541.0,
+      "population_weighted_walk_min": 4.119,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 116,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240790",
+      "ADM_NM": "잠실2동",
+      "total_population": 33011.0,
+      "accessible_population": 33011.0,
+      "population_weighted_walk_min": 5.949,
+      "population_within_10min_pct": 84.626,
+      "rank_walk_min": 309,
+      "rank_within_10min": 350
+    },
+    {
+      "ADM_CD": "11240800",
+      "ADM_NM": "잠실3동",
+      "total_population": 31840.0,
+      "accessible_population": 31840.0,
+      "population_weighted_walk_min": 5.518,
+      "population_within_10min_pct": 84.645,
+      "rank_walk_min": 269,
+      "rank_within_10min": 349
+    },
+    {
+      "ADM_CD": "11240810",
+      "ADM_NM": "장지동",
+      "total_population": 28435.0,
+      "accessible_population": 28435.0,
+      "population_weighted_walk_min": 2.679,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 18,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11240820",
+      "ADM_NM": "위례동",
+      "total_population": 44417.0,
+      "accessible_population": 44417.0,
+      "population_weighted_walk_min": 2.383,
+      "population_within_10min_pct": 99.743,
+      "rank_walk_min": 13,
+      "rank_within_10min": 172
+    },
+    {
+      "ADM_CD": "11250530",
+      "ADM_NM": "명일1동",
+      "total_population": 23483.0,
+      "accessible_population": 23483.0,
+      "population_weighted_walk_min": 3.927,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 101,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11250540",
+      "ADM_NM": "명일2동",
+      "total_population": 16113.0,
+      "accessible_population": 16113.0,
+      "population_weighted_walk_min": 4.881,
+      "population_within_10min_pct": 91.479,
+      "rank_walk_min": 204,
+      "rank_within_10min": 307
+    },
+    {
+      "ADM_CD": "11250550",
+      "ADM_NM": "고덕1동",
+      "total_population": 23209.0,
+      "accessible_population": 23209.0,
+      "population_weighted_walk_min": 5.976,
+      "population_within_10min_pct": 83.188,
+      "rank_walk_min": 314,
+      "rank_within_10min": 354
+    },
+    {
+      "ADM_CD": "11250560",
+      "ADM_NM": "고덕2동",
+      "total_population": 24917.0,
+      "accessible_population": 24917.0,
+      "population_weighted_walk_min": 2.708,
+      "population_within_10min_pct": 99.643,
+      "rank_walk_min": 19,
+      "rank_within_10min": 173
+    },
+    {
+      "ADM_CD": "11250580",
+      "ADM_NM": "암사2동",
+      "total_population": 14123.0,
+      "accessible_population": 14123.0,
+      "population_weighted_walk_min": 4.9,
+      "population_within_10min_pct": 99.802,
+      "rank_walk_min": 206,
+      "rank_within_10min": 169
+    },
+    {
+      "ADM_CD": "11250590",
+      "ADM_NM": "암사3동",
+      "total_population": 15765.0,
+      "accessible_population": 15765.0,
+      "population_weighted_walk_min": 4.842,
+      "population_within_10min_pct": 96.264,
+      "rank_walk_min": 199,
+      "rank_within_10min": 242
+    },
+    {
+      "ADM_CD": "11250610",
+      "ADM_NM": "천호1동",
+      "total_population": 25286.0,
+      "accessible_population": 25286.0,
+      "population_weighted_walk_min": 7.428,
+      "population_within_10min_pct": 90.774,
+      "rank_walk_min": 372,
+      "rank_within_10min": 316
+    },
+    {
+      "ADM_CD": "11250630",
+      "ADM_NM": "천호3동",
+      "total_population": 25734.0,
+      "accessible_population": 25734.0,
+      "population_weighted_walk_min": 6.067,
+      "population_within_10min_pct": 96.153,
+      "rank_walk_min": 319,
+      "rank_within_10min": 248
+    },
+    {
+      "ADM_CD": "11250650",
+      "ADM_NM": "성내1동",
+      "total_population": 18524.0,
+      "accessible_population": 18524.0,
+      "population_weighted_walk_min": 4.971,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 211,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11250660",
+      "ADM_NM": "성내2동",
+      "total_population": 23825.0,
+      "accessible_population": 23825.0,
+      "population_weighted_walk_min": 6.03,
+      "population_within_10min_pct": 96.273,
+      "rank_walk_min": 316,
+      "rank_within_10min": 241
+    },
+    {
+      "ADM_CD": "11250670",
+      "ADM_NM": "성내3동",
+      "total_population": 21143.0,
+      "accessible_population": 21143.0,
+      "population_weighted_walk_min": 5.508,
+      "population_within_10min_pct": 99.234,
+      "rank_walk_min": 267,
+      "rank_within_10min": 183
+    },
+    {
+      "ADM_CD": "11250700",
+      "ADM_NM": "둔촌1동",
+      "total_population": 319.0,
+      "accessible_population": 319.0,
+      "population_weighted_walk_min": 6.464,
+      "population_within_10min_pct": 96.865,
+      "rank_walk_min": 343,
+      "rank_within_10min": 233
+    },
+    {
+      "ADM_CD": "11250710",
+      "ADM_NM": "둔촌2동",
+      "total_population": 23056.0,
+      "accessible_population": 23056.0,
+      "population_weighted_walk_min": 5.181,
+      "population_within_10min_pct": 98.846,
+      "rank_walk_min": 228,
+      "rank_within_10min": 188
+    },
+    {
+      "ADM_CD": "11250720",
+      "ADM_NM": "암사1동",
+      "total_population": 32447.0,
+      "accessible_population": 32447.0,
+      "population_weighted_walk_min": 5.413,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 256,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11250730",
+      "ADM_NM": "천호2동",
+      "total_population": 33864.0,
+      "accessible_population": 33864.0,
+      "population_weighted_walk_min": 4.86,
+      "population_within_10min_pct": 100.0,
+      "rank_walk_min": 200,
+      "rank_within_10min": 1
+    },
+    {
+      "ADM_CD": "11250740",
+      "ADM_NM": "길동",
+      "total_population": 46637.0,
+      "accessible_population": 46637.0,
+      "population_weighted_walk_min": 5.758,
+      "population_within_10min_pct": 93.838,
+      "rank_walk_min": 289,
+      "rank_within_10min": 276
+    },
+    {
+      "ADM_CD": "11250750",
+      "ADM_NM": "강일동",
+      "total_population": 34164.0,
+      "accessible_population": 34164.0,
+      "population_weighted_walk_min": 6.38,
+      "population_within_10min_pct": 91.793,
+      "rank_walk_min": 334,
+      "rank_within_10min": 301
+    },
+    {
+      "ADM_CD": "11250760",
+      "ADM_NM": "상일1동",
+      "total_population": 38048.0,
+      "accessible_population": 38048.0,
+      "population_weighted_walk_min": 4.244,
+      "population_within_10min_pct": 99.979,
+      "rank_walk_min": 133,
+      "rank_within_10min": 161
+    },
+    {
+      "ADM_CD": "11250770",
+      "ADM_NM": "상일2동",
+      "total_population": 13318.0,
+      "accessible_population": 13318.0,
+      "population_weighted_walk_min": 5.776,
+      "population_within_10min_pct": 90.411,
+      "rank_walk_min": 293,
+      "rank_within_10min": 320
+    }
+  ]
+}

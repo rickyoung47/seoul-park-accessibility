@@ -10,6 +10,19 @@ let selectedLayer = null;
 let accessibility = new Map();
 let dongsLayer;
 const thematicMaps = [];
+const excludeNaturalToggle = document.getElementById('exclude-natural-toggle');
+const initialExcludeNatural = excludeNaturalToggle.checked;
+const initialScenarioKey = initialExcludeNatural ? 'exclude-natural' : 'all-green';
+let activeScenarioKey = null;
+let baseMapReady = false;
+let pendingNaturalExclusion = null;
+let scenarioRequestId = 0;
+
+function scenarioAssets(excludeNatural) {
+  return excludeNatural
+    ? { greens: './assets/green-areas-no-natural.geojson', scores: './assets/dong-accessibility-no-natural.json' }
+    : { greens: './assets/green-areas.geojson', scores: './assets/dong-accessibility.json' };
+}
 
 function addMapBase(mapInstance) {
   L.control.zoom({ position: 'bottomright' }).addTo(mapInstance);
@@ -115,6 +128,7 @@ function selectDongFromRanking(code) {
 
 function renderRankingChart(containerId, rows, metricKey, rankKey, ascendingBest, top, unit, decimals) {
   const container = document.getElementById(containerId);
+  container.replaceChildren();
   const sorted = rows
     .filter((row) => row[metricKey] != null && Number.isFinite(Number(row[metricKey])))
     .sort((a, b) => ((top ? ascendingBest : !ascendingBest) ? 1 : -1) * (Number(a[metricKey]) - Number(b[metricKey])) || a.ADM_NM.localeCompare(b.ADM_NM, 'ko'))
@@ -160,15 +174,14 @@ function renderRankingChart(containerId, rows, metricKey, rankKey, ascendingBest
   }
 }
 
-function createThematicMap(config, dongs, outline, rows) {
-  const theme = { ...config };
+function configureThematicMap(theme, rows) {
   const validValues = rows.filter((row) => row[theme.metricKey] != null).map((row) => Number(row[theme.metricKey])).filter(Number.isFinite).sort((a, b) => a - b);
   const maxValue = validValues.at(-1);
   theme.thresholds = [...new Set([0.2, 0.4, 0.6, 0.8]
     .map((q) => validValues[Math.min(validValues.length - 1, Math.floor(q * validValues.length))])
     .filter((threshold) => threshold < maxValue))];
   const classCount = theme.thresholds.length + 1;
-  const sourcePalette = theme.palette;
+  const sourcePalette = theme.basePalette || theme.palette;
   theme.palette = Array.from({ length: classCount }, (_, index) => {
     const paletteIndex = classCount === 1
       ? Math.floor((sourcePalette.length - 1) / 2)
@@ -182,6 +195,11 @@ function createThematicMap(config, dongs, outline, rows) {
     const index = theme.thresholds.findIndex((threshold) => value <= threshold);
     return theme.palette[index < 0 ? theme.palette.length - 1 : index];
   };
+}
+
+function createThematicMap(config, dongs, outline, rows) {
+  const theme = { ...config, basePalette: [...config.palette] };
+  configureThematicMap(theme, rows);
   const mapInstance = L.map(theme.containerId, mapOptions).setView([37.5665, 126.978], 10);
   theme.map = mapInstance;
   addMapBase(mapInstance);
@@ -212,6 +230,7 @@ function createThematicMap(config, dongs, outline, rows) {
 
 function renderThemeLegend(theme) {
   const legend = document.getElementById(theme.legendId);
+  legend.replaceChildren();
   legend.style.gridTemplateColumns = `repeat(${theme.palette.length}, minmax(0, 1fr))`;
   theme.palette.forEach((color, index) => {
     const segment = document.createElement('div');
@@ -229,6 +248,63 @@ function renderThemeLegend(theme) {
     segment.append(swatch, label);
     legend.append(segment);
   });
+}
+
+function renderAccessibilityRankings(rows) {
+  renderRankingChart('walk-ranking', rows, 'population_weighted_walk_min', 'rank_walk_min', true, true, '분', 1);
+  renderRankingChart('walk-bottom-ranking', rows, 'population_weighted_walk_min', 'rank_walk_min', true, false, '분', 1);
+  renderRankingChart('rate-ranking', rows, 'population_within_10min_pct', 'rank_within_10min', false, true, '%', 1);
+  renderRankingChart('rate-bottom-ranking', rows, 'population_within_10min_pct', 'rank_within_10min', false, false, '%', 1);
+}
+
+function renderGreenLayer(greens) {
+  if (layers.greens) map.removeLayer(layers.greens);
+  layers.greens = L.geoJSON(greens, {
+    style: { color: '#2f7046', weight: 1, fillColor: '#93bd73', fillOpacity: 0.35 },
+    onEachFeature(feature, layer) {
+      const label = feature.properties?.name || feature.properties?.green_type || 'OSM 녹지 공간';
+      if (label) layer.bindTooltip(`${label} · 접근성 목적지`);
+    },
+  });
+  if (document.getElementById('greens-toggle').checked) layers.greens.addTo(map);
+  if (layers.walk) layers.greens.bringToFront();
+  if (dongsLayer) dongsLayer.bringToFront();
+}
+
+function updateAccessibilityData(scoreData) {
+  accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
+  thematicMaps.forEach((theme) => {
+    configureThematicMap(theme, scoreData.rows);
+    applyThemeStyles(theme);
+    renderThemeLegend(theme);
+  });
+  renderAccessibilityRankings(scoreData.rows);
+  if (selectedCode !== null) updateSelectedDong(selectedCode);
+}
+
+function updateStatus(scoreData, excludeNatural) {
+  const mode = excludeNatural ? '자연녹지 제외' : '자연녹지 포함';
+  status.textContent = `${scoreData.metadata.dong_count}개 행정동 · ${scoreData.metadata.destinations_used.toLocaleString('ko-KR')}개 녹지 목적지 · ${mode} · 2024 인구`;
+}
+
+async function switchAccessibilityScenario(excludeNatural) {
+  const requestId = ++scenarioRequestId;
+  const paths = scenarioAssets(excludeNatural);
+  status.classList.remove('error');
+  status.textContent = '접근성 자료를 전환하는 중…';
+  try {
+    const [greens, scoreData] = await Promise.all([fetchJson(paths.greens), fetchJson(paths.scores)]);
+    if (requestId !== scenarioRequestId) return;
+    updateAccessibilityData(scoreData);
+    renderGreenLayer(greens);
+    activeScenarioKey = excludeNatural ? 'exclude-natural' : 'all-green';
+    updateStatus(scoreData, excludeNatural);
+  } catch (error) {
+    if (requestId !== scenarioRequestId) return;
+    status.textContent = `자료 전환에 실패했습니다: ${error.message}`;
+    status.classList.add('error');
+    excludeNaturalToggle.checked = activeScenarioKey === 'exclude-natural';
+  }
 }
 
 async function loadWalkNetwork(manifest) {
@@ -249,13 +325,15 @@ async function loadWalkNetwork(manifest) {
   return layers.walk;
 }
 
+const initialPaths = scenarioAssets(initialExcludeNatural);
 Promise.all([
   fetchJson('./assets/dongs.geojson'),
   fetchJson('./assets/seoul-outline.geojson'),
-  fetchJson('./assets/green-areas.geojson'),
-  fetchJson('./assets/dong-accessibility.json'),
+  fetchJson(initialPaths.greens),
+  fetchJson(initialPaths.scores),
   fetchJson('./assets/walk-network-manifest.json'),
 ]).then(async ([dongs, outline, greens, scoreData, networkManifest]) => {
+  activeScenarioKey = initialScenarioKey;
   accessibility = new Map(scoreData.rows.map((row) => [String(row.ADM_CD), row]));
 
   const baseBoundsLayer = L.geoJSON(dongs);
@@ -293,25 +371,29 @@ Promise.all([
     legendId: 'rate-legend', unit: '%',
   }, dongs, outline, scoreData.rows);
 
-  renderRankingChart('walk-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, true, '분', 1);
-  renderRankingChart('walk-bottom-ranking', scoreData.rows, 'population_weighted_walk_min', 'rank_walk_min', true, false, '분', 1);
-  renderRankingChart('rate-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, true, '%', 1);
-  renderRankingChart('rate-bottom-ranking', scoreData.rows, 'population_within_10min_pct', 'rank_within_10min', false, false, '%', 1);
-
-  layers.greens = L.geoJSON(greens, {
-    style: { color: '#2f7046', weight: 1, fillColor: '#93bd73', fillOpacity: 0.35 },
-    onEachFeature(feature, layer) {
-      const label = feature.properties?.name || feature.properties?.green_type || "OSM 녹지 공간";
-      if (label) layer.bindTooltip(`${label} · 접근성 목적지`);
-    },
-  }).addTo(map);
+  renderAccessibilityRankings(scoreData.rows);
+  renderGreenLayer(greens);
+  baseMapReady = true;
+  const pendingScenario = pendingNaturalExclusion;
+  pendingNaturalExclusion = null;
+  if (pendingScenario !== null && pendingScenario !== initialExcludeNatural) {
+    switchAccessibilityScenario(pendingScenario);
+  }
   await loadWalkNetwork(networkManifest);
   layers.greens.bringToFront();
   dongsLayer.bringToFront();
-  status.textContent = `${scoreData.metadata.dong_count}개 행정동 · ${scoreData.metadata.destinations_used.toLocaleString('ko-KR')}개 녹지 목적지 · 2024 인구`;
+  if (scenarioRequestId === 0) updateStatus(scoreData, initialExcludeNatural);
 }).catch((error) => {
   status.textContent = error.message;
   status.classList.add('error');
+});
+
+excludeNaturalToggle.addEventListener('change', (event) => {
+  if (!baseMapReady) {
+    pendingNaturalExclusion = event.target.checked;
+    return;
+  }
+  switchAccessibilityScenario(event.target.checked);
 });
 
 document.getElementById('greens-toggle').addEventListener('change', (event) => {

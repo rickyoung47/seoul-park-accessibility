@@ -14,12 +14,18 @@
     <main class="shell">
       <header class="topbar">
         <a class="brand" href="#" aria-label="서울 공원 접근성 홈"><span class="brand-mark">S</span><span>SEOUL <b>GREEN ACCESS</b></span></a>
-        <span class="phase"><i></i> PARK ACCESSIBILITY</span>
+        <div class="topbar-actions">
+          <label class="natural-filter" for="exclude-natural-toggle" title="natural=wood, grassland, scrub, heath 태그가 있는 녹지를 접근성 대상에서 제외합니다.">
+            <input id="exclude-natural-toggle" type="checkbox" checked />
+            <span>자연녹지 제외</span>
+          </label>
+          <span class="phase"><i></i> PARK ACCESSIBILITY</span>
+        </div>
       </header>
       <section class="research-summary" aria-labelledby="research-title">
         <div class="eyebrow">RESEARCH OVERVIEW</div>
         <h1 id="research-title">연구 질문 및 대상: 서울시 행정동별 공원 접근도 연구</h1>
-        <p class="research-method"><b>자료 및 전처리</b> 2024년 100m 인구격자, 서울시 행정동 경계, OSMnx 보행 네트워크, OpenStreetMap 녹지 공간 면 데이터를 사용했습니다. 공원·정원·자연보호구역과 숲·초지 등 OSM 녹지 태그가 있는 면을 서울 경계로 자르고, 좌표계를 미터 단위로 맞췄습니다. 격자 중심에서 가장 가까운 녹지 공간까지 보행망 최단거리를 계산해 시속 4km 기준 보행시간으로 환산하고, 인구가중 평균시간과 10분 이내 도달 인구 비율을 행정동별로 집계했습니다.</p>
+        <p class="research-method"><b>자료 및 전처리</b> 2024년 100m 인구격자, 서울시 행정동 경계, OSMnx 보행 네트워크, OpenStreetMap 녹지 공간 면 데이터를 사용했습니다. 격자 중심에서 가장 가까운 녹지 공간까지 보행망 최단거리를 계산해 시속 4km 기준 보행시간으로 환산하고, 인구가중 평균시간과 10분 이내 도달 인구 비율을 행정동별로 집계했습니다. 상단 체크박스로 natural 태그 녹지를 제외한 결과와 비교할 수 있습니다.</p>
         <p class="research-result"><b>결과:</b> 서울시내 광역중심지일수록 공원 접근성이 떨어짐. 인구가중 평균 보행시간과 10분이내 공원 도달인구는 비슷한 패턴을 보임</p>
       </section>
       <section class="thematic-section" aria-labelledby="thematic-title">

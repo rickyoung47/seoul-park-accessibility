@@ -31,6 +31,7 @@ SOURCE = ROOT.parent / "lecture05_Urban_Planning_Index"
 METRIC_CRS = "EPSG:5179"
 SPEED_M_PER_MIN = 4000 / 60
 THRESHOLD_MIN = 10
+NATURAL_GREEN_VALUES = {"wood", "grassland", "scrub", "heath"}
 
 TO_METRIC = Transformer.from_crs("EPSG:4326", METRIC_CRS, always_xy=True).transform
 TO_WGS84 = Transformer.from_crs(METRIC_CRS, "EPSG:4326", always_xy=True).transform
@@ -175,7 +176,9 @@ def write_green_areas(city_union):
     boundary_wgs84 = transform(TO_WGS84, city_union)
     elements = overpass_green_spaces(boundary_wgs84.bounds).get("elements", [])
     features = []
+    features_without_natural = []
     destination_geometries = []
+    destinations_without_natural = []
     seen = set()
     for element in elements:
         identity = (element.get("type"), element.get("id"))
@@ -189,6 +192,7 @@ def write_green_areas(city_union):
         if clipped.is_empty:
             continue
         tags = element.get("tags", {})
+        has_natural_green_tag = tags.get("natural") in NATURAL_GREEN_VALUES
         green_type = next((f"{key}={tags[key]}" for key in ("leisure", "landuse", "natural") if key in tags), "green_space")
         name = tags.get("name", "")
         for polygon in polygons_only(clipped):
@@ -200,11 +204,20 @@ def write_green_areas(city_union):
                 "properties": {"name": name, "green_type": green_type, "source": "OpenStreetMap"},
                 "geometry": mapping(transform(TO_WGS84, display_polygon)),
             })
+            if not has_natural_green_tag:
+                destinations_without_natural.append(polygon)
+                features_without_natural.append(features[-1])
     if not features:
         raise RuntimeError("OpenStreetMap returned no green-space polygons inside Seoul.")
     collection = {"type": "FeatureCollection", "features": features}
     (ASSETS / "green-areas.geojson").write_text(json.dumps(collection, ensure_ascii=False, separators=(",", ":")))
-    return len(features), destination_geometries
+    (ASSETS / "green-areas-no-natural.geojson").write_text(json.dumps({
+        "type": "FeatureCollection", "features": features_without_natural,
+    }, ensure_ascii=False, separators=(",", ":")))
+    return {
+        "all": (len(features), destination_geometries),
+        "exclude_natural": (len(features_without_natural), destinations_without_natural),
+    }
 
 
 def read_population():
@@ -267,50 +280,24 @@ def rank_values(values, descending=False):
     return {value: 1 + sum(1 for other in valid if other < value) for value in set(valid)}
 
 
-def main():
-    dongs = read_city_dongs()
-    city_union = unary_union([dong["geometry"] for dong in dongs])
-    write_seoul_outline(city_union)
-    green_count, destination_geometries = write_green_areas(city_union)
-    destination_count = len(destination_geometries)
-
-    node_points_by_id = {}
-    graph = build_walk_graph(node_points_by_id)
-    node_ids = list(node_points_by_id)
-    node_points = [node_points_by_id[node] for node in node_ids]
-    node_tree = STRtree(node_points)
+def compute_accessibility_rows(dongs, graph, node_ids, node_points, node_tree,
+                              dongs_tree, grid_records, destination_geometries, scenario):
     target_offsets = get_park_targets(destination_geometries, node_ids, node_points)
-    source = ("__nearest_green_destination_source__",)
+    source = (f"__nearest_green_destination_source_{scenario}__",)
     graph.add_node(source)
     for node, offset in target_offsets.items():
         graph.add_edge(source, node, length=offset)
     network_distance = nx.single_source_dijkstra_path_length(graph, source, weight="length")
+    graph.remove_node(source)
 
-    dongs_tree = STRtree([dong["geometry"] for dong in dongs])
     totals = {dong["code"]: {"total_population": 0.0, "accessible_population": 0.0,
                               "population_x_walk_min": 0.0, "population_within_10min": 0.0}
               for dong in dongs}
-    populations = read_population()
-    grid_path = SOURCE / "grid" / "seoul_100m_grid_2025.geojson"
-    grid = json.loads(grid_path.read_text())
-    matched_grid_count = 0
-    for feature in grid["features"]:
-        grid_code = str(feature["properties"].get("GRID_CD", ""))
-        matched_grid_count += grid_code in populations
-        population = populations.get(grid_code, 0.0)
-        if population < 0:
-            population = 0.0
-        polygon = transform(TO_METRIC, shape(feature["geometry"]))
-        centroid = polygon.centroid
-        matches = dongs_tree.query(centroid, predicate="within")
-        if not len(matches):
-            continue
-        dong = dongs[int(matches[0])]
-        point_index = int(node_tree.nearest(centroid))
+    for dong_code, population, centroid, point_index in grid_records:
+        bucket = totals[dong_code]
+        bucket["total_population"] += population
         node = node_ids[point_index]
         graph_m = network_distance.get(node)
-        bucket = totals[dong["code"]]
-        bucket["total_population"] += population
         if graph_m is None:
             continue
         walk_min = (graph_m + centroid.distance(node_points[point_index])) / SPEED_M_PER_MIN
@@ -337,25 +324,75 @@ def main():
     for row in rows:
         row["rank_walk_min"] = avg_rank.get(row["population_weighted_walk_min"])
         row["rank_within_10min"] = pct_rank.get(row["population_within_10min_pct"])
+    return rows
 
+
+def write_accessibility_result(rows, destination_count, green_count,
+                               grid_count, matched_grid_count, exclude_natural=False):
     result = {
         "metadata": {
             "generated_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "population_source": "2024년 인구 다사 100m · to_in_001",
             "walk_network": "OSMnx walk graph · EPSG:5179",
             "destination_source": "OpenStreetMap green-space areas · leisure/landuse/natural polygon tags",
+            "excluded_natural_tags": sorted(NATURAL_GREEN_VALUES) if exclude_natural else [],
             "walk_speed_kmh": 4.0,
             "threshold_min": THRESHOLD_MIN,
             "destinations_used": destination_count,
             "green_features": green_count,
             "dong_count": len(rows),
-            "grid_count": len(grid["features"]),
+            "grid_count": grid_count,
             "population_matched_grids": matched_grid_count,
         },
         "rows": rows,
     }
-    (ASSETS / "dong-accessibility.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
-    print(f"Wrote {green_count:,} green-area destination features and accessibility scores for {len(rows)} dongs")
+    filename = "dong-accessibility-no-natural.json" if exclude_natural else "dong-accessibility.json"
+    (ASSETS / filename).write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    return result
+
+
+def main():
+    dongs = read_city_dongs()
+    city_union = unary_union([dong["geometry"] for dong in dongs])
+    write_seoul_outline(city_union)
+    green_scenarios = write_green_areas(city_union)
+
+    node_points_by_id = {}
+    graph = build_walk_graph(node_points_by_id)
+    node_ids = list(node_points_by_id)
+    node_points = [node_points_by_id[node] for node in node_ids]
+    node_tree = STRtree(node_points)
+    dongs_tree = STRtree([dong["geometry"] for dong in dongs])
+    populations = read_population()
+    grid_path = SOURCE / "grid" / "seoul_100m_grid_2025.geojson"
+    grid = json.loads(grid_path.read_text())
+    matched_grid_count = 0
+    grid_records = []
+    for feature in grid["features"]:
+        grid_code = str(feature["properties"].get("GRID_CD", ""))
+        matched_grid_count += grid_code in populations
+        population = populations.get(grid_code, 0.0)
+        if population < 0:
+            population = 0.0
+        polygon = transform(TO_METRIC, shape(feature["geometry"]))
+        centroid = polygon.centroid
+        matches = dongs_tree.query(centroid, predicate="within")
+        if not len(matches):
+            continue
+        dong = dongs[int(matches[0])]
+        point_index = int(node_tree.nearest(centroid))
+        grid_records.append((dong["code"], population, centroid, point_index))
+
+    for scenario, (green_count, destinations) in green_scenarios.items():
+        rows = compute_accessibility_rows(
+            dongs, graph, node_ids, node_points, node_tree, dongs_tree,
+            grid_records, destinations, scenario,
+        )
+        result = write_accessibility_result(
+            rows, len(destinations), green_count, len(grid["features"]),
+            matched_grid_count, exclude_natural=(scenario == "exclude_natural"),
+        )
+        print(f"Wrote {green_count:,} green-area destination features and accessibility scores for {len(rows)} dongs ({scenario})")
 
 
 if __name__ == "__main__":

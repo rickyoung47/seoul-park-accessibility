@@ -1,9 +1,10 @@
 {
   "metadata": {
-    "generated_at_utc": "2026-10-30T04:13:41+00:00",
+    "generated_at_utc": "2026-10-30T05:04:58+00:00",
     "population_source": "2024년 인구 다사 100m · to_in_001",
     "walk_network": "OSMnx walk graph · EPSG:5179",
     "destination_source": "OpenStreetMap green-space areas · leisure/landuse/natural polygon tags",
+    "excluded_natural_tags": [],
     "walk_speed_kmh": 4.0,
     "threshold_min": 10,
     "destinations_used": 6877,
